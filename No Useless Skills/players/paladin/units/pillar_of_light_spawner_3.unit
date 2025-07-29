@@ -1,2 +1,0 @@
-%define DEFAULT
-%include "players/paladin/units/pillar_of_light_spawner_3.inc"
