@@ -1,2 +1,0 @@
-%define DEFAULT
-%include "players/paladin/units/battle_banner.inc"
