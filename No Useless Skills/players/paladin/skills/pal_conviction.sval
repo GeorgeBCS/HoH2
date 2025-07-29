@@ -52,7 +52,32 @@
 						</dict>
 					</array>
 				</dict>
+				<dict>
+					<string name="class">Modifiers::SkillTriggerEffect</string>
+					<array name="skill-tags"><s>melee</s></array>
+					<string name="trigger">spellhit</string>
+					<bool name="target-self">false</bool>
+					<string name="chance-bind">conviction-chance</string>
+					<int name="timeout">0</int>
+					
+					<array name="effects">
+						<dict>
+							<string name="class">DebugLog</string>
+							<string name="text">test_conviction_hit</string>
+						</dict>
+						<dict>
+							<bool name="target-self">true</bool>
+						</dict>
+						<dict>
+							<string name="class">GivePercentageMana</string>
+							<string name="mana-bind">mana-mul</string>
+							<bool name="curr-mana">false</bool>
+						</dict>
+					</array>
+				</dict>
 			</array>
+
+
 		</array>
 	</dict>
 
@@ -238,10 +263,6 @@
 							<int name="timeout">0</int>
 							
 							<array name="effects">
-<!-- 								<dict>
-									<string name="class">DebugLog</string>
-									<string name="text">test_conviction_hit</string>
-								</dict> -->
 								<dict>
 									<string name="class">StatBasedDamage</string>
 									<string name="type">physical</string>
@@ -255,10 +276,6 @@
 								<dict>
 									<bool name="target-self">true</bool>
 								</dict>
-<!-- 								<dict>
-									<string name="class">GiveMana</string>
-									<string name="mana-bind">mana-add</string>
-								</dict> -->
 								<dict>
 									<string name="class">GivePercentageMana</string>
 									<string name="mana-bind">mana-mul</string>
@@ -266,6 +283,36 @@
 								</dict>
 							</array>
 						</dict>
+						<dict>
+							<string name="class">Modifiers::SkillTriggerEffect</string>
+							<array name="skill-tags"><s>melee</s></array>
+							<string name="trigger">spellhit</string>
+							<bool name="target-self">false</bool>
+							<string name="chance-bind">conviction-chance</string>
+							<int name="timeout">0</int>
+							
+							<array name="effects">
+								<dict>
+									<string name="class">StatBasedDamage</string>
+									<string name="type">physical</string>
+									<string name="stat">currmana</string>
+									<string name="amount-bind">mana-dmg</string>
+								</dict>
+								<dict>
+									<string name="class">SpawnEffect</string>
+									<string name="effect">effects/generic/impacts/arcane_impact_1.effect</string>
+								</dict>
+								<dict>
+									<bool name="target-self">true</bool>
+								</dict>
+								<dict>
+									<string name="class">GivePercentageMana</string>
+									<string name="mana-bind">mana-mul</string>
+									<bool name="curr-mana">false</bool>
+								</dict>
+							</array>
+						</dict>
+
 					</array>
 				</array>
 			</dict>

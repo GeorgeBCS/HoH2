@@ -5,7 +5,7 @@
 	<string name="description">.skills.paladin.spell_1.desc</string>
 
 	<array name="description-params">
-		<array><s>damage</s><s>.skills.desc.params.damage</s><s>70</s><s>85</s><s>105</s><s>125</s><s>150</s></array>
+		<array><s>damage</s><s>.skills.desc.params.damage</s><s>40</s><s>50</s><s>70</s><s>90</s><s>110</s></array>
 		<array><s>mana-cost</s><s>.skills.desc.params.mana_cost</s><s>20</s><s>20</s><s>25</s><s>25</s><s>30</s></array>
 		<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown</s><s>1s</s></array>
 	</array>
@@ -38,7 +38,7 @@
 		<int name="mana-cost">20</int>
 
 		<dict name="binds">
-			<int name="strike-dmg">70</int>
+			<int name="strike-dmg">40</int>
 			<int name="strike-radius">48</int>
 			<string name="strike-fx">players/paladin/effects/blessed_strike.effect?radius=48</string>
 			<string name="fire-area-unit">players/paladin/units/blessed_strike_fire_area_1.unit</string>
@@ -91,28 +91,28 @@
 			<int name="skill-cost">SKILLCOSTLEVEL_2</int>
 			<int name="mana-cost">20</int>
 			<dict name="binds">
-				<int name="strike-dmg">85</int>
+				<int name="strike-dmg">50</int>
 			</dict>
 		</dict>
 		<dict>
 			<int name="skill-cost">SKILLCOSTLEVEL_3</int>
 			<int name="mana-cost">25</int>
 			<dict name="binds">
-				<int name="strike-dmg">105</int>
+				<int name="strike-dmg">70</int>
 			</dict>
 		</dict>
 		<dict>
 			<int name="skill-cost">SKILLCOSTLEVEL_4</int>
 			<int name="mana-cost">25</int>
 			<dict name="binds">
-				<int name="strike-dmg">125</int>
+				<int name="strike-dmg">90</int>
 			</dict>
 		</dict>
 		<dict>
 			<int name="skill-cost">SKILLCOSTLEVEL_5</int>
 			<int name="mana-cost">30</int>
 			<dict name="binds">
-				<int name="strike-dmg">150</int>
+				<int name="strike-dmg">110</int>
 			</dict>
 		</dict>
 	</array>
