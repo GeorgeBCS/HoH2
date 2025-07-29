@@ -1,0 +1,18 @@
+<lang>
+	<string name="noUselessSkills.desc.params.knight.speed">Weapon, Cast, and Movement Speed:</string>
+	<string name="noUselessSkills.desc.params.judgement.speed">Increased Strike Speed:</string>
+
+	<!-- Paladin -->
+
+	<string name="noUselessSkills.paladin.spell_2.up3.name">Turn the Wicked</string>
+	<string name="noUselessSkills.paladin.spell_2.up3.desc">Deals Physical damage to all enemies in the area.</string>
+	<string name="noUselessSkills.paladin.passive_1.up3.name">Righteous Fury</string>
+	<string name="noUselessSkills.paladin.passive_1.up3.desc">Getting hit triggers \cb0dfffWrath\d which increases your Weapon, Cast and Movement Speed for 5 seconds.</string>
+	<string name="noUselessSkills.paladin.passive_2.desc">Your \cffdfb0Melee\d hits have a chance to restore some of your Mana.</string>
+	<string name="noUselessSkills.paladin.passive_2.up1.desc">While you are below half mana your Spells cost less.</string>
+	<string name="noUselessSkills.paladin.mastery_1.spell_1.up1.name">Speedy Trial</string>
+	<string name="noUselessSkills.paladin.mastery_1.spell_1.up1.desc">The speed of \cb0dfffJudgement\d strikes is increased by a percent</string>
+	<string name="noUselessSkills.paladin.mastery_1.passive_1.up1.desc">Hitting an enemy inflicted by \cb0dfffSlow\d, \cb0dfffBleeding\d, \cb0dfffDisarm\d, or \cb0dfffSilence\d strikes them with a \cb0dfffJudgement\d hammer.</string>
+	<string name="noUselessSkills.paladin.mastery_3.spell_1.desc">You unleash a massive explosion, dealing Fire damage to all enemies around you.</string>
+	<string name="noUselessSkills.paladin.mastery_3.spell_1.up1.desc">Increases the size of your \cb0dfffImmolation\d.</string>
+</lang>
