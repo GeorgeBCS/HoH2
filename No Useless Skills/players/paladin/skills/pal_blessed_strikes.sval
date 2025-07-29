@@ -26,7 +26,7 @@
 		<string name="anim">attack</string>
 		<int name="anim-length">750</int>
 
-		<int name="cooldown">1000</int>
+		<int name="cooldown">2000</int>
 		<ivec2 name="move-speed">100 400</ivec2>
 		<float name="cast-speed-mul">1</float>
 		<ivec2 name="blocking">0 400</ivec2>
