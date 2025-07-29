@@ -97,7 +97,7 @@
 			<string name="description">.noUselessSkills.paladin.passive_2.up1.desc</string>
 
 			<array name="description-params">
-				<array><s>mana-cost</s><s>.skills.desc.params.spell_cos</s><s>-25%</s><s>-50%</s><s>-75%</s></array>
+				<array><s>mana-cost</s><s>.skills.desc.params.spell_cost</s><s>-25%</s><s>-50%</s><s>-75%</s></array>
 			</array>
 
 			<array name="icon">
