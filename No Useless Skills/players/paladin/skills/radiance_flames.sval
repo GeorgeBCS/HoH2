@@ -186,7 +186,7 @@
 
 			<array name="description-params">
 				<array><s>fire-res</s><s>.skills.desc.params.stacks.fire_res</s><s>+15</s><s>+30</s></array>
-				<array><s>fire-pen</s><s>.skills.desc.params.stacks.fire_pen</s><s>+3%</s><s>+5%</s></array>
+				<array><s>fire-pen</s><s>.skills.desc.params.stacks.fire_pen</s><s>+1.5%</s><s>+3%</s></array>
 			</array>
 
 			<array name="icon">
@@ -201,7 +201,7 @@
 			<dict name="skill">
 				<dict name="binds">
 					<ivec2 name="res-amount">15 150</ivec2>
-					<vec2 name="pen-amount">0.03 0.3</vec2>
+					<vec2 name="pen-amount">0.015 0.15</vec2>
 				</dict>
 
 				<array name="modifiers">
@@ -235,7 +235,7 @@
 				<dict>
 					<dict name="binds">
 						<ivec2 name="res-amount">30 300</ivec2>
-						<vec2 name="pen-amount">0.05 0.5</vec2>
+						<vec2 name="pen-amount">0.03 0.3</vec2>
 					</dict>
 				</dict>
 			</array>
