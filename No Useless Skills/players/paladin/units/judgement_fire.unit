@@ -1,0 +1,20 @@
+<unit>
+	<behavior class="BombBehavior">
+		<int name="delay">680</int>
+
+		<array name="actions">
+			<dict>
+				<string name="class">PlaySound</string>
+				<string name="sound">event:/SFX/Character/Classes/paladin/judgement/judgement_fire</string>
+			</dict>
+			<dict>
+				<string name="class">SpawnUnit</string>
+				<string name="unit">players/paladin/units/judgement_fire_area.unit</string>
+			</dict>
+		</array>
+	</behavior>
+	<scenes	default="default">
+		<scene name="default">
+		</scene>
+	</scenes>
+</unit>

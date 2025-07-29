@@ -1,0 +1,28 @@
+<unit layer="-1">
+	<behavior class="DangerAreaBehaviorP">
+		<int name="freq">500</int>
+		<int name="ttl">5000</int>
+		
+		<array name="effects">
+			<dict>
+				<string name="class">Damage</string>
+				<string name="fire-bind">fire-dmg</string>
+				<bool name="true-strike">true</bool>
+				<!-- <bool name="dot">true</bool> -->
+			</dict>
+		</array>
+
+		<dict name="effect-params">
+		</dict>
+	</behavior>
+	
+	<scenes>
+		<scene>
+			<collision static="false">
+				<circle sensor="true" aim-through="true" radius="24" />
+			</collision>
+			<effect delay="300" src="players/paladin/effects/judgement_fire.effect" />
+			<effect src="players/paladin/effects/judgement_fire_start.effect" />
+		</scene>
+	</scenes>
+</unit>

@@ -1,0 +1,308 @@
+<loader>ActorBuffStackDef::LoadMultiple</loader>
+<array>
+	<dict>
+		<string name="id">inner_flame</string>
+		<string name="name">.stacks.paladin.inner_flame.name</string>
+		<string name="description">.stacks.paladin.inner_flame.desc</string>
+		<int name="max">6</int>
+		<bool name="fx-player-facing">true</bool>
+		<bool name="display-timer-radius">true</bool>
+		<bool name="extrapolate-intensity">false</bool>
+		<bool name="refresh-on-max">true</bool>
+		
+		<dict name="timer">
+			<int name="time">5000</int>
+			<int name="add-stack">-1</int>
+			
+			<bool name="gain-set">true</bool>
+			<bool name="add-set">true</bool>
+			<bool name="sub-set">true</bool>
+
+			<bool name="gain-reset">true</bool>
+			<bool name="add-reset">true</bool>
+			<bool name="sub-reset">true</bool>
+		</dict>
+
+		<dict name="buff">
+			<bool name="debuff">false</bool>
+			<string name="fx">players/paladin/effects/inner_flame_stackable.effect</string>
+
+			<array name="hud">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>240 154 14 14</vec4>
+			</array>
+
+			<array name="modifiers">
+				<dict>
+					<string name="class">Modifiers::DummyModifier</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+
+	<dict>
+		<string name="id">inner_flame_radiance</string>
+		<int name="max">6</int>
+		<bool name="hide-hud-text">true</bool>
+		<bool name="display-timer-radius">true</bool>
+		<bool name="extrapolate-intensity">true</bool>
+		<bool name="refresh-on-max">true</bool>
+		
+		<dict name="timer">
+			<int name="time">5000</int>
+			<int name="add-stack">-1</int>
+			
+			<bool name="gain-set">true</bool>
+			<bool name="add-set">true</bool>
+			<bool name="sub-set">true</bool>
+
+			<bool name="gain-reset">true</bool>
+			<bool name="add-reset">true</bool>
+			<bool name="sub-reset">true</bool>
+		</dict>
+
+		<dict name="buff">
+			<bool name="debuff">false</bool>
+
+			<array name="hud">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>240 168 14 14</vec4>
+			</array>
+
+			<dict name="tick">
+				<int name="freq">500</int>
+
+				<array name="effects">
+					<dict>
+						<string name="class">Explode</string>
+						<int name="min-radius">6</int>
+						<int name="radius">40</int>
+						<int name="dist-scaling">1000</int>
+						<string name="fx">players/paladin/effects/inner_flame_radiance.effect</string>
+
+						<array name="effects">
+							<dict>
+								<float name="enemy-dmg">1</float>
+								<bool name="only-actors">true</bool>
+							</dict>
+							<dict>
+								<string name="class">Damage</string>
+								<int name="fire">8</int>
+								<bool name="true-strike">true</bool>
+								<bool name="dot">false</bool>
+							</dict>
+							<dict>
+								<string name="class">SpawnEffect</string>
+								<string name="effect">effects/generic/impacts/fire_impact_1.effect</string>
+							</dict>
+							<dict>
+								<string name="class">PlaySound</string>
+								<string name="sound">event:/sfx/player/classes/paladin/radiance_flames/inner_flame_radiance_hit</string>
+							</dict>
+						</array>
+					</dict>
+				</array>
+			</dict>
+		</dict>
+	</dict>
+	
+	<dict>
+		<string name="id">wrath</string>
+		<string name="name">Wrath</string>
+		<int name="max">1</int>
+		<bool name="refresh-on-max">true</bool>
+		<bool name="hide-hud-text">true</bool>
+		
+		<dict name="timer">
+			<int name="time">5000</int>
+			<int name="add-stack">-1</int>
+			
+			<bool name="gain-set">true</bool>
+			<bool name="lose-set">true</bool>
+			<bool name="add-set">true</bool>
+			<bool name="sub-set">true</bool>
+
+			<bool name="gain-reset">true</bool>
+			<bool name="lose-reset">true</bool>
+			<bool name="add-reset">true</bool>
+			<bool name="sub-reset">true</bool>
+		</dict>
+
+		<array name="gain-effects">
+			<dict>
+				<float name="intensity-set">1</float>
+			</dict>
+			<dict>
+				<string name="class">PlaySound</string>
+				<string name="sound">event:/sfx/player/classes/paladin/armored_knight/armored_knight_wrath</string>
+			</dict>
+		</array>
+
+		<dict name="buff">
+			<bool name="debuff">false</bool>
+			<string name="fx">players/warrior/effects/berserkers_rage.effect</string>
+
+			<array name="hud">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>240 280 14 14</vec4>
+			</array>
+
+			<array name="modifiers">
+				<dict>
+					<string name="class">Modifiers::DummyModifier</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+
+
+
+	<!-- need guardian angel cooldown stack as well??? -->
+
+	<dict>
+		<string name="id">divine_protection_timer</string>
+		<int name="max">1</int>
+		<!-- <bool name="hide-hud-text">true</bool> -->
+		<bool name="display-timer-radius">true</bool>
+		<bool name="inverted-radius">true</bool>
+
+		<dict name="timer">
+			<int name="time">0</int>
+			<int name="add-stack">-1</int>
+			
+			<bool name="gain-set">true</bool>
+			<bool name="add-set">true</bool>
+			<bool name="sub-set">true</bool>
+			<bool name="lose-set">true</bool>
+
+			<bool name="gain-reset">true</bool>
+			<bool name="lose-reset">true</bool>
+			<bool name="add-reset">true</bool>
+			<bool name="sub-reset">true</bool>
+			<bool name="self-reset">false</bool>
+		</dict>
+
+		<dict name="buff">
+			<bool name="debuff">false</bool>
+
+			<array name="hud">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>240 140 14 14</vec4>
+			</array>
+		</dict>
+	</dict>
+
+
+	<dict>
+		<string name="id">divine_protection</string>
+		<int name="max">1</int>
+		<bool name="hide-hud-text">true</bool>
+
+		<dict name="timer">
+			<int name="time">3000</int>
+			<int name="add-stack">-1</int>
+			
+			<bool name="gain-set">true</bool>
+			<bool name="add-set">true</bool>
+			<bool name="sub-set">true</bool>
+			<bool name="lose-set">true</bool>
+
+			<bool name="gain-reset">true</bool>
+			<bool name="sub-reset">true</bool>
+
+			<array name="effects">
+				<dict>
+					<float name="intensity-set">1</float>
+				</dict>
+<!-- 				<dict>
+					<string name="class">DebugLog</string>
+					<string name="text">test</string>
+				</dict> -->
+				<dict>
+					<bool name="target-self">true</bool>
+				</dict>
+				<dict>
+					<string name="class">AddStacks</string>
+					<bool name="target-self">true</bool>
+					<string name="buff">players/paladin/stacks_paladin.sval:divine_protection_timer</string>
+					<int name="stacks">1</int>
+				</dict>
+			</array>
+		</dict>
+
+		<dict name="buff">
+			<bool name="debuff">false</bool>
+
+			<array name="tags">
+				<string>divine_protection</string>
+			</array>
+
+			<string name="fx">effects/player/invulnerable_barrier.effect</string>
+
+<!-- 			<array name="hud">
+				<string>players/paladin/icons_skills.png</string>
+				<int>100</int><vec4>206 0 14 14</vec4>
+			</array> -->
+
+			<array name="modifiers">
+				<!-- <dict><string name="class">Modifiers::DummyModifier</string></dict> -->
+				<dict>
+					<string name="class">Modifiers::Armor</string>
+					<float name="dmg-taken-mul">0</float>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+
+
+
+
+
+	<dict>
+		<string name="id">judgement</string>
+		<int name="max">7</int>
+		<bool name="refresh-on-max">true</bool>
+		<bool name="hide-hud-text">true</bool>
+
+		<!-- <bool name="display-timer-radius">true</bool> -->
+		<!-- <bool name="fx-player-facing">true</bool> -->
+		
+		<dict name="timer">
+			<int name="time">1000</int>
+			<int name="add-stack">-1</int>
+			
+			<bool name="gain-set">true</bool>
+			<!-- <bool name="lose-set">true</bool> -->
+			<bool name="add-set">true</bool>
+			<bool name="sub-set">true</bool>
+
+			<bool name="gain-reset">true</bool>
+			<!-- <bool name="lose-reset">true</bool> -->
+			<bool name="add-reset">false</bool>
+			<bool name="sub-reset">false</bool>
+		</dict>
+
+		<dict name="buff">
+			<array name="tags">
+				<string>judgement</string>
+			</array>
+			<bool name="debuff">false</bool>
+			<!-- <string name="fx">players/paladin/effects/crusader_stackable.effect</string> -->
+			<string name="fx">players/paladin/effects/judgement_active.effect</string>
+
+<!-- 			<array name="hud">
+				<string>players/paladin/icons_skills.png</string>
+				<int>100</int><vec4>206 0 14 14</vec4>
+			</array> -->
+
+			<array name="modifiers">
+				<dict><string name="class">Modifiers::DummyModifier</string></dict>
+			</array>
+		</dict>
+	</dict>
+
+
+
+
+
+</array>

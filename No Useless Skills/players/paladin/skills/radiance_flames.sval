@@ -1,0 +1,244 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">.skills.paladin.mastery_3.passive_1.name</string>
+	<string name="type-name">.skills.type.passive</string>
+	<string name="description">.skills.paladin.mastery_3.passive_1.desc</string>
+
+	<array name="description-params">
+		<array><s>damage</s><s>.skills.desc.params.stacks.damage</s><s>8</s></array>
+		<array><s>stacks-max</s><s>.skills.desc.params.stacks.max</s><s>6</s><s>7</s><s>8</s><s>9</s><s>10</s></array>
+		<array><s>stacks-duration</s><b>t</b><s>.skills.desc.params.stacks.duration</s><s>5s</s><s>5.5s</s><s>6s</s><s>6.5s</s><s>7s</s></array>
+		<array><s>tick-rate</s><s>.skills.desc.params.tick_rate</s><s>0.5s</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/icons_skills.png</string>
+		<int>100</int><vec4>168 0 24 24</vec4>
+	</array>
+
+	<string name="id">radiance_flames</string>
+	<array name="tags"><s>passive</s><s>fire</s></array>
+	<int name="starting-level">1</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTMASTERYLEVEL_1</int>
+		<string name="class">Skills::PassiveSkill</string>
+
+		<dict name="binds">
+			<int name="stacks-time-add">0</int>
+			<int name="flame-stacks-add">6</int>
+			<!-- <float name="fire-dmg">0.1 1</float> -->
+		</dict>
+
+		<array name="modifiers">
+			<array>
+				<dict>
+					<string name="class">Modifiers::ModifyStack</string>
+					<string name="buff">players/paladin/stacks_paladin.sval:inner_flame</string>
+					<string name="add-time-bind">stacks-time-add</string>
+					<string name="add-max-bind">flame-stacks-add</string>
+				</dict>
+				<dict>
+					<string name="class">Modifiers::ModifyStack</string>
+					<string name="buff">players/paladin/stacks_paladin.sval:inner_flame_radiance</string>
+					<string name="add-time-bind">stacks-time-add</string>
+					<string name="add-max-bind">flame-stacks-add</string>
+				</dict> 
+
+				<dict>
+					<string name="class">Modifiers::SkillTriggerEffect</string>
+					<array name="skill-tags"><s>spell</s></array>
+					<string name="trigger">castspell</string>
+					<bool name="target-self">true</bool>
+					<float name="chance">1</float>
+					<int name="timeout">0</int>
+
+					<array name="effects">
+						<dict>
+							<string name="class">AddStacks</string>
+							<bool name="target-self">true</bool>
+							<string name="buff">players/paladin/stacks_paladin.sval:inner_flame</string>
+							<int name="stacks">1</int>
+						</dict>
+						<dict>
+							<string name="class">AddStacks</string>
+							<bool name="target-self">true</bool>
+							<string name="buff">players/paladin/stacks_paladin.sval:inner_flame_radiance</string>
+							<int name="stacks">1</int>
+						</dict> 
+					</array>
+				</dict>
+
+				<dict>
+					<string name="class">Modifiers::InjectModifiersIntoStack</string>
+					<string name="buff">players/paladin/stacks_paladin.sval:inner_flame</string>
+
+					<array name="modifiers">
+					</array>
+				</dict>
+			</array>
+		</array>
+	</dict>
+
+	<array name="upgrades">
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_2</int>
+			<dict name="binds">
+				<int name="stacks-time-add">500</int>
+				<int name="flame-stacks-add">1</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_3</int>
+			<dict name="binds">
+				<int name="stacks-time-add">1000</int>
+				<int name="flame-stacks-add">2</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_4</int>
+			<dict name="binds">
+				<int name="stacks-time-add">1500</int>
+				<int name="flame-stacks-add">3</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_5</int>
+			<dict name="binds">
+				<int name="stacks-time-add">2000</int>
+				<int name="flame-stacks-add">4</int>
+			</dict>
+		</dict>
+	</array>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">.skills.paladin.mastery_3.passive_1.up1.name</string>
+			<string name="type-name">.skills.type.passive.upgrade</string>
+			<string name="description">.skills.paladin.mastery_3.passive_1.up1.desc</string>
+
+			<array name="description-params">
+				<array><s>damage</s><s>.skills.desc.params.stacks.damage</s><s>+0.1</s><s>+0.15</s><s>+0.2</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>168 0 24 24</vec4>
+			</array>
+
+			<string name="id">radiance_flames_dmg_add</string>
+			<string name="quality">uncommon</string>
+			<int name="starting-level">0</int>
+
+			<dict name="skill">
+				<dict name="binds">
+					<vec2 name="fire-dmg-lvl">0.1 1.0</vec2>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::InjectModifiersIntoStack</string>
+							<string name="buff">players/paladin/stacks_paladin.sval:inner_flame</string>
+
+							<array name="modifiers">
+								<dict>
+									<string name="class">Modifiers::ConvertStat</string>
+									<string name="from">lvl</string>
+									<string name="to">mainhand_firedamage</string>
+									<string name="mul-bind">fire-dmg-lvl</string>
+									<bool name="add">true</bool>
+								</dict>
+								<dict>
+									<string name="class">Modifiers::ConvertStat</string>
+									<string name="from">lvl</string>
+									<string name="to">offhand_firedamage</string>
+									<string name="mul-bind">fire-dmg-lvl</string>
+									<bool name="add">true</bool>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<dict name="binds">
+						<vec2 name="fire-dmg-lvl">0.15 1.5</vec2>
+					</dict>
+				</dict>
+				<dict>
+					<dict name="binds">
+						<vec2 name="fire-dmg-lvl">0.2 2</vec2>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">.skills.paladin.mastery_3.passive_1.up2.name</string>
+			<string name="type-name">.skills.type.passive.upgrade</string>
+			<string name="description">.skills.paladin.mastery_3.passive_1.up2.desc</string>
+
+			<array name="description-params">
+				<array><s>fire-res</s><s>.skills.desc.params.stacks.fire_res</s><s>+15</s><s>+30</s></array>
+				<array><s>fire-pen</s><s>.skills.desc.params.stacks.fire_pen</s><s>+3%</s><s>+5%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>168 0 24 24</vec4>
+			</array>
+
+			<string name="id">radiance_flames_resistance</string>
+			<string name="quality">uncommon</string>
+			<int name="starting-level">0</int>
+
+			<dict name="skill">
+				<dict name="binds">
+					<ivec2 name="res-amount">15 150</ivec2>
+					<vec2 name="pen-amount">0.03 0.3</vec2>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<null />
+					</array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::InjectModifiersIntoStack</string>
+							<string name="buff">players/paladin/stacks_paladin.sval:inner_flame</string>
+
+							<array name="modifiers">
+								<dict>
+									<string name="class">Modifiers::ArmorAdd</string>
+									<string name="fire-bind">res-amount</string>
+								</dict>
+								<dict>
+									<string name="class">Modifiers::ArmorPenetration</string>
+									<string name="fire-penetration-bind">pen-amount</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<dict name="binds">
+						<ivec2 name="res-amount">30 300</ivec2>
+						<vec2 name="pen-amount">0.05 0.5</vec2>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>

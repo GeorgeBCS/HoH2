@@ -1,0 +1,262 @@
+<svals>
+	<dict name="lay_on_hands">
+		<bool name="debuff">false</bool>
+		<int name="duration">1500</int>
+		<string name="fx">players/paladin/effects/lay_on_hands_player.effect</string>
+	</dict>
+
+%defblock Invigorating LVL AMOUNT
+	<dict name="invigorating_%%LVL%%">
+		<bool name="debuff">false</bool>
+		<int name="duration">4000</int>
+		<string name="fx">players/paladin/effects/lay_on_hands_player.effect</string>
+
+		<array name="modifiers">
+			<dict>
+				<string name="class">Modifiers::ConvertStat</string>
+				<string name="from">HealthRegen</string>
+				<string name="to">HealthRegen</string>
+				<float name="mul">%%AMOUNT%%</float>
+				<bool name="add">false</bool>
+			</dict>
+			<dict>
+				<string name="class">Modifiers::ConvertStat</string>
+				<string name="from">ManaRegen</string>
+				<string name="to">ManaRegen</string>
+				<float name="mul">%%AMOUNT%%</float>
+				<bool name="add">false</bool>
+			</dict>
+		</array>
+	</dict>
+%endblock
+
+%block Invigorating 1 1.25
+%block Invigorating 2 1.5
+%block Invigorating 3 2.0
+
+	<dict name="cleansing_touch">
+		<bool name="debuff">false</bool>
+		<int name="duration">4000</int>
+		<!-- <string name="icon">special/icons/stun.unit</string> -->
+
+		<array name="modifiers">
+			<dict>
+				<string name="class">Modifiers::BuffImmune</string>
+				<array name="tags">
+					<string>debuff</string>
+				</array>
+			</dict>
+		</array>
+	</dict>
+
+
+%defblock Shackles LVL DMG SPEED
+	<dict name="judgement_shackles_%%LVL%%">
+		<array name="tags">
+			<string>slow</string>
+		</array>
+
+		<bool name="debuff">true</bool>
+		<int name="duration">3000</int>
+
+		<!-- <float name="dmg-taken-mul">%%DMG%%</float> -->
+		<float name="speed-mul">%%SPEED%%</float>
+		<string name="icon">special/icons/slow.unit</string>
+
+		<dict name="tick">
+			<int name="freq">500</int>
+			<bool name="immediate">true</bool>
+
+			<array name="effects">
+				<dict>
+					<float name="enemy-dmg">1</float>
+				</dict>
+				<dict>
+					<string name="class">Damage</string>
+					<int name="physical">%%DMG%%</int>
+					<bool name="dot">true</bool>
+					<bool name="true-strike">true</bool>
+				</dict>
+			</array>
+		</dict>
+
+		<string name="category">shackles</string>
+		<int name="category-level">%%LVL%%</int>
+	</dict>
+%endblock
+
+%block Shackles 1 10 0.4
+%block Shackles 2 20 0.3
+%block Shackles 3 30 0.2
+
+
+
+
+
+
+	<dict name="zealous_onslaught">
+		<bool name="debuff">false</bool>
+		<int name="duration">100000</int>
+		<string name="fx">players/paladin/effects/zealous_charge.effect</string>
+		<!-- <string name="icon">special/icons/stun.unit</string> -->
+	</dict>
+
+
+
+%defblock ZealousProtection LVL AMOUNT
+<dict name="zealous_protection_%%LVL%%">
+	<bool name="debuff">false</bool>
+	<int name="duration">300</int>
+	<float name="dmg-taken-mul">%%AMOUNT%%</float>
+	<!-- <string name="icon">special/icons/armorbreak.unit</string> -->
+</dict>
+%endblock
+
+%block ZealousProtection 1 0.75
+%block ZealousProtection 2 0.5
+
+
+%defblock ZealousSpeed LVL DURATION AMOUNT
+<dict name="zealous_speed_%%LVL%%">
+	<bool name="debuff">false</bool>
+	<int name="duration">%%DURATION%%</int>
+	<float name="speed-mul">%%AMOUNT%%</float>
+	<string name="fx">players/ranger/effects/dodge_buff.effect</string>
+	<!-- <string name="icon">special/icons/stun.unit</string> -->
+</dict>
+%endblock
+
+%block ZealousSpeed 1 4000 1.2
+%block ZealousSpeed 2 6000 1.3
+
+
+
+
+
+
+
+
+
+<!-- BANNER -->
+%defblock Banner LVL DMG SPEED
+	<dict name="banner_%%LVL%%">
+		<bool name="debuff">false</bool>
+		<int name="duration">300</int>
+
+		<float name="dmg-mul">%%DMG%%</float>
+
+		<array name="modifiers">
+			<dict>
+				<string name="class">Modifiers::SpeedAdd</string>
+				<float name="attack-speed">%%SPEED%%</float>
+			</dict>
+		</array>
+	</dict>
+%endblock
+
+%block Banner 1 1.1 0.1
+%block Banner 2 1.2 0.2
+%block Banner 3 1.3 0.3
+
+
+
+
+
+
+
+
+
+<!-- INNER FLAME -->
+%defblock InnerFlame LVL AMOUNT FIRE
+	<dict name="inner_flame_%%LVL%%">
+		<bool name="debuff">false</bool>
+		<int name="duration">3000</int>
+		<string name="fx">players/paladin/effects/inner_flame_stackable.effect</string>
+		<array name="modifiers">
+			<dict>
+				<string name="class">Modifiers::ConvertStat</string>
+				<string name="from">ResistanceFire</string>
+				<string name="to">ResistanceFire</string>
+				<float name="mul">%%AMOUNT%%</float>
+				<bool name="add">false</bool>
+			</dict>
+			<dict>
+				<string name="class">Modifiers::DamageMulAdd</string>
+				<float name="fire">%%FIRE%%</float>
+			</dict>
+		</array>
+	</dict>
+%endblock
+
+%block InnerFlame 1 1.2 0.1
+%block InnerFlame 2 1.3 0.15
+%block InnerFlame 3 1.4 0.2
+%block InnerFlame 4 1.5 0.25
+
+
+
+
+	<dict name="guardian_angel_1">
+		<array name="tags">
+			<string>guardian_angel</string>
+		</array>
+		<int name="duration">4000</int>
+		<bool name="debuff">false</bool>
+
+		<string name="fx">effects/player/invulnerable_barrier.effect</string>
+
+		<dict name="modifier">
+			<string name="class">Modifiers::Armor</string>
+			<float name="dmg-taken-mul">0</float>
+		</dict>
+	</dict>
+
+
+%defblock Champion LVL DUR AMOUNT
+	<dict name="champion_%%LVL%%">
+		<array name="tags">
+			<string>pal_champion</string>
+		</array>
+
+		<int name="duration">%%DUR%%</int>
+		<bool name="debuff">false</bool>
+
+		<string name="fx">players/paladin/effects/blessed_champion.effect</string>
+
+		<array name="modifiers">
+			<dict>
+				<string name="class">Modifiers::BuffImmune</string>
+				<array name="tags">
+					<string>stun</string>
+					<string>slow</string>
+				</array>
+			</dict>
+			<dict>
+				<string name="class">Modifiers::ConvertStat</string>
+				<string name="from">Str</string>
+				<string name="to">Str</string>
+				<float name="mul">%%AMOUNT%%</float>
+				<bool name="add">false</bool>
+			</dict>
+			<dict>
+				<string name="class">Modifiers::ConvertStat</string>
+				<string name="from">Dex</string>
+				<string name="to">Dex</string>
+				<float name="mul">%%AMOUNT%%</float>
+				<bool name="add">false</bool>
+			</dict>
+			<dict>
+				<string name="class">Modifiers::ConvertStat</string>
+				<string name="from">Int</string>
+				<string name="to">Int</string>
+				<float name="mul">%%AMOUNT%%</float>
+				<bool name="add">false</bool>
+			</dict>
+		</array>
+	</dict>
+%endblock
+
+%block Champion 1 5000 1.5
+%block Champion 2 6000 1.75
+%block Champion 3 7000 2.0
+</svals>

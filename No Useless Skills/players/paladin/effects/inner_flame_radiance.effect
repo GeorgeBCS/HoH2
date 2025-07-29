@@ -1,0 +1,65 @@
+<effect looping="false">
+	<param name="radius" default="40" />
+	
+
+	
+
+	
+ 	<particle_spawner
+		layer="3"
+		spawn-rate="200"
+		length="150"
+		looping="false"
+		ttl="rpick(250,800)"
+		angle="rpick(-pi,pi)"
+		rot-speed="rpick(0.1,0.2)"
+		pos="0;0;0"
+		curl-speed="1"
+		curl-scale="1"
+		
+		color-mul="1;1;1;rand(t)"
+	>
+		<behaviors>
+			<spread_range radius="radius"/>
+			<force_dir dir="0; 0; rpick(0,0.1)"/>
+			<force_toward pos="0;0;0" mul="-0.02"/>
+			<fade_to a="0" />
+		</behaviors>
+		<particle src="effects/subeffects/particles_fire.unit:fire_bolt_embers_add"/>
+	</particle_spawner>
+	<sprite looping="false" origin="71 71" texture="effects/spritesheets/effects.png" material="effects/effects.mats:add"
+		color-a="saturate(t*2)*0.05*(1-pow(t,4))" 
+		color-r="1+t*2" 
+		color-g="0.35-t*0.2+0.1*i" 
+		color-b="0" 
+		scale-x="(radius*0.018)*(0.5+0.5*t)"
+		scale-y="(radius*0.018)*(0.5+0.5*t)"
+		angle="rand(u)*pi"
+		layer="0"
+		num-sprites="1"
+		
+		angle="rand(i+u)*6+-0.5+rand(i+u)"
+		>
+		<frame time="60" x="1576" y="532" w="142" h="142"/>
+		<frame time="60" x="1718" y="532" w="142" h="142"/>
+		<frame time="60" x="1860" y="532" w="142" h="142"/>
+	</sprite>
+	<light origin="0 0" pos-x="0" pos-y="0">
+			<sprite texture="effects/lights/light2_L.png">
+			<frame>0 0 128 128</frame>
+			</sprite>
+			<looping value="false" />
+			<length value="250" />
+			
+			<size value="radius*(3+1*t)" />
+			
+			<color-r value="sin(t*pi)*1" />
+			<color-g value="sin(t*pi)*0.2" />
+			<color-b value="0" />
+			<color-a="sin(t*pi)*0.01" />
+			
+			<shadow-cast-pos-x value="0" />
+			<shadow-cast-pos-y value="0" />
+			
+	</light>
+</effect>

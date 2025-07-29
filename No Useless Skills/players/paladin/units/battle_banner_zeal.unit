@@ -1,0 +1,2 @@
+%define ZEAL
+%include "players/paladin/units/battle_banner.inc"

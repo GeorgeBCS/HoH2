@@ -1,0 +1,98 @@
+<effect>
+	<param name="angle" default="0" />
+	<param name="height" default="0" />
+
+	<sprite looping="false" origin="37 37" texture="./flame_mace.png" material="system/default.mats:bright-glow"
+	
+	angle="angle + 0.6*pi"
+	pos-y="-height"
+	
+	scale-x="1.5"
+	scale-y="1.5"
+
+	>
+		<frame time="50">0 0 75 64</frame>
+		<frame time="50">75 0 75 64</frame>
+		<frame time="50">150 0 75 64</frame>
+		<frame time="50">225 0 75 64</frame>
+		%//<frame time="50">300 0 75 64</frame>
+		%//<frame time="50">375 0 75 64</frame>
+		%//<frame time="50">0 64 75 64</frame>
+		%//<frame time="50">75 64 75 64</frame>
+		%//<frame time="50">150 64 75 64</frame>
+		%//<frame time="50">225 64 75 64</frame>
+	</sprite>
+
+	<light pos-x="cos((angle+pi/2)-pi*t)*40" pos-y="sin((angle+pi/2)-pi*t)*40">
+		<sprite texture="system/default_L.png">
+			<frame time="500">0 0 128 128</frame>
+		</sprite>
+
+		<looping value="false" />
+		<length value="250" />
+
+		<cast-shadows value="false" />
+
+		<shadow-cast-pos-x value="0" />
+		<shadow-cast-pos-y value="0" />
+
+		<shadow-cast-pos-jitter value="0 0 0 0" />
+
+		<size value="50*(sin(t*pi))" />
+		
+		<color-r value="4*sin(t*pi)"/>
+		<color-g value="1*sin(t*pi)"/>
+		<color-b value="0" />
+		<color-a value="0"/>
+	</light>
+	<particle_spawner
+		layer="0"
+		num-particles="12"
+		length="30"
+		looping="false"
+		ttl="650"
+		angle="pi/2"
+		pos="cos((angle-pi/12*i)+pi/2)*38; sin((angle-pi/12*i)+pi/2)*38; 0"
+		color-mul="1;0.3;0;1"
+		force-damping="0"
+		rot-speed="rpick(-1,1)"
+		rot-damping="2"
+		angle="rpick(-pi,pi)"
+		>
+			
+			<behaviors>
+				<spread_range radius="rpick(0,2)"/>
+				%//<force_toward pos="0; 0; 0" mul="speed/32"/>
+				%//<force_dir dir="cos(angle)*12; sin(angle); 0"/>
+				<force_toward pos="0; 0; 0" mul="rpick(-0.005,-0.025-0.002*i)"/>
+				<fade_to a="0" r="3" g="0" b="0"/>
+			</behaviors>
+						<particle src="effects/subeffects/particles_grayscale.unit:flamepuff_medium"/>
+						<particle src="effects/subeffects/particles_grayscale.unit:smoke_2_faster_tiny"/>
+		</particle_spawner>
+		
+		<particle_spawner
+		layer="0"
+		num-particles="24"
+		length="30"
+		looping="false"
+		ttl="rpick(500,1000)"
+		angle="pi/2"
+		pos="cos((angle-pi/24*i)+pi/2)*38; sin((angle-pi/24*i)+pi/2)*38; 0"
+		color-mul="1;0.3;0;1"
+		force-damping="0"
+		rot-speed="rpick(-1,1)"
+		rot-damping="2"
+		angle="rpick(-pi,pi)"
+		>
+			
+			<behaviors>
+				<spread_range radius="rpick(0,8)"/>
+				%//<force_toward pos="0; 0; 0" mul="speed/32"/>
+				%//<force_dir dir="cos(angle)*24; sin(angle); 0"/>
+				<force_toward pos="0; 0; 0" mul="-0.005"/>
+				<fade_to a="0" r="3" g="0" b="0"/>
+			</behaviors>
+						<particle src="effects/subeffects/particles_speckles.unit:single_white_add"/>
+		</particle_spawner>
+</effect>

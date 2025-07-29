@@ -1,0 +1,244 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">.skills.paladin.mastery_1.spell_1.name</string>
+	<string name="type-name">.skills.type.spell</string>
+	<string name="description">.skills.paladin.mastery_1.spell_1.desc</string>
+
+	<array name="description-params">
+		<array><s>damage</s><s>.skills.desc.params.damage</s><s>100</s><s>125</s><s>175</s><s>225</s><s>300</s></array>
+		<array><s>mana-cost</s><s>.skills.desc.params.mana_cost</s><s>60</s><s>60</s><s>75</s><s>75</s><s>90</s></array>
+		<array><s>duration</s><b>t</b><s>.skills.desc.params.duration</s><s>7s</s></array>
+		<array><s>tickrate</s><s>.skills.desc.params.tick_rate</s><s>1s</s></array>
+		<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown</s><s>15s</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/icons_skills.png</string>
+		<int>100</int><vec4>192 0 24 24</vec4>
+	</array>
+
+	<string name="id">pal_judgement</string>
+	<string name="type">spell</string>
+	<array name="tags"><s>spell</s><s>physical</s></array>
+	<int name="starting-level">1</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTMASTERYLEVEL_1</int>
+		<string name="class">Skills::PlayerSkillDirectional</string>
+		<string name="anim">cast-long</string>
+		<int name="anim-length">1000</int>
+
+		<int name="cooldown">15000</int>
+		<int name="castpoint">500</int>
+		<float name="cast-speed-mul">1</float>
+		<float name="move-speed-mul">0.2</float>
+		<ivec2 name="move-speed">0 500</ivec2>
+		<ivec2 name="blocking">0 500</ivec2>
+		<bool name="repeating">false</bool>
+		
+		<int name="mana-cost">60</int>
+
+		<dict name="binds">
+			<string name="stacks-default">players/paladin/stacks_paladin.sval:judgement</string>
+			<int name="stacks-num">10</int>
+			<string name="judgement-unit">players/paladin/units/judgement.unit</string>
+			<int name="judgement-freq">1000</int>
+			<int name="judgement-dmg">100</int>
+		</dict>
+
+		<array name="modifiers">
+			<array>
+				<dict>
+					<string name="class">Modifiers::ModifySummons</string>
+					<string name="unit">players/paladin/units/judgement.unit</string>
+					<int name="add-max-num">500</int>
+				</dict>
+				<dict>
+					<string name="class">Modifiers::ModifySummons</string>
+					<string name="unit">players/paladin/units/judgement_lightning.unit</string>
+					<int name="add-max-num">500</int>
+				</dict>
+
+				<dict>
+					<bool name="cond-target-self">true</bool>
+					<array name="conditional">
+						<s>buff</s><s>has tag</s><s>judgement</s>
+					</array>
+
+					<string name="class">Modifiers::TimedTriggerEffect</string>
+					<float name="chance">1</float>
+					<int name="timeout">0</int>
+					<float name="intensity">1</float>
+					<string name="freq-bind">judgement-freq</string>
+					
+					<array name="effects">
+						<dict>
+							<string name="class">HitscanRandomEnemy</string>
+							<int name="range">100</int>
+							<int name="penetrating">0</int>
+							<bool name="ignore-target">false</bool>
+
+							<array name="effects">
+								<dict>
+									<string name="class">SpawnEffect</string>
+									<string name="effect">players/paladin/effects/judgement_blast_start.effect</string>
+								</dict>
+								<dict>
+									<string name="class">SpawnEffect</string>
+									<string name="effect">players/paladin/effects/judgement_blast_hammer.effect</string>
+								</dict>
+								<dict>
+									<string name="class">SpawnUnit</string>
+									<string name="unit-bind">judgement-unit</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</array>
+
+		<dict name="actions">
+			<array name="pre">
+				<dict>
+					<string name="class">SpawnEffect</string>
+					<string name="effect">players/paladin/effects/judgement_cast.effect</string>
+					<bool name="attach-to-owner">true</bool>
+				</dict>
+			</array>
+			<array name="cast">
+				<dict>
+					<bool name="target-self">true</bool>
+				</dict>
+				<dict>
+					<string name="class">AddStacks</string>
+					<string name="buff-bind">stacks-default</string>
+					<string name="stacks-bind">stacks-num</string>
+					<bool name="target-self">true</bool>
+				</dict>
+				<dict>
+					<string name="class">PlaySound</string>
+					<string name="sound">event:/sfx/player/classes/paladin/judgement/judgement_cast</string>
+				</dict>
+			</array>
+		</dict>
+		
+		<array name="timeline">
+			<i>0</i><s>pre</s>
+			<i>500</i><s>cast</s>
+		</array>
+	</dict>
+
+	<array name="upgrades">
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_2</int>
+			<int name="mana-cost">60</int>
+			<dict name="binds">
+				<int name="judgement-dmg">125</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_3</int>
+			<int name="mana-cost">75</int>
+			<dict name="binds">
+				<int name="judgement-dmg">175</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_4</int>
+			<int name="mana-cost">75</int>
+			<dict name="binds">
+				<int name="judgement-dmg">225</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_5</int>
+			<int name="mana-cost">90</int>
+			<dict name="binds">
+				<int name="judgement-dmg">300</int>
+			</dict>
+		</dict>
+	</array>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">.skills.paladin.mastery_1.spell_1.up1.name</string>
+			<string name="type-name">.skills.type.spell.upgrade</string>
+			<string name="description">.skills.paladin.mastery_1.spell_1.up1.desc</string>
+
+			<array name="description-params">
+				<array><s>speed</s><s>.skills.desc.params.judgement.speed</s><s>+10%</s><s>+20%</s><s>+40%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>192 0 24 24</vec4>
+			</array>
+
+			<string name="id">pal_judgement_extend</string>
+			<string name="quality">uncommon</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<int name="judgement-freq">900</int>
+				</dict>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<int name="judgement-freq">800</int>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<int name="judgement-freq">600</int>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">.skills.paladin.mastery_1.spell_1.up2.name</string>
+			<string name="type-name">.skills.type.spell.upgrade</string>
+			<string name="description">.skills.paladin.mastery_1.spell_1.up2.desc</string>
+
+			<array name="description-params">
+				<array><s>damage</s><s>.skills.desc.params.damage</s><s>25%</s><s>50%</s><s>100%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>192 0 24 24</vec4>
+			</array>
+
+			<array name="tags"><s>spell</s><s>physical</s><s>lightning</s></array>
+			<string name="id">pal_judgement_lightning</string>
+			<string name="quality">uncommon</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<string name="judgement-unit">players/paladin/units/judgement_lightning.unit</string>
+					<float name="lightning-dmg-mul">0.25</float>
+				</dict>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<float name="lightning-dmg-mul">0.5</float>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="lightning-dmg-mul">1</float>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>

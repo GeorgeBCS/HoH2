@@ -1,0 +1,74 @@
+<effect looping="false" layer="-1">
+
+	<param name="size" default="96"/>
+
+	<sprite looping="false" origin="128 128" texture="effects/spritesheets/god_ray_radial.png" material="system/default.mats:bright-noxray"
+	
+	scale-x="(sin (t*(pi*0.5))*0.25-0.02*i))*size/96"
+	scale-y="(sin (t*(pi*0.5))*0.25-0.02*i))*size/96"
+	angle="pi*2*rand(u+i+29)+(sin t*pi*0.5)*i"
+	pos-x="0"
+	pos-y="0"
+	
+	color-r="1.2+sin(t*pi*2+(pi/4))*0.1" 
+	color-g="0.8"
+	color-b="0.1"
+	color-a="sin (t*pi)*0.1"
+	
+	num-sprites="3"
+	>
+		<frame time="1500">0 0 256 256</frame>
+	</sprite>
+
+	<particle_spawner
+		layer="1"
+		spawn-rate="4*size/96"
+		ttl="1001,2000"
+		force-damping="-1"
+		pos="1 ; 0 ; 0"
+		color="#ffdd53"
+	>
+		<behaviors>
+			<spread_range radius="rpick(2, 20*size/96)"/>
+			<force_dir dir="0; -0.5; 0"/>
+			<force_toward point="0; 20; 0" mul="0.005"/>
+			<fade_to a="0" r="1" g="0.74" b="0.17" />
+		</behaviors>
+
+		<particle src="players/paladin/effects/lay_on_hands_particles.unit:speckle2"/>  
+		<particle src="players/paladin/effects/lay_on_hands_particles.unit:speckle1"/>  
+	</particle_spawner>
+
+	<light pos-x="0" pos-y="(-28*(sin (t*(pi*0.5))*0.4))-28">
+		<sprite texture="effects/lights/god_ray_L.png">
+			<frame>0 0 256 256</frame>
+		</sprite>
+		<looping value="false" />
+		<length value="1500" />
+		<cast-shadows value="false" />
+		<shadow-cast-pos-x value="0" />
+		<shadow-cast-pos-y value="0" />
+		<shadow-cast-pos-jitter value="0 0 0 0" />
+		<size value="96+(96*(sin (t*(pi*0.5))*0.5))" />
+		<color-r value="1.5-1.0*pow(t,0.8)"/> 
+		<color-g value="1-0.7*t" /> 
+		<color-b value="0.2-0.2*t" />
+		<color-a value="sin(pow(t,0.8)*pi)*0.5"/>
+	</light>
+	<light pos-x="0" pos-y="((sin (t*(pi*0.5))*0.4))">
+		<sprite texture="effects/lights/light2_L.png">
+			<frame>0 0 128 128</frame>
+		</sprite>
+		<looping value="false" />
+		<length value="1500" />
+		<cast-shadows value="false" />
+		<shadow-cast-pos-x value="0" />
+		<shadow-cast-pos-y value="0" />
+		<shadow-cast-pos-jitter value="0 0 0 0" />
+		<size value="22+(96*(sin (t*(pi*0.5))*0.5))" />
+		<color-r value="(1.5-1.0*pow(t,0.8))/2"/> 
+		<color-g value="(1-0.7*t)/2" /> 
+		<color-b value="(0.2-0.2*t)/2" />
+		<color-a value="(sin(pow(t,0.8)*pi)*0.5)/2"/>
+	</light>
+</effect>

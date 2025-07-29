@@ -1,0 +1,58 @@
+<effect looping="false" layer="1000" bounds="1250 1250">
+	<param name="radius" default="18" />
+
+	<sprite looping="false" origin="0 25" texture="effects/spritesheets/effects.png" material="system/default.mats:add"
+		start="0"
+		num-sprites="8"
+		angle="i*pi/4"
+		scale-x="(0.1+0.1*t)*(radius/16)"
+		scale-y="(0.1+0.1*t)*(radius/16)"
+		color-r="0.25+t*3"
+		color-g="0.25+t/2"
+		color-b="0.25"
+		color-a="saturate(t*2)*0.25*(1-pow(t,2))"
+		pos-x="cos(i*pi/4)*(-radius/2+radius*0.5*t)"
+		pos-y="sin(i*pi/4)*(-radius/2+radius*0.5*t)"
+		>
+		<frame time="600" x="1029" y="492" w="99" h="50" />
+	</sprite>
+		
+	
+	<particle_spawner
+		layer="0"
+		spawn-rate="40*(radius/20)"
+		length="500"
+		start="100"
+		looping="false"
+		ttl="400"
+		angle="rpick(-pi,pi)"
+		pos="0 ; 0; 0"
+		color-mul="1;1;1;0.25"
+		force-damping="0"
+		rot-speed="rpick(-1,1)"
+		>
+			
+			<behaviors>
+				<spread_range radius="t*radius"/>
+				%//<force_toward pos="0; 0; 0" mul="speed/32"/>
+				%//<force_dir dir="rpick(-0.1,0.1); rpick(-0.5,-0.1)-sin(t*pi)/2); 0"/>
+				<force_toward pos="0; 0; 0" mul="0.032-radius/2000"/>
+				<fade_to a="0" r="1" g="1" b="1"/>
+			</behaviors>
+			<particle src="effects/subeffects/particles_fire.unit:ground_flame"/>
+	</particle_spawner>
+		
+		
+	<light>
+		<sprite texture="effects/lights/light2_L.png">
+			<frame time="800">0 0 128 128</frame>
+		</sprite>
+		<looping value="true" />
+		<length value="600	" />
+		<size value="(160+sin(t+pi)*10)*(radius/18)" />
+		<color-r value="0.5*t" />
+		<color-g value="0.125*t*(1-pow(t,2))" />
+		<color-b value="0.025*t*(1-pow(t,2))" />
+		<color-a value="0.00"/>
+	</light>
+</effect>

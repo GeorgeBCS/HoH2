@@ -1,0 +1,132 @@
+<effect looping="true">
+	<param name="angle" default="0" />
+	<param name="xcoord" default="0" />
+	<param name="offset_x" default="0" />
+	<param name="offset_y" default="0" />
+	
+	<sprite looping="true" origin="8 8" texture="./zealous_charge.png" material="system/default.mats:bright-glow"
+	angle="0"
+	scale-x="1+sin(t*(i+1)*pi)*0.1"
+	scale-y="1+sin(t*(i+1)*pi)*0.1"
+	pos-x="offset_x+cos(angle)*(sin((t-(i*0.25))*pi*2)*2)"
+	pos-y="offset_y+sin(angle)*(sin((t-(i*0.25))*pi*2)*2)"
+	color-a="0.5"
+	color-r="1"
+	
+	num-sprites="4"
+	>		
+		<frame time="250" x="xcoord/64*16" y="0" w="16" h="17" />
+	</sprite>
+	<sprite looping="true" origin="128 128" texture="effects/lights/magic_missile_L.png" material="system/default.mats:add"
+	angle="(t+l)*2"
+	scale-x="(1+sin(t*(i+1)*pi)*0.1)*0.35"
+	scale-y="(1+sin(t*(i+1)*pi)*0.1)*0.35"
+	pos-x="offset_x+cos(angle)*(3+(sin((t-(i*0.25))*pi*2)*2)"
+	pos-y="offset_y+sin(angle)*(3+(sin((t-(i*0.25))*pi*2)*2)"
+	color-a="0.1+sin((t+l)*pi)*0.025"
+	color-r="1.4+sin((t-0.25*i)*pi)*0.8"
+	color-g="0.9"
+	color-b="0.7"
+	
+	num-sprites="4"
+	>		
+		<frame time="250" x="0" y="0" w="256" h="256" />
+	</sprite>
+	<sprite looping="true" origin="64 64" texture="effects/lights/v_shape.png" material="system/default.mats:add"
+	angle="angle+pi/2"
+	pos-x="offset_x+cos(angle)*3"
+	pos-y="offset_y+sin(angle)*3"
+	scale-x="(0.8+sin(((t+l)*8)*pi)*0.1)*0.4"
+	Scale-y="(1-sin(((t+l)*8)*pi)*0.1)*0.4"
+	color-a="0.3*(1-sin(t*pi)*0.2)"
+	color-r="1.4"
+	color-g="0.4"
+	color-b="0"
+	
+	num-sprites="1"
+	>		
+		<frame time="125" x="0" y="0" w="128" h="128" />
+	</sprite>
+<!-- 	<sprite looping="true" origin="10 20" texture="./zealous_charge.png" material="system/default.mats:add"
+	angle="angle"
+	scale-x="1"
+	scale-y="1"
+	pos-x="(cos(angle)*sin(12*t*pi)*2)"
+	pos-y="(sin(angle)*sin(12*t*pi)*2)"
+	color-a="0+saturate(t+l)"
+	>		
+		<frame time="1100">96 0 32 40</frame>
+	</sprite> -->
+
+	<light pos-x="0" pos-y="0">
+		<sprite texture="system/default_L.png">
+			<frame time="100">0 0 128 128</frame>
+		</sprite>
+		
+		<length value="100" />
+		<looping value="true" />
+		<cast-shadows value="false" />
+		
+		<shadow-cast-pos-x value="0" />
+		<shadow-cast-pos-y value="0" />
+		<shadow-cast-pos-jitter value="0 0 0 0" />
+		
+		<size value="60" />
+			
+		<color-r value="1" />
+		<color-g value="0.7" />
+		<color-b value="0.3" />
+		<color-a value="0"/>
+	</light>
+	
+	<particle_spawner
+		layer="0"
+		spawn-rate="24"
+		length="500"
+		looping="true"
+		ttl="rpick(350,750)"
+		angle="pi/2"
+		pos="cos(angle)*5; sin(angle)*5; 0"
+		color="255 155 0 255; 255 40 0 255"
+		force-damping="0"
+		rot-speed="rpick(-1,1)"
+		rot-damping="2"
+		angle="rpick(-pi,pi)"
+		curl-speed="2"
+		curl-scale="2"
+		>
+			
+			<behaviors>
+				<spread_range radius="rpick(0,6)"/>
+				<spread_line offset="0 ; -12 ; 0"/> 
+				<force_dir dir="cos(angle)*1; sin(angle)*1; 0"/>
+				<fade_to a="0" r="2" g="1" b="0.5"/>
+			</behaviors>
+						<particle src="effects/subeffects/particles_speckles.unit:single_white_add"/>
+						<particle src="effects/subeffects/particles_speckles.unit:long_vertical_add"/>
+						<particle src="effects/subeffects/particles_speckles.unit:long_diagonal_add"/>
+						<particle src="effects/subeffects/particles_speckles.unit:cross_add"/>
+		</particle_spawner>
+<!-- 		
+			<particle_spawner
+			layer="-1"
+			spawn-rate="32"
+			length="1100"
+			looping="false"
+			ttl="rpick(250,500)"
+			pos="cos(angle)*6; sin(angle)*6; 0"
+			force-damping="0"
+			%//rot-speed="rpick(-1,1)"
+			rot-damping="2"
+			angle="angle"
+			>
+			<behaviors>
+				<spread_line offset="0 ; 0 ; 0"/> 
+				%//<force_toward pos="0; 0; 0" mul="speed/32"/>
+				<force_dir dir="cos(angle)*1; sin(angle)*1; 0"/>
+				<force_toward pos="0; 0; 0" mul="-0.005"/>
+				<fade_to a="0" r="1" g="1" b="0.5"/>
+			</behaviors>
+						<particle src="players/paladin/units/particles.unit:zealous_charge_1"/>
+		</particle_spawner> -->
+</effect>

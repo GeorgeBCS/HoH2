@@ -1,0 +1,332 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">.skills.paladin.passive_1.name</string>
+	<string name="type-name">.skills.type.passive</string>
+	<string name="description">.skills.paladin.passive_1.desc</string>
+
+	<array name="description-params">
+		<array><s>armor</s><s>.skills.desc.params.armor</s><s>+5</s><s>+10</s><s>+15</s><s>+20</s><s>+25</s></array>
+		<array><s>armorpct</s><s>.skills.desc.params.armor</s><s>+5%</s><s>+10%</s><s>+15%</s><s>+20%</s><s>+25%</s></array>
+		<array><s>chance</s><s>.skills.desc.params.chance</s><s>+20%</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/icons_skills.png</string>
+		<int>100</int><vec4>48 24 24 24</vec4>
+	</array>
+
+	<string name="id">pal_armor</string>
+	<array name="tags"><s>passive</s></array>
+	<int name="starting-level">1</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTLEVEL_1</int>
+		<string name="class">Skills::PassiveSkill</string>
+
+		<dict name="binds">
+			<int name="armor-add">5</int>
+			<float name="armor-mul">0.05</float>
+		</dict>
+
+		<array name="modifiers">
+			<array>
+				<dict>
+					<string name="class">Modifiers::ArmorAdd</string>
+					<string name="armor-bind">armor-add</string>
+				</dict>
+
+				<dict>
+					<string name="class">Modifiers::ConvertStat</string>
+					<string name="from">armor</string>
+					<string name="to">armor</string>
+					<string name="mul-bind">armor-mul</string>
+					<bool name="add">true</bool>
+				</dict>
+
+				<dict>
+					<string name="class">Modifiers::Block</string>
+					<float name="chance">0.2</float>
+					<float name="physical-based">1</float>
+					
+					<int name="timeout">0</int>
+					<int name="arc">360</int>
+					<string name="fx">players/paladin/effects/passive_block.effect</string>
+					<bool name="only-melee">false</bool>
+					<bool name="only-projectile">false</bool>
+
+					<array name="effects">
+						<dict>
+							<string name="class">PlaySound</string>
+							<string name="sound">event:/sfx/player/classes/paladin/armored_knight/armored_knight_block</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</array>
+	</dict>
+
+	<array name="upgrades">
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_2</int>
+			<dict name="binds">
+				<int name="armor-add">10</int>
+				<float name="armor-mul">0.1</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_3</int>
+			<dict name="binds">
+				<int name="armor-add">15</int>
+				<float name="armor-mul">0.15</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_4</int>
+			<dict name="binds">
+				<int name="armor-add">20</int>
+				<float name="armor-mul">0.2</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_5</int>
+			<dict name="binds">
+				<int name="armor-add">25</int>
+				<float name="armor-mul">0.25</float>
+			</dict>
+		</dict>
+	</array>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">.skills.paladin.passive_1.up1.name</string>
+			<string name="type-name">.skills.type.passive.upgrade</string>
+			<string name="description">.skills.paladin.passive_1.up1.desc</string>
+
+			<array name="description-params">
+				<array><s>resistancespct</s><s>.skills.desc.params.resistance</s><s>+10</s><s>+20</s><s>+30</s></array>
+				<array><s>resistances</s><s>.skills.desc.params.resistance</s><s>+10%</s><s>+20%</s><s>+30%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>48 24 24 24</vec4>
+			</array>
+
+			<string name="id">pal_armor_resistances</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<int name="resistances-add">10</int>
+					<float name="resistances-mul">0.1</float>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::ArmorAdd</string>
+							<string name="fire-bind">resistances-add</string>
+							<string name="ice-bind">resistances-add</string>
+							<string name="lightning-bind">resistances-add</string>
+						</dict>
+
+						<dict>
+							<string name="class">Modifiers::ConvertStat</string>
+							<string name="from">resistancefire</string>
+							<string name="to">resistancefire</string>
+							<string name="mul-bind">resistances-mul</string>
+							<bool name="add">true</bool>
+						</dict>
+						<dict>
+							<string name="class">Modifiers::ConvertStat</string>
+							<string name="from">resistanceice</string>
+							<string name="to">resistanceice</string>
+							<string name="mul-bind">resistances-mul</string>
+							<bool name="add">true</bool>
+						</dict>
+						<dict>
+							<string name="class">Modifiers::ConvertStat</string>
+							<string name="from">resistancelightning</string>
+							<string name="to">resistancelightning</string>
+							<string name="mul-bind">resistances-mul</string>
+							<bool name="add">true</bool>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<int name="resistances-add">20</int>
+						<float name="resistances-mul">0.2</float>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<int name="resistances-add">30</int>
+						<float name="resistances-mul">0.3</float>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">.skills.paladin.passive_1.up2.name</string>
+			<string name="type-name">.skills.type.passive.upgrade</string>
+			<string name="description">.skills.paladin.passive_1.up2.desc</string>
+
+			<array name="description-params">
+				<array><s>chance</s><s>.skills.desc.params.chance</s><s>10%</s><s>20%</s><s>30%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>48 24 24 24</vec4>
+			</array>
+
+			<string name="id">pal_armor_glancing_blows</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<float name="glancing-blows-chance">0.10</float>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<null />
+					</array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::Block</string>
+							<!-- <float name="chance">0.2</float> -->
+							<string name="chance-bind">glancing-blows-chance</string>
+							<float name="any-based">1</float>
+							
+							<int name="timeout">0</int>
+							<int name="arc">360</int>
+							<string name="fx">players/paladin/effects/passive_block.effect</string>
+							<bool name="only-melee">false</bool>
+							<bool name="only-projectile">false</bool>
+
+							<array name="effects">
+								<dict>
+									<string name="class">PlaySound</string>
+									<string name="sound">event:/sfx/player/classes/paladin/armored_knight/armored_knight_block</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<float name="glancing-blows-chance">0.2</float>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="glancing-blows-chance">0.3</float>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">.skills.paladin.passive_1.up3.name</string>
+			<string name="type-name">.skills.type.passive.upgrade</string>
+			<string name="description">.skills.paladin.passive_1.up3.desc</string>
+
+			<array name="description-params">
+				<array><s>speed</s><s>.skills.desc.params.knight.speed</s><s>10%</s><s>20%</s><s>30%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>48 24 24 24</vec4>
+			</array>
+
+			<array name="tags"><s>passive</s><s>lightning</s></array>
+			<string name="id">pal_armor_wrath</string>
+			<int name="starting-level">0</int>
+
+			<dict name="skill">
+				<dict name="binds">
+					<float name="wrath-speed">0.1</float>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<dict>
+							<string name="class">Modifiers::InjectModifiersIntoStack</string>
+							<string name="buff">players/paladin/stacks_paladin.sval:wrath</string>
+
+							<array name="modifiers">
+						
+								<dict>
+									<string name="class">Modifiers::SpeedAdd</string>
+									<string name="move-speed-bind">wrath-speed</string>
+								</dict>
+								<dict>
+									<string name="class">Modifiers::SpeedAdd</string>
+									<string name="attack-speed-bind">wrath-speed</string>
+									<string name="cast-speed-bind">wrath-speed</string>
+								</dict>
+						
+							</array>
+						</dict>
+
+						<dict>
+							<string name="class">Modifiers::TriggerEffect</string>
+							<string name="trigger">hurt</string>
+							<bool name="target-self">true</bool>
+							<int name="timeout">250</int>
+	
+						<array name="effects">
+								<dict>
+									<bool name="target-self">true</bool>
+								</dict>
+								<dict>
+									<string name="class">AddStacks</string>
+									<string name="buff">players/paladin/stacks_paladin.sval:wrath</string>
+									<bool name="target-self">true</bool>
+									<int name="stacks">1</int>
+									<float name="chance">1</float>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+				
+			</dict>
+			<array name="upgrades">
+				<dict>
+					<dict name="binds">
+						<float name="wrath-speed">0.2</float>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<float name="wrath-chance">0.3</float>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+<!-- armor to attack power -->
+<!-- chance to stun on block -->
+<!-- chance to blind attacker when taking damage -->
+	</array>
+</dict>

@@ -1,0 +1,153 @@
+<effect looping="true" bounds="1250 1250">
+	<param name="radius" default="18" />
+	
+	%// circles loop
+	<sprite looping="true" origin="0 25" texture="effects/spritesheets/effects.png" material="system/default.mats:add"
+		start="0"
+		num-sprites="8"
+		angle="(i*pi/4)+(t+l)/2"
+		scale-x="0.25*(radius/18)"
+		scale-y="0.25*(radius/18)"
+		color-r="3.25"
+		color-g="0.75"
+		color-b="0.25"
+		color-a="saturate(t*2+l)*(0.25+sin(it*pi)*0.15)"  
+		pos-x="0"
+		pos-y="0"
+		>
+		<frame time="600" x="1026" y="543" w="99" h="50" />
+	</sprite>
+	%// fire
+		<particle_spawner
+		layer="0"
+		spawn-rate="radius"
+		length="1500"
+		looping="false"
+		ttl="650"
+		angle="rpick(-pi,pi)"
+		pos="0 ; 0; 0"
+		color-mul="1;0.3;0;0.25"
+		force-damping="4"
+		rot-speed="rpick(-1,1)"
+		rot-speed="rpick(-1,1)"
+		>
+			
+			<behaviors>
+				<spread_range radius="rpick(0,radius)"/>
+				%//<force_toward pos="0; 0; 0" mul="speed/32"/>
+				<force_dir dir="rpick(-0.1,0.1); rpick(-0.5,-0.1)-sin(t*pi)/2); 0"/>
+				<force_toward pos="0; 0; 0" mul="0.1*10/radius"/>
+				<fade_to a="0" r="3" g="0" b="0"/>
+			</behaviors>
+	
+			<particle src="effects/subeffects/particles_grayscale.unit:flamepuff_small"/>
+			<particle src="effects/subeffects/particles_grayscale.unit:optimized_puff_small"/>
+		</particle_spawner>
+		<particle_spawner
+		layer="0"
+		spawn-rate="radius/2"
+		length="1500"
+		looping="false"
+		ttl="400"
+		angle="rpick(-pi,pi)"
+		pos="0 ; 0; 0"
+		color-mul="1;1;1;0.25"
+		force-damping="4"
+		rot-speed="rpick(-1,1)"
+		>
+			
+			<behaviors>
+				<spread_range radius="rpick(0,radius)"/>
+				%//<force_toward pos="0; 0; 0" mul="speed/32"/>
+				%//<force_dir dir="rpick(-0.1,0.1); rpick(-0.5,-0.1)-sin(t*pi)/2); 0"/>
+				<force_toward pos="0; 0; 0" mul="0.1*10/radius"/>
+				<fade_to a="0" r="1" g="1" b="1"/>
+			</behaviors>
+			<particle src="effects/subeffects/particles_fire.unit:ground_flame"/>
+		</particle_spawner>
+		
+		<particle_spawner
+		layer="0"
+		spawn-rate="radius/3"
+		length="1500"
+		looping="true"
+		ttl="650"
+		angle="rpick(-pi,pi)"
+		pos="0 ; 0; 0"
+		color-mul="1;0.3;0;0.25"
+		force-damping="4"
+		rot-speed="rpick(-1,1)"
+		rot-speed="rpick(-1,1)"
+		>
+			
+			<behaviors>
+				<spread_range radius="radius*0.95"/>
+				%//<force_toward pos="0; 0; 0" mul="speed/32"/>
+				<force_dir dir="rpick(-0.1,0.1); rpick(-0.5,-0.1)-sin(t*pi)/2); 0"/>
+				<force_toward pos="0; 0; 0" mul="0.1*10/radius"/>
+				<fade_to a="0" r="3" g="0" b="0"/>
+			</behaviors>
+	
+			<particle src="effects/subeffects/particles_grayscale.unit:flamepuff_small"/>
+			<particle src="effects/subeffects/particles_grayscale.unit:optimized_puff_small"/>
+		</particle_spawner>
+	%//speckles along beam
+<!-- 	<particle_spawner
+		start="500"
+		spawn-rate="0"
+		num-particles="28"
+		ttl="250"
+		force-damping="-1"
+		pos="0 ; 0 ; 0"
+		color="#ffffff"
+		angle="rpick(-pi,pi)"
+		rot-speed="sin(t*pi)"
+		color-mul="6;4;2;t"
+		length="50"
+		looping="true"
+	>
+		<behaviors>
+			<spread_range radius="rpick(0, 6)"/>
+			%//<spread_line offset="cos(angle)*length ; sin(angle)*length ; 0"/> 
+			<force_dir dir="0; -0.5; 0"/>
+			
+			<fade_to a="0" r="4" g="3" b="1" />
+		</behaviors>
+
+		<particle src="effects/subeffects/particles_speckles.unit:single_white_add"/> 
+		<particle src="effects/subeffects/particles_speckles.unit:long_vertical_add"/> 
+		<particle src="effects/subeffects/particles_speckles.unit:long_diagonal_add"/> 
+		<particle src="effects/subeffects/particles_speckles.unit:cross_add"/> 
+	</particle_spawner> -->
+	
+	<light>
+		<sprite texture="effects/lights/light2_L.png">
+			<frame time="800">0 0 128 128</frame>
+		</sprite>
+		<looping value="true" />
+		<length value="500" />
+		<size value="(160+sin(t+pi)*10)*(radius/18)" />
+		<color-r value="0.5*saturate(t*2+l)" />
+		<color-g value="0.125*saturate(t*2+l)" />
+		<color-b value="0.025*saturate(t*2+l)" />
+		<color-a value="0.00"/>
+	</light>
+	
+	
+	<sprite looping="true" origin="0 25" texture="effects/spritesheets/effects.png" material="system/default.mats:add"
+		start="0"
+		num-sprites="8"
+		angle="i*pi/4"
+		scale-x="(0.2)*(radius/16)"
+		scale-y="(0.2)*(radius/16)"
+		color-r="3.25"
+		color-g="0.75"
+		color-b="0.25"
+		color-a="0.05"
+		pos-x="cos(i*pi/4)*1"
+		pos-y="sin(i*pi/4)*1"
+		>
+		<frame time="600" x="1029" y="492" w="99" h="50" />
+	</sprite>
+		
+</effect>

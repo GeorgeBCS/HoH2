@@ -1,0 +1,484 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">.skills.paladin.spell_1.name</string>
+	<string name="type-name">.skills.type.spell</string>
+	<string name="description">.skills.paladin.spell_1.desc</string>
+
+	<array name="description-params">
+		<array><s>damage</s><s>.skills.desc.params.damage</s><s>70</s><s>85</s><s>105</s><s>125</s><s>150</s></array>
+		<array><s>mana-cost</s><s>.skills.desc.params.mana_cost</s><s>20</s><s>20</s><s>25</s><s>25</s><s>30</s></array>
+		<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown</s><s>1s</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/icons_skills.png</string>
+		<int>100</int><vec4>144 336 24 24</vec4>
+	</array>
+
+	<string name="id">pal_blessed_strikes</string>
+	<string name="type">spell</string>
+	<array name="tags"><s>melee</s><s>spell</s><s>physical</s></array>
+	<int name="starting-level">1</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTLEVEL_1</int>
+		<string name="class">Skills::PlayerSkillDirectional</string>
+		<string name="anim">attack</string>
+		<int name="anim-length">750</int>
+
+		<int name="cooldown">1000</int>
+		<ivec2 name="move-speed">100 400</ivec2>
+		<float name="cast-speed-mul">1</float>
+		<ivec2 name="blocking">0 400</ivec2>
+		
+		<int name="castpoint">250</int>
+		<bool name="repeating">true</bool>
+		<ivec2 name="update-aim">0 250</ivec2>
+		
+		<int name="mana-cost">20</int>
+
+		<dict name="binds">
+			<int name="strike-dmg">70</int>
+			<int name="strike-radius">48</int>
+			<string name="strike-fx">players/paladin/effects/blessed_strike.effect?radius=48</string>
+			<string name="fire-area-unit">players/paladin/units/blessed_strike_fire_area_1.unit</string>
+		</dict>
+
+		<dict name="actions">
+			<array name="pre">
+				<dict>
+					<string name="class">PlaySound</string>
+					<string name="sound">event:/sfx/player/classes/paladin/blessed_strike/blessed_strike_cast</string>
+				</dict>
+			</array>
+
+			<array name="cast">
+				<dict>
+					<vec2 name="pos-rotated">32 0</vec2>
+				</dict>
+				<dict>
+					<string name="class">SpawnEffect</string>
+					<string name="effect-bind">strike-fx</string>
+				</dict>
+				<dict>
+					<string name="class">PlaySound</string>
+					<string name="sound">event:/sfx/player/classes/paladin/blessed_strike/blessed_strike_impact</string>
+				</dict>
+				<dict>
+					<string name="class">Explode</string>
+					<int name="min-radius">6</int>
+					<string name="radius-bind">strike-radius</string>
+					<int name="dist-scaling">1000</int>
+
+					<array name="effects">
+						<dict>
+							<string name="class">Damage</string>
+							<string name="physical-bind">strike-dmg</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		
+		<array name="timeline">
+			<i>0</i><s>pre</s>
+			<i>250</i><s>cast</s>
+		</array>
+	</dict>
+
+	<array name="upgrades">
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_2</int>
+			<int name="mana-cost">20</int>
+			<dict name="binds">
+				<int name="strike-dmg">85</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_3</int>
+			<int name="mana-cost">25</int>
+			<dict name="binds">
+				<int name="strike-dmg">105</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_4</int>
+			<int name="mana-cost">25</int>
+			<dict name="binds">
+				<int name="strike-dmg">125</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_5</int>
+			<int name="mana-cost">30</int>
+			<dict name="binds">
+				<int name="strike-dmg">150</int>
+			</dict>
+		</dict>
+	</array>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">.skills.paladin.spell_1.up1.name</string>
+			<string name="type-name">.skills.type.spell.upgrade</string>
+			<string name="description">.skills.paladin.spell_1.up1.desc</string>
+
+			<array name="description-params">
+				<array><s>size</s><s>.skills.desc.params.size</s><s>+25%</s><s>+50%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>144 336 24 24</vec4>
+			</array>
+
+			<string name="id">pal_blessed_strikes_size</string>
+			<int name="starting-level">0</int>
+
+			<dict name="skill">
+				<dict name="binds">
+					<int name="strike-radius">60</int>
+					<string name="strike-fx">players/paladin/effects/blessed_strike.effect?radius=60</string>
+					<string name="fire-area-unit">players/paladin/units/blessed_strike_fire_area_2.unit</string>
+				</dict>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<int name="strike-radius">72</int>
+						<string name="strike-fx">players/paladin/effects/blessed_strike.effect?radius=72</string>
+						<string name="fire-area-unit">players/paladin/units/blessed_strike_fire_area_3.unit</string>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">.skills.paladin.spell_1.up2.name</string>
+			<string name="type-name">.skills.type.spell.upgrade</string>
+			<string name="description">.skills.paladin.spell_1.up2.desc</string>
+
+			<array name="description-params">
+				<array><s>damage</s><s>.skills.desc.params.damage</s><s>40%</s><s>60%</s><s>80%</s></array>
+				<array><s>duration</s><s>.skills.desc.params.duration</s><s>4s</s></array>
+				<array><s>duration</s><s>.skills.desc.params.tick_rate</s><s>2s</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>144 336 24 24</vec4>
+			</array>
+
+			<string name="id">pal_blessed_strikes_fire</string>
+			<array name="tags"><s>melee</s><s>spell</s><s>physical</s><s>fire</s></array>
+			<array name="blocked-by-skills"><s>pal_blessed_strikes_lightning</s></array>
+			<int name="starting-level">0</int>
+
+			<dict name="skill">
+				<dict name="binds">
+					<float name="fire-dmg-mul">0.4</float>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<dict>
+							<string name="class">Modifiers::ModifySummons</string>
+							<string name="unit">players/paladin/units/blessed_strike_fire_area_1.unit</string>
+							<int name="add-max-num">100</int>
+						</dict>
+						<dict>
+							<string name="class">Modifiers::ModifySummons</string>
+							<string name="unit">players/paladin/units/blessed_strike_fire_area_2.unit</string>
+							<int name="add-max-num">100</int>
+						</dict>
+						<dict>
+							<string name="class">Modifiers::ModifySummons</string>
+							<string name="unit">players/paladin/units/blessed_strike_fire_area_3.unit</string>
+							<int name="add-max-num">100</int>
+						</dict>
+					</array>
+				</array>
+
+				<dict name="actions">
+					<array name="cast_fire">
+						<dict>
+							<vec2 name="pos-rotated">32 0</vec2>
+						</dict>
+						<dict>
+							<string name="class">PlaySound</string>
+							<string name="sound">event:/sfx/player/classes/paladin/blessed_strike/blessed_strike_fire_spawn</string>
+						</dict>
+						<dict>
+							<string name="class">SpawnUnit</string>
+							<!-- <string name="unit">players/paladin/units/blessed_strike_fire_area.unit</string> -->
+							<string name="unit-bind">fire-area-unit</string>
+						</dict>
+					</array>
+				</dict>
+
+				<array name="timeline">
+					<i>0</i><s>pre</s>
+					<i>250</i><s>cast</s>
+					<i>250</i><s>cast_fire</s>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<float name="fire-dmg-mul">0.6</float>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="fire-dmg-mul">0.8</float>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">.skills.paladin.spell_1.up3.name</string>
+			<string name="type-name">.skills.type.spell.upgrade</string>
+			<string name="description">.skills.paladin.spell_1.up3.desc</string>
+
+			<array name="description-params">
+				<array><s>damage</s><s>.skills.desc.params.damage</s><s>20%</s><s>30%</s><s>40%</s></array>
+				<array><s>chain</s><s>.skills.desc.params.chains</s><s>1</s><s>2</s><s>3</s></array>
+				<!-- <array><s>chance</s><s>.skills.desc.params.chance</s><s>25%</s></array> -->
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>144 336 24 24</vec4>
+			</array>
+
+			<string name="id">pal_blessed_strikes_lightning</string>
+			<array name="tags"><s>melee</s><s>spell</s><s>physical</s><s>lightning</s></array>
+			<array name="blocked-by-skills"><s>pal_blessed_strikes_fire</s></array>
+			<int name="starting-level">0</int>
+
+			<dict name="skill">
+				<dict name="binds">
+					<!-- <float name="lightning-chance">0.25</float> -->
+					<float name="lightning-mul">0.2</float>
+					<int name="chain-num">0</int>
+				</dict>
+
+				<dict name="actions">
+					<array name="cast_lightning">
+						<dict>
+							<vec2 name="pos-rotated">32 0</vec2>
+						</dict>
+
+						<dict>
+							<string name="class">ChainAction</string>
+							<array name="links">
+								<dict>
+									<string name="class">ChainActionAreaCircleLink</string>
+									<string name="radius-bind">strike-radius</string>
+									<int name="repeat">0</int>
+									<int name="max-hits">999</int>
+									<bool name="shoot-from-owner">false</bool>
+									<bool name="only-hit-targets-once">true</bool>
+
+									<string name="shoot-fx">effects/generic/raycast/paladin_lightning_beam_1.effect</string>
+
+									<float name="intensity-mul">1</float>
+
+									<array name="effects">
+										<dict>
+											<string name="class">DebugLog</string>
+											<string name="text">lightning_hit</string>
+										</dict>
+										<dict>
+											<string name="intensity-mul-bind">lightning-mul</string>
+										</dict>
+										<dict>
+											<string name="class">Damage</string>
+											<string name="physical-bind">strike-dmg</string>
+										</dict>
+									</array>
+								</dict>
+								<dict>
+									<string name="class">ChainActionAreaCircleLink</string>
+									<int name="radius">96</int>
+									<string name="repeat-bind">chain-num</string>
+									<int name="max-hits">1</int>
+									<bool name="shoot-from-owner">false</bool>
+									<bool name="only-hit-targets-once">true</bool>
+
+									<string name="shoot-fx">effects/generic/raycast/paladin_lightning_beam_1.effect</string>
+
+									<float name="intensity-mul">1</float>
+
+									<array name="effects">
+										<dict>
+											<string name="class">DebugLog</string>
+											<string name="text">lightning_hit_chain</string>
+										</dict>
+										<dict>
+											<string name="intensity-mul-bind">lightning-mul</string>
+										</dict>
+										<dict>
+											<string name="class">Damage</string>
+											<string name="lightning-bind">strike-dmg</string>
+										</dict>
+										<dict>
+											<string name="class">PlaySound</string>
+											<string name="sound">event:/sfx/player/classes/paladin/blessed_strike/blessed_strike_lightning</string>
+										</dict>
+									</array>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</dict>
+				
+				<array name="timeline">
+					<i>0</i><s>pre</s>
+					<i>250</i><s>cast</s>
+					<i>250</i><s>cast_lightning</s>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<!-- <float name="lightning-chance">0.4</float> -->
+						<float name="lightning-mul">0.3</float>
+						<int name="chain-num">1</int>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<!-- <float name="lightning-chance">0.6</float> -->
+						<float name="lightning-mul">0.4</float>
+						<int name="chain-num">2</int>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+
+
+
+
+
+<!-- 		<dict>
+			<string name="name">Blessed Strikes - Barrage</string>
+			<string name="type-name">.skills.type.spell.upgrade</string>
+			<string name="description">The first strike is followed up by additional strikes in a forward direction. The additional strikes deal less damage.</string>
+
+			<array name="description-params">
+				<array><s>strikes</s><s>.skills.desc.params.strikes</s><s>1</s><s>2</s></array>
+				<array><s>damage</s><s>.skills.desc.params.damage</s><s>50%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>144 336 24 24</vec4>
+			</array>
+
+			<string name="id">pal_blessed_strikes_barrage</string>
+			<string name="quality">uncommon</string>
+
+			<dict name="skill">
+				<dict name="actions">
+					<array name="cast2">
+						<dict>
+							<vec2 name="pos-rotated">80 0</vec2>
+							<float name="intensity-mul">0.5</float>
+						</dict>
+						<dict>
+							<string name="class">SpawnEffect</string>
+							<string name="effect">players/paladin/effects/judgement_blast_start.effect</string>
+						</dict>
+						<dict>
+							<string name="class">SpawnEffect</string>
+							<string name="effect">players/paladin/effects/judgement_blast_impact.effect</string>
+						</dict>
+						<dict>
+							<string name="class">PlaySound</string>
+							<string name="sound">event:/sfx/player/classes/paladin/blessed_strike/blessed_strike_impact</string>
+						</dict>
+						<dict>
+							<string name="class">Explode</string>
+							<int name="min-radius">6</int>
+							<int name="radius">24</int>
+							<int name="dist-scaling">1000</int>
+
+							<array name="effects">
+								<dict>
+									<string name="class">Damage</string>
+									<string name="physical-bind">strike-dmg</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</dict>
+
+				<array name="timeline">
+					<i>0</i><s>pre</s>
+					<i>300</i><s>cast</s>
+					<i>400</i><s>cast2</s>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<dict name="actions">
+						<array name="cast3">
+							<dict>
+								<vec2 name="pos-rotated">128 0</vec2>
+								<float name="intensity-mul">0.5</float>
+							</dict>
+							<dict>
+								<string name="class">SpawnEffect</string>
+								<string name="effect">players/paladin/effects/judgement_blast_start.effect</string>
+							</dict>
+							<dict>
+								<string name="class">SpawnEffect</string>
+								<string name="effect">players/paladin/effects/judgement_blast_impact.effect</string>
+							</dict>
+							<dict>
+								<string name="class">PlaySound</string>
+								<string name="sound">event:/sfx/player/classes/paladin/blessed_strike/blessed_strike_impact</string>
+							</dict>
+							<dict>
+								<string name="class">Explode</string>
+								<int name="min-radius">6</int>
+								<int name="radius">24</int>
+								<int name="dist-scaling">1000</int>
+
+								<array name="effects">
+									<dict>
+										<string name="class">Damage</string>
+										<string name="physical-bind">strike-dmg</string>
+									</dict>
+								</array>
+							</dict>
+						</array>
+					</dict>
+
+					<array name="timeline">
+						<i>0</i><s>pre</s>
+						<i>300</i><s>cast</s>
+						<i>400</i><s>cast2</s>
+						<i>500</i><s>cast3</s>
+					</array>
+				</dict>
+			</array>
+		</dict> -->
+
+
+
+
+	</array>
+</dict>

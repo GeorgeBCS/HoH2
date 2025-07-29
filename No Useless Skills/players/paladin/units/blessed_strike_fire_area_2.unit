@@ -1,0 +1,2 @@
+%replace RADIUS 60
+%include "players/paladin/units/blessed_strike_fire_area.inc"

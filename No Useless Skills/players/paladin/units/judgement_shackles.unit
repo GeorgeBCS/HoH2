@@ -1,0 +1,2 @@
+%define SHACKLES
+%include "players/paladin/units/judgement.inc"

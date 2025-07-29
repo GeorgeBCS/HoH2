@@ -1,0 +1,92 @@
+<effect looping="true">
+	<param name="stacks" default="1" />
+	<param name="angle" default="0" />
+	<param name="facing" default="2.1" />
+	
+	
+	%defblock Hand MINFACING MAXFACING POSX POSY
+	<particle_spawner
+		layer="3"
+		spawn-rate="stacks*30*(ceil(facing-%%MINFACING%%) * ceil(%%MAXFACING%%-facing)"
+		looping="true"
+		ttl="rpick(250,500)"
+		pos="
+		%%POSX%%;
+		%%POSY%%;
+		0"
+		color="255 195 55 255;255 90 0 255"
+		color-mul="1;1+stacks*1.2;1+stacks*0.5;1"
+		force-damping="2"
+		curl-speed="0.5+stacks*1.1"
+		curl-scale="1"
+		
+		angle="rpick(-pi,pi)"
+		rot-speed="rpick(-1,1)"
+		>
+		<behaviors>
+			<spread_range radius="rpick(0,2+stacks*1.2)"/>
+			<force_dir dir="rpick(-0.05,0.05); rpick(0.2,0.8)*(1-stacks*1.2); 0"/>
+			<fade_to a="0"/>
+		</behaviors>
+		<particle src="effects/subeffects/particles_speckles.unit:single_white_add"/>
+		<particle src="effects/subeffects/particles_speckles.unit:single_white_add"/>
+		<particle src="effects/subeffects/particles_speckles.unit:cross_add"/>
+		<particle src="effects/subeffects/particles_grayscale.unit:flare_dot_small"/>
+	</particle_spawner> 
+	%endblock 
+	
+	%defblock HandNegative MINFACING MAXFACING POSX POSY
+	<particle_spawner
+		layer="3"
+		spawn-rate="stacks*30*(1-(saturate(ceil(facing))))*ceil(abs(facing)-%%MINFACING%%)*ceil(%%MAXFACING%%-abs(facing))"
+		looping="true"
+		ttl="rpick(250,500)"
+		pos="
+		%%POSX%%;
+		%%POSY%%;
+		0"
+		color="255 195 55 255;255 90 0 255"
+		color-mul="1;1+stacks*1.2;1+stacks*0.5;1"
+		force-damping="2"
+		curl-speed="0.5+stacks*1.1"
+		curl-scale="1"
+		
+		angle="rpick(-pi,pi)"
+		rot-speed="rpick(-1,1)"
+		>
+		<behaviors>
+			<spread_range radius="rpick(0,2+stacks*1.2)"/>
+			<force_dir dir="rpick(-0.05,0.05); rpick(0.2,0.8)*(1-stacks*1.2); 0"/>
+			<fade_to a="0"/>
+		</behaviors>
+		<particle src="effects/subeffects/particles_speckles.unit:single_white_add"/>
+		<particle src="effects/subeffects/particles_speckles.unit:single_white_add"/>
+		<particle src="effects/subeffects/particles_speckles.unit:cross_add"/>
+		<particle src="effects/subeffects/particles_grayscale.unit:flare_dot_small"/>
+	</particle_spawner> 
+	
+	%endblock 
+	%//positive lefthand
+	%//0
+	%block Hand 0 0.33 8 -6
+	%//1
+	%block Hand 0.34 1.2 5 -6
+	%//2
+	%block Hand 1.21 2.07 -9 -5
+	%//3
+	%block Hand 2.08 2.7 -15 -10
+	%//4l
+	%block Hand 2.71 3.14 -14 -14
+	
+	%//negative
+	%//0r
+	%block HandNegative 0 0.38 10 -8
+	%//7r
+	%block HandNegative 0.39 1.2 14 -8
+	%//6r
+	%block HandNegative 1.21 2.07 9 -11
+	%//5l
+	%block HandNegative 1.98 2.75 -5 -14
+	%//4l
+	%block HandNegative 2.76 3.13 -12 -12
+</effect>

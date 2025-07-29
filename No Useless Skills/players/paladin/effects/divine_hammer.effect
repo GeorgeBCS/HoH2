@@ -1,0 +1,194 @@
+<effect looping="true" wpos-track="32">>
+	<param name="angle" default="0" />
+	<param name="speed" default="3" />
+	<param name="height" default="0" />
+	<param name="wrath" default="0" />
+	<param name="spark_size" default="1.1" />
+	<param name="spark_offset" default="-9" />
+	
+	
+	<trail origin="0 0"texture="effects/spritesheets/trail_1.png" ulayer="1" material="system/default.mats:add">
+		<pos-x value="wposx(i)" />
+		<pos-y value="wposyz(i)" />
+		<length value="1000" />
+		<looping value="true" />
+		
+		<segments value="8" />
+		<size value="9" />
+		
+		
+		<uv-l-x value="i*8" />
+		<uv-l-y value="((t+l)*64)" />
+		
+		<uv-r-x value="i*8" />
+		<uv-r-y value="(64+(t+l*64))" />
+	
+		<color-r value="4" />
+		<color-g value="2" />
+		<color-b value="0.8" />
+		<color-a value="0.15" />
+	</trail>
+	
+	<sprite layer="1" looping="true" origin="16 16" texture="effects/spritesheets/effects.png" material="system/default.mats:bright-glow"
+	angle="t*speed"
+	scale-x="0.5"
+	scale-y="0.5"
+	pos-x="cos(angle)*((i+1)*-2)"
+	pos-y="sin(angle)*((i+1)*-2)"
+	num-sprites="1"
+	color-r="4"
+	color-g="2"
+	color-b="0.8"
+	color-a="0.1-t*0.1"
+	>
+		
+		<frame time="50">255 1 32 32</frame>
+		<frame time="100">288 1 32 32</frame>
+		<frame time="100">321 1 32 32</frame>
+		<frame time="50">354 1 32 32</frame>
+		<frame time="50">387 1 32 32</frame>
+		<frame time="50">222 1 32 32</frame>
+	</sprite>
+	<particle_spawner
+		layer="0"
+		spawn-rate="speed*6"
+		start="0"
+		length="1000"
+		looping="true"
+		ttl="500"
+		angle="floor(t*50)*pi/8"
+		pos="(cos(angle)*(t+l*speed);(sin(angle)*(t+l*speed)+sin(5*t*pi)*6;0"
+		color-mul="4;2;0.8;1"
+		force-damping="-5"
+		>
+			
+			<behaviors>
+				<spread_range radius="2"/>
+				%//<force_toward pos="cos(angle); -80; 0" mul="0.015"/>
+				<force_dir dir="sin(pow(t,2)*pi)*0.1; sin(pow(t,2)*pi)*0.1; 0"/>
+				<fade_to a="0" r="0" g="0" b="0"/>
+			</behaviors>
+	
+			<particle src="effects/subeffects/particles_speckles.unit:single_white_add"/>
+	</particle_spawner>
+
+	<light
+		origin="0 5"
+		pos-y="6"
+		>
+		<sprite texture="effects/lights/light2_L.png">
+			<frame time="800">0 0 128 128</frame>
+		</sprite>
+		<looping value="true" />
+		<length value="800" />
+		<cast-shadows value="false" />
+		<size value="100" />
+		<color-r value="0.9" />
+		<color-g value="0.6" />
+		<color-b value="0.1" />
+		<color-a value="0"/>
+	</light>
+	<light
+		origin="0 5"
+		pos-y="6"
+		>
+		<sprite texture="effects/lights/light2_L.png">
+			<frame time="800">0 0 128 128</frame>
+		</sprite>
+		<looping value="true" />
+		<length value="800" />
+		<cast-shadows value="false" />
+		<size value="50" />
+		<color-r value="0.9" />
+		<color-g value="0.6" />
+		<color-b value="0.1" />
+		<color-a value="0"/>
+	</light>
+	
+	%//LIGHTNING
+ 	<variation>
+	<sprite looping="true" layer="5" origin="6 7" texture="effects/spritesheets/effects.png" material="system/default.mats:bright-glow"	
+		angle="l*pi/2"
+		color-a="wrath"
+		scale-x="spark_size"
+		scale-y="spark_size"
+		pos-x="cos(angle)*spark_offset"
+		pos-y="sin(angle)*spark_offset"
+	>
+		<frame time="30"> 1 599 13 15</frame>
+		<frame time="30"> 0 0 0 0</frame>
+		<frame time="30"> 15 599 13 15</frame>
+		<frame time="30"> 0 0 0 0</frame>
+		<frame time="30"> 29 599 13 15</frame>
+		<frame time="30"> 0 0 0 0</frame>
+		<frame time="30"> 43 599 13 15</frame>
+		<frame time="30"> 0 0 0 0</frame>
+		<frame time="30"> 57 599 13 15</frame>
+		<frame time="30"> 0 0 0 0</frame>		
+		<frame time="30"> 71 599 13 15</frame>		
+	</sprite>
+	</variation>
+	<variation>
+		<sprite looping="false" layer="5" origin="6 7" texture="effects/spritesheets/effects.png" material="system/default.mats:bright-glow"	
+		angle="l*pi/2"
+		color-a="wrath"
+		scale-x="spark_size"
+		scale-y="spark_size"
+		pos-x="cos(angle)*spark_offset"
+		pos-y="sin(angle)*spark_offset"
+		>
+			<frame time="30"> 1 615 15 16</frame>
+			<frame time="30"> 0 0 0 0</frame>
+			<frame time="30"> 17 615 15 16</frame>
+			<frame time="30"> 0 0 0 0</frame>
+			<frame time="30"> 33 615 15 16</frame>
+			<frame time="30"> 0 0 0 0</frame>
+			<frame time="30"> 49 615 15 16</frame>
+			<frame time="30"> 0 0 0 0</frame>
+			<frame time="30"> 65 615 15 16</frame>
+			<frame time="30"> 0 0 0 0</frame>		
+			<frame time="30"> 81 615 15 16</frame>		
+		</sprite>
+	</variation>	
+	<variation>
+	<sprite looping="false" layer="5" origin="6 7" texture="effects/spritesheets/effects.png" material="system/default.mats:bright-glow"	
+		angle="l*pi/2"
+		color-a="wrath"
+		scale-x="spark_size"
+		scale-y="spark_size"
+		pos-x="cos(angle)*spark_offset"
+		pos-y="sin(angle)*spark_offset"
+	>
+		<frame time="30"> 46 513 14 16</frame>
+		<frame time="30"> 0 0 0 0</frame>
+		<frame time="30"> 61 513 14 16</frame>
+		<frame time="30"> 0 0 0 0</frame>
+		<frame time="30"> 76 513 14 16</frame>
+		<frame time="30"> 0 0 0 0</frame>
+		<frame time="30"> 91 513 14 16</frame>
+		<frame time="30"> 0 0 0 0</frame>
+		<frame time="30"> 106 513 14 16</frame>
+		<frame time="30"> 0 0 0 0</frame>		
+		<frame time="30"> 106 530 14 16</frame>		
+	</sprite>
+	</variation>
+	<particle_spawner
+		spawn-rate="6*wrath"
+		length="500"
+		looping="true"
+		ttl="1000-t*500"
+		angle="rpick(-pi,pi)"
+		pos="cos(angle)*16 ; sin(angle)*16 ; 0"
+		color="#3643ff;#ffffff"
+		color-mul="1;1;0.5;1"
+		>
+		<behaviors>
+			<spread_range radius="2"/>
+			%//<spread_line offset="cos(angle); sin(angle)*length; 0" />
+			%//<force_toward pos="0; 0; 0" mul="0.002"/>
+			%//<spread_line offset="0; -8-radius; 0"/> 
+			<fade_to a="0" r="2" g="2" b="2"/>
+		</behaviors>
+		<particle src="effects/subeffects/particles_lightning.unit:static_charge_1_small"/>
+	</particle_spawner> -->
+</effect>

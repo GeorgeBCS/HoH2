@@ -1,0 +1,378 @@
+<dict>
+	<string name="name">Zealous Onslaught</string>
+	<string name="type-name">.skills.type.spell</string>
+	<string name="description">You continously charge in a forward direction, dealing Physical damage to all enemies in your path.</string>
+
+	<array name="description-params">
+		<array><s>damage</s><s>.skills.desc.params.damage</s><s>25</s><s>30</s><s>40</s><s>50</s><s>65</s></array>
+		<array><s>channelling-max</s><b>t</b><s>.skills.desc.params.chanelling.max</s><s>2s</s><s>2.5s</s><s>3s</s><s>3.5s</s><s>4s</s></array>
+		<array><s>mana-cost</s><s>.skills.desc.params.mana_cost</s><s>5</s><s>5</s><s>7</s><s>7</s><s>10</s></array>
+		<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown</s><s>8s</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/icons_skills.png</string>
+		<int>100</int><vec4>48 0 24 24</vec4>
+	</array>
+
+	<string name="id">pal_zealous_onslaught</string>
+	<string name="type">spell</string>
+	<array name="tags"><s>spell</s><s>physical</s></array>
+	<int name="starting-level">0</int>
+	
+	<dict name="skill">
+		<string name="class">Skills::PlayerSkillDirectionalChannelling</string>
+		<!-- <string name="anim">dash</string> -->
+		<!-- <string name="anim">walk</string> -->
+		<string name="anim">attack</string>
+		
+		<int name="cooldown">8000</int>
+		<int name="castpoint">50</int>
+		<float name="cast-speed-mul">1</float>
+		<float name="move-speed-mul">0</float>
+		<ivec2 name="move-speed">0 1000000000</ivec2>
+		<ivec2 name="blocking">0 250</ivec2>
+		<bool name="update-aim">true</bool>
+		<int name="cast-time-max">2000</int>
+		<bool name="cooldown-on-castpoint">true</bool>
+
+		<int name="mana-cost">5</int>
+		<int name="cost-interval">250</int>
+
+		<bool name="movement-relative-to-moving-forward">false</bool>
+		<bool name="movement-relative-to-moving">false</bool>
+		<bool name="movement-scaled-by-cast-speed">true</bool>
+		<float name="movement-cast-speed-scale">0.25</float>
+		<bool name="animation-scaled-by-cast-speed">true</bool>
+
+		<array name="movements">
+			<i2>50 40000</i2><v2>0 5.0</v2><b>t</b>
+		</array>
+
+		<dict name="binds">
+			<int name="physical-dmg">25</int>
+			<string name="protection-buff">null</string>
+			<string name="speed-buff">null</string>
+		</dict>
+
+<!-- 		<array name="modifiers">
+			<array>
+				<dict>
+					<string name="class">Modifiers::TriggerEffect</string>
+					<float name="chance">1</float>
+					<bool name="target-self">false</bool>
+					<string name="trigger">collide</string>
+					<string name="self-fx">players/paladin/effects/zealous_charge.effect</string>
+					<int name="timeout">250</int>
+					<float name="intensity">1</float>
+					
+					<array name="effects">
+						<dict>
+							<string name="class">Explode</string>
+							<int name="min-radius">6</int>
+							<int name="radius">24</int>
+							<float name="dist-scaling">1000</float>
+
+							<array name="effects">
+								<dict>
+									<string name="class">Damage</string>
+									<string name="physical-bind">physical-dmg</string>
+								</dict>
+								<dict>
+									<string name="class">PlaySound</string>
+									<string name="sound">event:/SFX/Character/Classes/paladin/zealous_onslaught/zealous_onslaught_impact</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</array> -->
+
+		<dict name="actions">
+			<array name="start">
+				<dict>
+					<string name="class">PlaySound</string>
+					<string name="sound">event:/sfx/player/classes/paladin/zealous_onslaught/zealous_onslaught_cast</string>
+				</dict>
+				<dict>
+					<bool name="target-self">true</bool>
+				</dict>
+				<dict>
+					<string name="class">ApplyBuff</string>
+					<string name="buff">players/paladin/buffs_paladin.sval:zealous_onslaught</string>
+					<bool name="target-self">true</bool>
+				</dict>
+				<dict>
+					<string name="class">ApplyBuff</string>
+					<string name="buff-bind">protection-buff</string>
+					<bool name="target-self">true</bool>
+				</dict>
+			</array>
+
+			<array name="explode">
+<!-- 				<dict>
+					<string name="class">SpawnEffect</string>
+					<string name="effect">players/paladin/effects/zealous_charge.effect</string>
+				</dict> -->
+				<dict>
+					<vec2 name="pos-rotated">10 0</vec2>
+				</dict>
+				<dict>
+					<string name="class">Explode</string>
+					<int name="min-radius">6</int>
+					<int name="radius">24</int>
+					<float name="dist-scaling">1000</float>
+
+					<array name="effects">
+						<dict>
+							<string name="class">Damage</string>
+							<string name="physical-bind">physical-dmg</string>
+						</dict>
+						<dict>
+							<string name="class">PlaySound</string>
+							<string name="sound">event:/sfx/player/classes/paladin/zealous_onslaught/zealous_onslaught_hit</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+
+			<array name="stopped">
+<!-- 				<dict>
+					<string name="class">DebugLog</string>
+					<string name="text">test</string>
+				</dict> -->
+				<dict>
+					<bool name="target-self">true</bool>
+				</dict>
+				<dict>
+					<string name="class">RemoveBuff</string>
+					<string name="buff">players/paladin/buffs_paladin.sval:zealous_onslaught</string>
+					<bool name="target-self">true</bool>
+				</dict>
+				<dict>
+					<string name="class">ApplyBuff</string>
+					<string name="buff-bind">speed-buff</string>
+					<bool name="target-self">true</bool>
+				</dict>
+			</array>
+		</dict>
+
+		<string name="stop-actions">stopped</string>
+
+		<array name="timeline">
+			<i>100</i><s>start</s>
+		</array>
+
+		<array name="timelines-looping">
+			<array>
+				<i>250</i><s>explode</s>
+			</array>
+		</array>
+	</dict>
+
+	<array name="upgrades">
+		<dict>
+			<int name="skill-cost">1</int>
+			<int name="mana-cost">5</int>
+			<int name="cast-time-max">2500</int>
+			<dict name="binds">
+				<int name="physical-dmg">30</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">2</int>
+			<int name="mana-cost">7</int>
+			<int name="cast-time-max">3000</int>
+			<dict name="binds">
+				<int name="physical-dmg">40</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">2</int>
+			<int name="mana-cost">7</int>
+			<int name="cast-time-max">3500</int>
+			<dict name="binds">
+				<int name="physical-dmg">50</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">3</int>
+			<int name="mana-cost">10</int>
+			<int name="cast-time-max">4000</int>
+			<dict name="binds">
+				<int name="physical-dmg">65</int>
+			</dict>
+		</dict>
+	</array>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">Zealous Onslaught - Battering Ram</string>
+			<string name="type-name">.skills.type.spell.upgrade</string>
+			<string name="description">Zealous Onslaught gain a chance to inflict Stun.</string>
+
+			<array name="description-params">
+				<array><s>chance</s><s>.skills.desc.params.chance</s><s>10%</s><s>20%</s><s>40%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>48 0 24 24</vec4>
+			</array>
+
+			<string name="id">pal_zealous_onslaught_stun</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<float name="stun-chance">0.1</float>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<dict>
+							<string name="class">Modifiers::SkillTriggerEffect</string>
+							<string name="skill-id">pal_zealous_onslaught</string>
+							<string name="chance-bind">stun-chance</string>
+							<!-- <float name="chance">1</float> -->
+							<bool name="target-self">false</bool>
+							<string name="trigger">spellhit</string>
+							<int name="timeout">0</int>
+							
+							<array name="effects">
+<!-- 								<dict>
+									<string name="class">DebugLog</string>
+									<string name="text">onslaught_stun</string>
+								</dict> -->
+								<dict>
+									<string name="class">ApplyBuff</string>
+									<string name="buff">tweak/buffs/status_effects.sval:stun</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<dict name="binds">
+						<float name="stun-chance">0.2</float>
+					</dict>
+				</dict>
+				<dict>
+					<dict name="binds">
+						<float name="stun-chance">0.4</float>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">Zealous Onslaught - Protection</string>
+			<string name="type-name">.skills.type.spell.upgrade</string>
+			<string name="description">You take less damage while channeling the skill.</string>
+
+			<array name="description-params">
+				<array><s>dmg-taken</s><s>.skills.desc.params.dmg_taken</s><s>-25%</s><s>-50%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>48 0 24 24</vec4>
+			</array>
+
+			<string name="id">pal_zealous_onslaught_protection</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<string name="protection-buff">players/paladin/buffs_paladin.sval:zealous_protection_1</string>
+				</dict>
+
+<!-- 				<dict name="actions">
+					<array name="buff">
+						<dict>
+							<bool name="target-self">true</bool>
+						</dict>
+						<dict>
+							<string name="class">ApplyBuff</string>
+							<string name="buff-bind">protection-buff</string>
+							<bool name="target-self">true</bool>
+						</dict>
+					</array>
+				</dict>
+
+				<array name="timelines-looping">
+					<array>
+						<i>250</i><s>buff</s>
+						<i>250</i><s>explode</s>
+					</array>
+				</array> -->
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<dict name="binds">
+						<string name="protection-buff">players/paladin/buffs_paladin.sval:zealous_protection_2</string>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">Zealous Onslaught - Speed</string>
+			<string name="type-name">.skills.type.spell.upgrade</string>
+			<string name="description">After charging you gain a buff of increased Movement Speed.</string>
+
+			<array name="description-params">
+				<array><s>mspeed</s><s>.skills.desc.params.mspeed</s><s>+20%</s><s>+30%</s></array>
+				<array><s>duration</s><s>.skills.desc.params.duration</s><s>4s</s><s>6s</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>48 0 24 24</vec4>
+			</array>
+
+			<string name="id">pal_zealous_onslaught_speed</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<string name="speed-buff">players/paladin/buffs_paladin.sval:zealous_speed_1</string>
+				</dict>
+
+<!-- 				<dict name="actions">
+					<array name="speed">
+						<dict>
+							<string name="class">DebugLog</string>
+							<string name="text">test</string>
+						</dict>
+						<dict>
+							<bool name="target-self">true</bool>
+						</dict>
+						<dict>
+							<string name="class">ApplyBuff</string>
+							<string name="buff-bind">speed-buff</string>
+							<bool name="target-self">true</bool>
+						</dict>
+					</array>
+				</dict> -->
+
+				<!-- <string name="stop-actions">speed</string> -->
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<dict name="binds">
+						<string name="speed-buff">players/paladin/buffs_paladin.sval:zealous_speed_2</string>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+<!-- fire aura -->
+<!-- increased damage over time (stacks) -->
+<!-- pillars of light trail -->
+
+	</array>
+</dict>

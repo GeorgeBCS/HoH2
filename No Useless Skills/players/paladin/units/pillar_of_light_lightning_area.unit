@@ -1,0 +1,26 @@
+<unit layer="-1">
+	<behavior class="DangerAreaBehaviorP">
+		<int name="freq">500</int>
+		<int name="ttl">4000</int>
+		
+		<array name="effects">
+			<dict>
+				<string name="class">Damage</string>
+				<string name="lightning-bind">lightning-dmg</string>
+				<bool name="true-strike">true</bool>
+			</dict>
+		</array>
+
+		<dict name="effect-params">
+		</dict>
+	</behavior>
+	
+	<scenes>
+		<scene>
+			<collision static="false">
+				<circle sensor="true" aim-through="true" radius="20" />
+			</collision>
+			<effect src="players/paladin/effects/pillar_of_justice.effect?radius=20" />
+		</scene>
+	</scenes>
+</unit>

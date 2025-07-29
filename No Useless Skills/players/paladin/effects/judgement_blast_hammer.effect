@@ -1,0 +1,67 @@
+<effect looping="false" layer="-1">
+
+	<!-- <param name="size" default="64"/> -->
+	<param name="delay" default="0.4"/>
+	<param name="explosion_radius" default="45" />
+	<param name="height" default="40"/>
+	<param name="ease" default="6"/>
+	
+ 
+ <!-- hammer -->
+	<sprite origin="128 128" texture="./judgement_hammer.png" material="system/default.mats:default"
+		scale-x="0.55"
+		scale-y="0.55"
+		pos-y="-height+height*pow(t,ease-2)-30"
+				  
+		color-r="0.6"
+		color-g="0.6"
+		color-b="0.6"
+		color-a="sin(t*pi)"
+	>
+			<frame time="550"> 0 0 256 256</frame>
+	</sprite>
+	
+	<light 
+	pos-x="0" 
+	pos-y="-height+height*pow(t,ease-2)-28" 
+	>  
+		<sprite texture="./judgement_hammer_L.png">
+			<frame>0 0 256 256</frame>
+		</sprite>
+		
+		<looping value="false" />
+		<length value="550" />
+		<cast-shadows value="false" />
+		<size value="128"/>
+		
+		<color-r value="1*sin(t*pi)" />
+		<color-g value="0.8*sin(t*pi)" />
+		<color-b value="0.1*sin(t*pi)"/>
+		<color-a value="0.4*sin(t*pi)"/>
+	</light>
+	
+	<light 
+	pos-x="0" 
+	pos-y="-height+height*pow(t,ease-2)-5"
+>
+		<sprite texture="effects/lights/light2_L.png">
+			<frame>0 0 128 128</frame>
+		</sprite>
+		<looping value="false" />
+		<length value="550" /> 
+		<cast-shadows value="false" />
+		<size value="128" />
+		
+		<color-r value="1*sin(t*pi)" />
+		<color-g value="0.5*sin(t*pi)" />
+		<color-b value="0.1*sin(t*pi)"/>
+		<color-a value="0*sin(t*pi)"/>
+	</light>
+	
+	<!-- LIGHTS -->
+	
+	
+	 
+	
+</effect>
+

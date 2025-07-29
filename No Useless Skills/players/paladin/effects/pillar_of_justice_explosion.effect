@@ -1,0 +1,247 @@
+<effect looping="false" layer="-17">
+
+	<param name="radius" default="20"/>
+	<param name="lightning" default="0"/>
+	%//ray broad
+	<sprite ulayer="1" origin="128 200" looping="false" texture="effects/lights/god_ray_L.png" material="system/default.mats:add" 
+	
+	scale-x="(0.3+t*3.4)*(radius/32)"
+	scale-y="(1)"
+	color-r="(1.0*t)"
+	color-g="0.6*t"
+	color-b="0.2*t"                    
+	color-a="sin(t*pi)*0.05"
+	>
+		<frame time="250">0 0 256 256</frame>
+	</sprite>
+ 	<light
+	origin="0 0"
+	>
+		<sprite texture="effects/lights/god_ray_radial_point_L.png">
+			<frame time="500">0 0 256 256</frame>
+		</sprite>
+		<looping value="false" />
+		<length value="200" />
+		<cast-shadows value="false" />
+		<size value="(256*sin(t*pi))*radius/96" />
+		<color-r value="(4-4*t)+t*(0.4/pi)" />
+		<color-g value="2-2*t" />
+		<color-b value="0.5" />
+		<color-a value="(0.1-0.1*t)"/>
+	</light>
+	
+	<sprite ulayer="1" origin="48 48" looping="false" texture="./lay_on_hands_circle.png" material="system/default.mats:bright" 
+	
+	scale-x="(radius*0.021)*0.75+0.25*t"
+	scale-y="(radius*0.021)*0.75+0.25*t"
+	angle="(2*pi*rand(u+1*13))+pow(t,0.9)*(pi/8)"
+	pos-x="0"
+	pos-y="0"
+	
+	
+	color-r="1.5-(1.5*t)"
+	color-g="1-(1*t"
+	color-b="0.35-pow(t,1.5)*(0.5/pi)"                    
+	color-a="((1-1*pow(t,0.5))-pow(t,1.5)*(0.3/pi))*(radius/40)"
+	
+	>
+		<frame time="800">0 0 96 96</frame>
+	</sprite>
+	
+	<sprite ulayer="1" origin="48 48" looping="false" texture="./lay_on_hands_circle.png" material="system/default.mats:bright" 
+	
+	scale-x="(radius*0.021)*(1-sin(t*pi*4)*0.01)"
+	scale-y="(radius*0.021)*(1-cos(t*pi*4)*0.01)"
+	angle="(rand(u)*8)+pow(t,0.9)*(pi/8)"
+	pos-x="0"
+	pos-y="0"
+	
+	
+	color-r="1.5"
+	color-g="1"
+	color-b="0.35"                    
+	color-a="(sin(t*pi)*0.1)*(radius/40)"
+	
+	>
+		<frame time="250">0 0 96 96</frame>
+	</sprite>
+	<light>
+		<sprite texture="effects/lights/god_ray_radial_point_L.png">
+			<frame time="500">0 0 -256 -256</frame>
+		</sprite>
+		<looping value="false" />
+		<length value="400" />
+		<cast-shadows value="false" />
+		<size value="256*(radius/96)" />
+		<color-r value="(2-2*t)+t*(0.4/pi)" />
+		<color-g value="1-1*t" />
+		<color-b value="0.1-t*0.1" />
+		<color-a value="(0.1-0.1*t)"/>
+	</light>
+	
+	<light>
+		<sprite texture="effects/lights/god_ray_radial_point_L.png">
+			<frame time="500">0 0 -256 256</frame>
+		</sprite>
+		<looping value="false" />
+		<length value="400" />
+		<cast-shadows value="false" />
+		<size value="(256*(radius/96))-(t*(128*radius/96))" />
+		<color-r value="(2-2*t)+t*(0.4/pi)" />
+		<color-g value="1-1*t" />
+		<color-b value="0.2-t*0.2" />
+		<color-a value="(0.1-0.1*t)"/>
+	</light>
+	
+	%//big light
+	<light
+		origin="0 5"
+		pos-y="6"
+		>
+		<sprite texture="effects/lights/light2_L.png">
+			<frame time="800">0 0 128 128</frame>
+		</sprite>
+		<looping value="false" />
+		<length value="600" />
+		<cast-shadows value="false" />
+		<size value="(radius*2)+t*(120*radius/50)" />
+		<color-r value="(4.5-t*4.5)*sin(t*pi)*1" />
+		<color-g value="(2.5-t*2.5)*sin(t*pi)*1" />
+		<color-b value="(0.5-t*0.5)*sin(t*pi)*1" />
+		<color-a value="0"/>
+	</light>
+	
+	%//big radial point
+	<light
+		origin="0 5"
+		pos-y="6"
+		>
+		<sprite texture="effects/lights/god_ray_radial_point_L.png">
+			<frame time="800">0 0 256 256</frame>
+		</sprite>
+		<looping value="false" />
+		<length value="250" />
+		<cast-shadows value="false" />
+		<size value="(radius*2)+t*(180*radius/50)" />
+		<color-r value="(1.5-t*1.5)*sin(t*pi)*1" />
+		<color-g value="(1.5-t*1.5)*sin(t*pi)*1" />
+		<color-b value="(0.5-t*0.5)*sin(t*pi)*1" />
+		<color-a value="0"/>
+	</light>
+	
+	%//speckles
+	<particle_spawner
+		spawn-rate="radius*2"
+		length="100"
+		looping="false"
+		ttl="250,750"
+		force-damping="0"
+		pos="0 ; 0 ; 0"
+		color="#ffffff"
+		angle="rpick(-pi,pi)"
+		rot-speed="sin(t*pi)"
+		start="150" 
+	>
+		<behaviors>
+			<spread_range radius="rpick(5, radius/2)"/>
+			%/<force_dir dir="0; -0.5; 0"/>
+			<force_toward point="0; 5; 0" mul="rpick(-0.2,-0.1)"/>
+			<fade_to a="0" r="1" g="0.74" b="0.17" />
+		</behaviors>
+
+		<particle src="effects/subeffects/particles_speckles.unit:single_white_add"/>   
+		<particle src="effects/subeffects/particles_speckles.unit:single_white_add-offset2"/>   
+		<particle src="effects/subeffects/particles_speckles.unit:single_white_add-offset4"/>   
+	</particle_spawner>
+	
+	<variation>
+<sprite looping="false" origin="32 254" texture="effects/spritesheets/effects.png" material="effects/effects.mats:add"
+	scale-x="(0.5-0.1*rand(u+77))"
+	scale-y="(0.5*(1-t*rand(u+41)*0.1))*(1-0.7*saturate(t*1.2))"
+	angle="0"
+	
+	color-r="1+0.75*(1-saturate(pow(t,2)*1.5))"
+	color-g="0.4+0.2*(1-saturate(pow(t,2)*1.5))"
+	color-b="0.2+0.2*(1-saturate(pow(t,2)*1.5))"
+	color-a="0.5+0.5*(1-saturate(pow(t,2)*1.5))"
+	num-sprites="lightning"
+	>
+		<frame time="30" 	x="769+(floor(rand(u+17)+0.5)*63)"		y="769" 	w="63+(floor(rand(u+17)+0.5)*-126)" 	h="254"/>
+		<frame time="60" 	x="0" 									y="0" 		w="0" 									h="0"/>
+		<frame time="30" 	x="769+(floor(rand(u+17)+0.5)*63)" 		y="769" 	w="63+(floor(rand(u+17)+0.5)*-126)" 	h="254"/>
+		<frame time="30" 	x="834+(floor(rand(u+17)+0.5)*63)" 		y="769" 	w="63+(floor(rand(u+17)+0.5)*-126)" 	h="254"/>
+		<frame time="30" 	x="897+(floor(rand(u+17)+0.5)*63)" 		y="769" 	w="63+(floor(rand(u+17)+0.5)*-126)" 	h="254"/>
+		<frame time="30" 	x="961+(floor(rand(u+17)+0.5)*63)" 		y="769" 	w="63+(floor(rand(u+17)+0.5)*-126)" 	h="254"/>
+		<frame time="30" 	x="0" 									y="0" 		w="0" 									h="0"/>
+		<frame time="30" 	x="961+(floor(rand(u+17)+0.5)*63)" 		y="769" 	w="63+(floor(rand(u+17)+0.5)*-126)" 	h="254"/>
+	</sprite>
+</variation>
+ <variation>
+	<sprite looping="false" origin="32 254" texture="effects/spritesheets/effects.png" material="effects/effects.mats:add"
+	scale-x="(0.5-0.1*rand(u+77))"
+	scale-y="(0.5*(1-t*rand(u+41)*0.1))*(1-0.7*saturate(t*1.1))"
+	angle="0"
+	
+	color-r="1+0.75*(1-saturate(pow(t,2)*1.5))"
+	color-g="0.4+0.2*(1-saturate(pow(t,2)*1.5))"
+	color-b="0.2+0.2*(1-saturate(pow(t,2)*1.5))"
+	color-a="0.5+0.5*(1-saturate(pow(t,2)*1.5))"
+	num-sprites="lightning"
+	>
+		<frame time="30" 	x="1025+(floor(rand(u+17)+0.5)*63)"		y="769" 	w="63+(floor(rand(u+17)+0.5)*-126)" 	h="254"/>
+		<frame time="60" 	x="0" 									y="0" 		w="0" 									h="0"/>
+		<frame time="30" 	x="1025+(floor(rand(u+17)+0.5)*63)" 	y="769" 	w="63+(floor(rand(u+17)+0.5)*-126)" 	h="254"/>
+		<frame time="60" 	x="1090+(floor(rand(u+17)+0.5)*63)" 	y="769" 	w="63+(floor(rand(u+17)+0.5)*-126)" 	h="254"/>
+		<frame time="30" 	x="1153+(floor(rand(u+17)+0.5)*63)" 	y="769" 	w="63+(floor(rand(u+17)+0.5)*-126)" 	h="254"/>
+		<frame time="30" 	x="1217+(floor(rand(u+17)+0.5)*63)" 	y="769" 	w="63+(floor(rand(u+17)+0.5)*-126)" 	h="254"/>
+		<frame time="30" 	x="0" 									y="0" 		w="0" 									h="0"/>
+		<frame time="30" 	x="1217+(floor(rand(u+17)+0.5)*63)" 	y="769" 	w="63+(floor(rand(u+17)+0.5)*-126)" 	h="254"/>
+	</sprite>
+</variation>
+%//variation 0 1
+<variation>
+	<sprite looping="false" origin="32 254" texture="effects/spritesheets/effects.png" material="effects/effects.mats:add"
+	scale-x="(0.5-0.1*rand(u+77))"
+	scale-y="(0.5*(1-t*rand(u+41)*0.1))*(1-0.6*saturate(t*1.4))"
+	angle="0"
+	
+	color-r="1+0.75*(1-saturate(pow(t,2)*1.5))"
+	color-g="0.4+0.2*(1-saturate(pow(t,2)*1.5))"
+	color-b="0.2+0.2*(1-saturate(pow(t,2)*1.5))"
+	color-a="0.5+0.5*(1-saturate(pow(t,2)*1.5))"
+	num-sprites="lightning"
+	>
+		<frame time="30" 	x="769+(floor(rand(u+17)+0.5)*63)"		y="1025" 	w="63+(floor(rand(u+17)+0.5)*-126)" 	h="254"/>
+		<frame time="60" 	x="0" 									y="0" 		w="0" 									h="0"/>
+		<frame time="30" 	x="769+(floor(rand(u+17)+0.5)*63)" 		y="1025" 	w="63+(floor(rand(u+17)+0.5)*-126)" 	h="254"/>
+		<frame time="30" 	x="834+(floor(rand(u+17)+0.5)*63)" 		y="1025" 	w="63+(floor(rand(u+17)+0.5)*-126)" 	h="254"/>
+		<frame time="30" 	x="897+(floor(rand(u+17)+0.5)*63)" 		y="1025" 	w="63+(floor(rand(u+17)+0.5)*-126)" 	h="254"/>
+		<frame time="30" 	x="961+(floor(rand(u+17)+0.5)*63)" 		y="1025" 	w="63+(floor(rand(u+17)+0.5)*-126)" 	h="254"/>
+		<frame time="30" 	x="0" 									y="0" 		w="0" 									h="0"/>
+		<frame time="30" 	x="961+(floor(rand(u+17)+0.5)*63)" 		y="1025" 	w="63+(floor(rand(u+17)+0.5)*-126)" 	h="254"/>
+	</sprite>
+</variation>
+%//variation 1 1
+<variation>
+	<sprite looping="false" origin="32 254" texture="effects/spritesheets/effects.png" material="effects/effects.mats:add"
+	scale-x="(0.5-0.1*rand(u+77))"
+	scale-y="(0.5*(1-t*rand(u+41)*0.1))*(1-0.6*saturate(t*1.3))"
+	angle="0"
+	
+	color-r="1+0.75*(1-saturate(pow(t,2)*1.5))"
+	color-g="0.4+0.2*(1-saturate(pow(t,2)*1.5))"
+	color-b="0.2+0.2*(1-saturate(pow(t,2)*1.5))"
+	color-a="0.5+0.5*(1-saturate(pow(t,2)*1.5))"
+	num-sprites="lightning"
+	>
+		<frame time="30" 	x="1025+(floor(rand(u+8)+0.5)*63)"		y="1025" 	w="63+(floor(rand(u+8)+0.5)*-126)" 	h="254"/>
+		<frame time="60" 	x="0" 									y="0" 		w="0" 									h="0"/>
+		<frame time="30" 	x="1025+(floor(rand(u+8)+0.5)*63)" 	y="1025" 	w="63+(floor(rand(u+8)+0.5)*-126)" 	h="254"/>
+		<frame time="30" 	x="1090+(floor(rand(u+8)+0.5)*63)" 	y="1025" 	w="63+(floor(rand(u+8)+0.5)*-126)" 	h="254"/>
+		<frame time="30" 	x="1153+(floor(rand(u+8)+0.5)*63)" 	y="1025" 	w="63+(floor(rand(u+8)+0.5)*-126)" 	h="254"/>
+		<frame time="30" 	x="1217+(floor(rand(u+8)+0.5)*63)" 	y="1025" 	w="63+(floor(rand(u+8)+0.5)*-126)" 	h="254"/>
+		<frame time="30" 	x="0" 									y="0" 		w="0" 									h="0"/>
+		<frame time="30" 	x="1217+(floor(rand(u+8)+0.5)*63)" 	y="1025" 	w="63+(floor(rand(u+8)+0.5)*-126)" 	h="254"/>
+	</sprite>
+</variation>
+</effect>

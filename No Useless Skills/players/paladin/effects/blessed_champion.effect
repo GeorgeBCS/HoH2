@@ -1,0 +1,232 @@
+<effect looping="true" layer="1">
+<param name="angle" default="0" />
+%//ray particles
+	<particle_spawner
+		layer="0"
+		spawn-rate="3"
+		length="1000"
+		looping="true"
+		ttl="rpick(1000,1500)"
+		angle="pi/2"
+		pos="0; 0; 0"
+		color-mul="1;0.8;0.4;rpick(0.1,1)"
+		force-damping="0"
+		rot-speed="rpick(-1,1)"
+		rot-damping="2"
+		angle="rpick(-pi,pi)"
+		>
+			
+			<behaviors>
+				<spread_range radius="rpick(0,10)"/>
+				<spread_line offset="0 ; -80 ; 0"/> 
+				%//<force_toward pos="0; 0; 0" mul="speed/32"/>
+				<force_dir dir="rpick(-0.1,0.1); rpick(0.1,0.2); 0"/>
+				%//<force_toward pos="0; 0; 0" mul="-rpick(0.005,0.001)"/>
+				<fade_to a="0" r="1" g="0.8" b="0.4"/>
+			</behaviors>
+						<particle src="effects/subeffects/particles_speckles.unit:single_white_add-offset2"/>
+						<particle src="effects/subeffects/particles_speckles.unit:single_white_add-offset4"/>
+	</particle_spawner>
+%//body particles
+	<particle_spawner
+		layer="1"
+		spawn-rate="5"
+		length="1000"
+		looping="true"
+		ttl="rpick(1000,1500)"
+		angle="pi/2"
+		pos="0; 0; 0"
+		color-mul="1;0.8;0.4;rpick(0.1,1)"
+		force-damping="0"
+		rot-speed="rpick(-1,1)"
+		rot-damping="2"
+		angle="rpick(-pi,pi)"
+		>
+			
+			<behaviors>
+				<spread_range radius="rpick(0,10)"/>
+				<spread_line offset="0 ; -20 ; 0"/> 
+				%//<force_toward pos="0; 0; 0" mul="speed/32"/>
+				<force_dir dir="rpick(-0.1,0.1); -rpick(0.1,0.2); 0"/>
+				%//<force_toward pos="0; 0; 0" mul="-rpick(0.005,0.001)"/>
+				<fade_to a="0" r="1" g="0.8" b="0.4"/>
+			</behaviors>
+						<particle src="effects/subeffects/particles_speckles.unit:single_white_add-offset2"/>
+						<particle src="effects/subeffects/particles_speckles.unit:single_white_add-offset4"/>
+		</particle_spawner>
+%animated sprite
+	<sprite origin="9 9" looping="true" texture="./blessed_champion.png" material="system/default.mats:add"
+		layer="-1"
+		scale-x="1.2+(sin(t*pi)*0.4)"
+		scale-y="1.2+(sin(t*pi)*0.4"
+		
+		color-r="1"
+		color-g="0.8"
+		color-b="0.4"
+		color-a="0.1"
+		
+		pos-y="-16+cos(angle)*-1"
+		pos-x="0+cos(angle)*-1"
+		angle="-(t+l)*pi"
+		num-sprites="1"
+		
+		>
+		<frame time="100">0 110 18 18</frame>
+		<frame time="100">19 110 18 18</frame>
+		<frame time="100">38 110 18 18</frame>
+		<frame time="100">57 110 18 18</frame>
+		<frame time="100">38 110 18 18</frame>
+		<frame time="100">19 110 18 18</frame>
+	</sprite>
+%//other sprite
+	<sprite origin="9 9" looping="true" texture="./blessed_champion.png" material="system/default.mats:add"
+		layer="-1"
+		scale-x="1.2+(sin(t*pi)*0.4)"
+		scale-y="1.2+(sin(t*pi)*0.4"
+		
+		color-r="0.8"
+		color-g="0.6"
+		color-b="0.2"
+		color-a="0.2"
+		
+		pos-y="-16+cos(angle)*-1"
+		pos-x="0+cos(angle)*-1"
+		
+		angle="(t+l)*pi"
+		num-sprites="1"
+		
+		>
+		<frame time="1200">238 110 18 18</frame>
+
+	</sprite>
+%//body sprite
+	<sprite origin="13 86" looping="true" texture="./blessed_champion.png" material="system/default.mats:add"
+
+		color-a="0.025"
+		color-r="1.2"
+		color-g="1.0"
+		color-b="0.8"
+
+		>
+		<frame time="100">104 0 26 105</frame>
+		<frame time="200">130 0 26 105</frame>
+		<frame time="200">156 0 26 105</frame>
+		<frame time="200">182 0 26 105</frame>
+		<frame time="200">156 0 26 105</frame>
+		<frame time="200">130 0 26 105</frame>
+		<frame time="100">104 0 26 105</frame>
+	</sprite>
+%//body sprite ring
+	<sprite origin="13 13" looping="true" texture="./blessed_champion.png" material="system/default.mats:add"
+
+		color-a="0.025"
+		color-r="1.2"
+		color-g="1.0"
+		color-b="0.6"
+		scale-x="1*(1-t*0.5)"
+		scale-y="1*(1-t*0.5)"
+		
+		pos-y="12-t*52"
+		>
+		<frame time="100">104 105 26 23</frame>
+		<frame time="200">130 105 26 23</frame>
+		<frame time="200">156 105 26 23</frame>
+		<frame time="200">182 105 26 23</frame>
+		<frame time="200">156 105 26 23</frame>
+		<frame time="200">130 105 26 23</frame>
+		<frame time="100">104 105 26 23</frame>
+	</sprite>
+	
+%//Lights
+	<light pos="0 0"> 
+		<sprite texture="system/default_L.png">
+			<frame time="100">0 0 128 128</frame>
+		</sprite>
+		
+		<length value="100" />
+		
+		<looping value="true" />
+		
+		<cast-shadows value="false" />
+		
+		<shadow-cast-pos-x value="0" />
+		<shadow-cast-pos-y value="0" />
+		
+		<shadow-cast-pos-jitter value="0 0 0 0" />
+		
+		<size value="sin(pi * t/2)/8 +1 *200" />
+		
+		<color-r value="0.5" />
+		<color-g value="0.5" />
+		<color-b value="0" />
+		<color-a value="0/255" />
+	</light>
+	<light pos-y="-32"> 
+		<sprite texture="effects/lights/light_cone_L.png">
+			<frame time="100">0 0 128 128</frame>
+		</sprite>
+		
+		<length value="100" />
+		
+		<looping value="true" />
+		
+		<cast-shadows value="false" />
+		
+		<shadow-cast-pos-x value="0" />
+		<shadow-cast-pos-y value="0" />
+		
+		<shadow-cast-pos-jitter value="0 0 0 0" />
+		
+		<size value="sin(pi * t/2)/8 +1 *150" />
+		
+		<color-r value="0.4" />
+		<color-g value="0.2" />
+		<color-b value="0.1" />
+		<color-a value="0" />
+	</light>
+%//Godrays
+	<sprite origin="128 210" looping="false" texture="effects/lights/god_ray_L.png" material="system/default.mats:add"
+		layer="100"
+		angle="-0.1"
+		color-a="(0.02+0.02*i)+sin((1+i)*t*pi)*0.01"
+		color-r="1"
+		color-g="0.8"
+		color-b="0.4"
+		scale-x="0.6-i*0.2"
+		scale-y="0.5"
+		num-sprites="3"
+		pos-x="(-4*saturate(i))+sin((1+i)*t*pi)*(8-i*2)"
+		pos-y="10+sin((1+i)*t*pi)*4"
+		>
+		<frame time="8000">0 0 256 256</frame>
+	</sprite>
+	
+%//ground sprites
+	<particle_spawner
+		layer="0"
+		spawn-rate="50"
+		length="1000"
+		looping="true"
+		ttl="rpick(500,1500)"
+		angle="pi/2"
+		pos="0; 0; 0"
+		color-mul="1+rpick(0,0.2);0.8+rpick(-0.2,0.2);0.4;rpick(0.1,0.25)"
+		force-damping="0"
+		rot-speed="0"
+		rot-damping="2"
+		angle="rpick(-pi,pi)"
+		>
+			
+			<behaviors>
+				<spread_range radius="rpick(0,12)"/>
+				%//<force_toward pos="0; 0; 0" mul="speed/32"/>
+				<force_dir dir="rpick(-0.1,0.1); rpick(-0.1,0.1); 0"/>
+				<force_toward pos="0; 0; 0" mul="rpick(0.01,0.001)"/>
+				<fade_to a="0" r="1" g="0.8" b="0.4"/>
+			</behaviors>
+						<particle src="effects/subeffects/particles_speckles.unit:single_white_add"/>
+						<particle src="effects/subeffects/particles_speckles.unit:long_diagonal_add"/>
+						<particle src="effects/subeffects/particles_speckles.unit:long_vertical_add"/>
+						<particle src="effects/subeffects/particles_speckles.unit:cross_add"/>
+		</particle_spawner>
+</effect>

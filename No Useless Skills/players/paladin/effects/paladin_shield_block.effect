@@ -1,0 +1,75 @@
+<effect layer="10" looping="false">
+	<param name="angle" default="0" />
+	<data>
+		<string name="sound">event:/SFX/Character/Classes/paladin/shield/shield_passive_block</string>
+	</data>
+	<sprite origin="0 22" texture="effects/spritesheets/effects.png" material="system/default.mats:bright-glow"
+		angle="angle"
+
+		color-r="1"
+		angle="angle"
+		
+		scale-x="0.25"
+		scale-y="0.25"
+		
+		pos-x="cos(angle)*3"
+		pos-y="-4+sin(angle)*3"
+		>
+		<frame time="60">599 90 -24 44</frame>
+		<frame time="30">624 90 -24 44</frame>
+		<frame time="30">649 90 -24 44</frame>
+		<frame time="30">674 90 -24 44</frame>
+	</sprite>
+	<sprite origin="30 35" looping="false" texture="effects/spritesheets/effects.png" material="system/default.mats:bright-glow"
+		angle="angle"
+		
+		scale-x="0.2+0.2*t"
+		scale-y="0.3+0.1*t"
+		
+		pos-x="cos(angle)*12*(1-t*0.8)"
+		pos-y="-4+sin(angle)*12*(1-t*0.8)"
+		
+		color-a="(saturate(t*3)*(1-pow(t,2)))*0.85"
+		>
+		<frame time="30">424 371 30 71</frame>
+		<frame time="30">0 0 0 0</frame>
+		<frame time="200">424 371 30 71</frame>
+	</sprite>
+	<light pos-x="cos(angle)*6" pos-y="-4+sin(angle)*6">
+		<sprite texture="effects/lights/lens_flash_L.png">
+			<frame time="550">0 0 256 256</frame>
+		</sprite>
+		<overlay value="false" />
+		<looping value="false" />
+		<length value="180" />
+		<cast-shadows value="false" />
+		<shadow-cast-pos-x value="0" />
+		<shadow-cast-pos-y value="0" />
+		<shadow-cast-pos-jitter value="0 0 0 0" />
+		<size value="40" />
+		<color-r value="0.8*saturate(t*2)"/>
+		<color-g value="0.8*saturate(t*2)"/>
+		<color-b value="0.8*saturate(t*2)"/>
+		<color-a value="saturate(t*2)*0.3"/>
+	</light>
+	
+	<particle_spawner
+		wind-speed="0"
+		num-particles="rpick(2,3)"
+		color="#ffffff"
+		color-mul="1;1;1;0.5"
+		length="150"
+		start="100"
+		looping="false"
+		ttl="rpick(250,400)"
+		pos="cos(angle)*8;-4+sin(angle)*8;0"
+	>
+		<behaviors>
+			<spread_range radius="rpick(2,3)"/>
+			<force_toward pos="cos(angle)*13;sin(angle)*13;0" mul="-0.22"/>
+			<fade_to a="0" r="1" g="1" b="1" />
+		</behaviors>
+		<particle src="effects/subeffects/particles_speckles.unit:single_white_add"/>
+	</particle_spawner>
+	
+</effect>

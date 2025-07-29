@@ -1,0 +1,26 @@
+<loader>FloatingAction::LoadMultiple</loader>
+<array>
+
+	<dict>
+		<string name="id">dummy</string>
+		<array name="actions">
+			<dict>
+				<string name="class">DebugLog</string>
+				<string name="text">test</string>
+			</dict>
+		</array>
+	</dict>
+
+	<dict>
+		<string name="id">divine_avenger</string>
+		<array name="actions">
+			<dict>
+				<string name="class">TriggerPlayerSkillAction</string>
+				<string name="skill">divine_pillars</string>
+				<string name="action-name">cast</string>
+				<!-- <string name="action-name">cast_single</string> -->
+			</dict>
+		</array>
+	</dict>
+
+</array>

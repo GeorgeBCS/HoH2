@@ -1,0 +1,107 @@
+<effect looping="false" layer="-1">
+
+	
+	<!-- big_circle -->
+	<sprite ulayer="1" origin="48 48" looping="false" texture="./lay_on_hands_circle.png" material="system/default.mats:bright-glow" 
+	
+	scale-x="0.35-0.2*it" 
+	scale-y="0.35-0.2*it"
+	angle="(2*pi*rand(u+1*13))+pow(t,0.9)*(pi/8)"
+	pos-x="0"
+	pos-y="-8*it"
+	
+	
+	color-r="1.5-1.5*t"
+	color-g="1-1*t"
+	color-b="0.15-pow(t,1.5)*(0.5/pi)"                    
+	color-a="0.25*sin(it*pi)"
+	
+	num-sprites="4"
+	>
+		<frame time="500">0 0 96 96</frame>
+	</sprite> 
+	
+	<!-- rays -->
+	<sprite ulayer="1" origin="128 128" looping="false" texture="effects/spritesheets/god_ray_radial.png" material="system/default.mats:bright-glow" 
+	
+	scale-x="t*0.2" 
+	scale-y="t*0.2"
+	angle="(2*pi*rand(u+1*13))+pow(t,0.9)*(0.25)"
+	pos-x="0"
+	pos-y="0"
+	
+	
+	color-r="1.5-1.5*t"
+	color-g="1-1*t"
+	color-b="0.15-pow(t,1.5)*(0.5/pi)"                    
+	color-a="1-t" 
+	
+	
+	>
+		<frame time="500">0 0 256 256</frame>
+	</sprite> 
+	
+	
+	
+	<!-- LIGHTS -->
+	
+	 <!-- lights ray --> 
+	 <light pos-x="0" pos-y="-32"> 
+		<sprite texture="effects/lights/god_ray_L.png" > 
+			<frame>0 0 256 256</frame> 
+		</sprite>
+		<looping value="false" /> 
+		<length value="500" /> 
+		<cast-shadows value="false" /> 
+		<shadow-cast-pos-x value="0" /> 
+		<shadow-cast-pos-y value="0" /> 
+		<shadow-cast-pos-jitter value="0 0 0 0" /> 
+		<size value="128+(128*(sin (t*pi*0.5))*0.5))" /> 
+		<color-r value="0.2*(1+sin (t*pi*1.5))" /> 
+		<color-g value="0.15*(1+sin (t*pi*1.5)" /> 
+		<color-b value="0.05(0.2+sin (t*(pi*1.1))"/> 
+		<color-a value="0.1-0.1*t"/> 
+	 </light> 
+	  
+	<light>
+		<sprite texture="effects/lights/sewer_L.png">
+			<frame time="550">0 0 512 512</frame>
+		</sprite>
+		<looping value="false" />
+		<length value="500" />
+		<cast-shadows value="false" />
+		<shadow-cast-pos-x value="0" />
+		<shadow-cast-pos-y value="0" />
+		<shadow-cast-pos-jitter value="0 0 0 0" />
+		<size value="100-10*t" />
+		<color-r value="sin(t*pi)*0.4"/>
+		<color-g value="sin(t*pi)*0.3"/>
+		<color-b value="0"/>
+		<color-a value="0.01*sin(t*pi)"/>
+	</light>
+	 
+	
+	<!-- specks --> 
+	<particle_spawner
+		length="250"
+		layer="1"
+		start="250"
+		spawn-rate="100"
+		looping="false"
+		ttl="rpick(250,500)"
+		force-damping="-1"
+		pos="0 ; 0; -8+saturate(t-0.5)*32"
+		color="#ffdd53"
+	>
+		<behaviors>
+			<spread_range radius="rpick(0, 12-6*(saturate(t-0.5)*2))"/>
+			<force_dir dir="rpick(-0.1,0.1); 0; rpick(1,2)"/>
+			<force_toward point="0; -32; 0" mul="0.01"/>
+			<fade_to a="0" r="1" g="0" b="0" />
+		</behaviors>
+
+		<particle src="effects/subeffects/particles_speckles.unit:single_white_add"/> 
+	</particle_spawner>
+	 
+	
+</effect>

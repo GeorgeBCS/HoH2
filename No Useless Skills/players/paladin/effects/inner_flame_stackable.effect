@@ -1,0 +1,119 @@
+<effect looping="true">
+	<param name="stacks" default="1" />
+	<param name="angle" default="0" />
+	
+<sprite looping="true" origin="5 0" texture="effects/spritesheets/effects.png" material="system/default.mats:add"
+		angle="(((pi*2)/6)*i)+rand(i)+(t+l)"
+		layer="0"
+		num-sprites="3+stacks*4"
+		scale-x="0.15+stacks*0.15+rand(i+u)*(0.18-sin((it+il)*pi)*0.08)"
+		scale-y="(0.3+stacks*0.25+rand(i+u)*0.08)*(0.55)"
+		
+		color-r="0.65+rand(i+l)*2+(stacks*0.15)*2"
+		color-g="0.35-(stacks*0.15)*0.2+rand(u+i)*0.25"
+		color-b="0.15-(stacks*0.15)*0.15"
+		color-a="(saturate(t+l)*stacks*0.1)*(1-sin((it+il)*pi))"
+		
+		pos-y="-8"
+		>
+		<frame time="150">27 924 10 64</frame> 
+		<frame time="150">37 924 10 64</frame> 
+		<frame time="150">47 924 10 64</frame> 
+		<frame time="150">37 924 10 64</frame> 
+	</sprite>
+	<sprite looping="true" origin="5 0" texture="effects/spritesheets/effects.png" material="system/default.mats:add"
+		angle="(((pi*2)/6)*i)+rand(11+i)-(t+l)"
+		layer="0"
+		num-sprites="3+stacks*4"
+		scale-x="0.15+stacks*0.15+rand(i+u+24)*(0.1+sin((it+il)*pi)*0.08)"
+		scale-y="(0.25+stacks*0.25+rand(i+u+24)*0.08)*(0.65)"
+		
+		color-r="0.65+rand(i+l+13)*2+(stacks*0.15)*2"
+		color-g="0.35-(stacks*0.15)*0.2+rand(u+i)*0.25"
+		color-b="0.15-(stacks*0.15)*0.15"
+		color-a="(saturate(t+l)*stacks*0.1)*(1-sin((it+il)*pi))"
+		
+		pos-y="-8"
+		>
+		<frame time="150">27 924 10 64</frame> 
+		<frame time="150">37 924 10 64</frame> 
+		<frame time="150">47 924 10 64</frame> 
+		<frame time="150">37 924 10 64</frame> 
+	</sprite>
+	
+	
+	
+	
+	
+	
+	<particle_spawner
+		layer="3"
+		spawn-rate="8+32*stacks*0.15"
+		length="300"
+		looping="true"
+		ttl="rpick(250,800)"
+		angle="rpick(-pi,pi)"
+		rot-speed="rpick(0.1,0.2)"
+		pos="0;-8;0"
+		curl-speed="1"
+		curl-scale="1"
+		
+		color-mul="1;1;1;rand(t)"
+	>
+		<behaviors>
+			<spread_range radius="rpick(0,sin(t*pi)*8)"/>
+			<force_dir dir="0; 0; rpick(0.25,1)"/>
+			<fade_to a="0" />
+		</behaviors>
+		<particle src="effects/subeffects/particles_fire.unit:fire_bolt_embers_add"/>
+	</particle_spawner>
+	
+	<light pos-y="-4"> 
+		<sprite texture="effects/lights/radial_jagged_ring_L.png">
+			<frame time="100">0 0 256 256</frame>
+		</sprite>
+		
+		<length value="1000" />
+		
+		<looping value="true" />
+		
+		<cast-shadows value="false" />
+		
+		<shadow-cast-pos-x value="0" />
+		<shadow-cast-pos-y value="0" />
+		
+		<shadow-cast-pos-jitter value="0 0 0 0" />
+		
+		<size value="(64+(sin((t+l)*pi*(2+rand(u+l)*3)))*2)*(0.5+stacks*0.2)" />
+		<angle value="t+l" />
+		
+		<color-r value="0.9" />
+		<color-g value="0.25" />
+		<color-b value="0.0" />
+		<color-a value="0.01" />
+	</light>
+	<light pos-y="-4"> 
+		<sprite texture="effects/lights/radial_jagged_ring_L.png">
+			<frame time="100">0 0 256 256</frame>
+		</sprite>
+		
+		<length value="1000" />
+		
+		<looping value="true" />
+		
+		<cast-shadows value="false" />
+		
+		<shadow-cast-pos-x value="0" />
+		<shadow-cast-pos-y value="0" />
+		
+		<shadow-cast-pos-jitter value="0 0 0 0" />
+		
+		<size value="(64+(sin((t+l)*pi*(2+rand(u+l)*3)))*2)*(0.5+stacks*0.2)" />
+		<angle value="-(t+l)" />
+		
+		<color-r value="0.9" />
+		<color-g value="0.25" />
+		<color-b value="0.0" />
+		<color-a value="0.01" />
+	</light>
+</effect>

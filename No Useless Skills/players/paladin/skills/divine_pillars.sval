@@ -1,0 +1,234 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">.skills.paladin.mastery_2.spell_1.name</string>
+	<string name="type-name">.skills.type.spell</string>
+	<string name="description">.skills.paladin.mastery_2.spell_1.desc</string>
+	<array name="shown-icons"><s>blindness</s></array>
+
+	<array name="description-params">
+		<array><s>damage</s><s>.skills.desc.params.damage</s><s>200</s><s>250</s><s>300</s><s>350</s><s>400</s></array>
+		<array><s>mana-cost</s><s>.skills.desc.params.mana_cost</s><s>50</s><s>50</s><s>60</s><s>60</s><s>70</s></array>
+		<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown</s><s>15s</s><s>13.5s</s><s>12s</s><s>10.5s</s><s>9s</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/icons_skills.png</string>
+		<int>100</int><vec4>96 24 24 24</vec4>
+	</array>
+
+	<string name="id">divine_pillars</string>
+	<string name="type">spell</string>
+	<array name="tags"><s>spell</s><s>physical</s></array>
+	<int name="starting-level">1</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTMASTERYLEVEL_1</int>
+		<string name="class">Skills::PlayerSkillDirectional</string>
+		<string name="anim">cast-long</string>
+		<int name="anim-length">1000</int>
+		
+		<string name="cooldown-bind">cooldown</string>
+		<int name="castpoint">500</int>
+		<float name="cast-speed-mul">1</float>
+		<float name="move-speed-mul">0.2</float>
+		<ivec2 name="move-speed">0 500</ivec2>
+		<ivec2 name="blocking">0 500</ivec2>
+		<ivec2 name="update-aim">0 0</ivec2>
+		<bool name="repeating">false</bool>
+
+		<int name="mana-cost">50</int>
+
+		<dict name="binds">
+			<int name="cooldown">15000</int>
+			<int name="pillar-dmg">200</int>
+			<string name="pillar-unit">players/paladin/units/pillar_of_light.unit</string>
+			<string name="pillar-unit-spawner-1">players/paladin/units/pillar_of_light_spawner_1.unit</string>
+			<string name="pillar-unit-spawner-2">null</string>
+			<string name="pillar-unit-spawner-2-lightning">null</string>
+			<string name="pillar-unit-spawner-3">null</string>
+			<string name="pillar-unit-spawner-3-lightning">null</string>
+		</dict>
+
+		<array name="modifiers">
+			<array>
+				<dict>
+					<string name="class">Modifiers::ModifySummons</string>
+					<string name="unit">players/paladin/units/pillar_of_light.unit</string>
+					<int name="add-max-num">100</int>
+				</dict>
+				<dict>
+					<string name="class">Modifiers::ModifySummons</string>
+					<string name="unit">players/paladin/units/pillar_of_light_lightning.unit</string>
+					<int name="add-max-num">100</int>
+				</dict>
+
+			</array>
+		</array>
+
+		<dict name="actions">
+			<array name="cast">
+				<dict>
+					<string name="class">PlaySound</string>
+					<string name="sound">event:/sfx/player/classes/paladin/pillar_of_light/pillar_of_light_cast</string>
+				</dict>
+				<dict>
+					<string name="class">SpawnUnit</string>
+					<string name="unit-bind">pillar-unit</string>
+					<int name="jitter">0 0</int>
+				</dict>
+
+				<dict>
+					<string name="class">ShootProjectile</string>
+					<string name="projectile-bind">pillar-unit-spawner-1</string>
+				</dict>
+				<dict>
+					<int name="rot-add">90</int>
+				</dict>
+				<dict>
+					<string name="class">ShootProjectile</string>
+					<string name="projectile-bind">pillar-unit-spawner-1</string>
+				</dict>
+				<dict>
+					<int name="rot-add">90</int>
+				</dict>
+				<dict>
+					<string name="class">ShootProjectile</string>
+					<string name="projectile-bind">pillar-unit-spawner-1</string>
+				</dict>
+				<dict>
+					<int name="rot-add">90</int>
+				</dict>
+				<dict>
+					<string name="class">ShootProjectile</string>
+					<string name="projectile-bind">pillar-unit-spawner-1</string>
+				</dict>
+			</array>
+
+			<array name="cast_single">
+<!-- 				<dict>
+					<string name="class">PlaySound</string>
+					<string name="sound">event:/sfx/player/classes/paladin/pillar_of_light/pillar_of_light_cast</string>
+				</dict> -->
+				<dict>
+					<string name="class">SpawnUnit</string>
+					<string name="unit-bind">pillar-unit</string>
+					<int name="jitter">0 0</int>
+				</dict>
+			</array>
+		</dict>
+		
+		<array name="timeline">
+			<i>500</i><s>cast</s>
+		</array>
+	</dict>
+
+	<array name="upgrades">
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_2</int>
+			<int name="mana-cost">50</int>
+			<dict name="binds">
+				<int name="cooldown">13500</int>
+				<int name="pillar-dmg">250</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_3</int>
+			<int name="mana-cost">60</int>
+			<dict name="binds">
+				<int name="cooldown">12000</int>
+				<int name="pillar-dmg">300</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_4</int>
+			<int name="mana-cost">60</int>
+			<dict name="binds">
+				<int name="cooldown">10500</int>
+				<int name="pillar-dmg">350</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_5</int>
+			<int name="mana-cost">70</int>
+			<dict name="binds">
+				<int name="cooldown">9000</int>
+				<int name="pillar-dmg">400</int>
+			</dict>
+		</dict>
+	</array>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">.skills.paladin.mastery_2.spell_1.up1.name</string>
+			<string name="type-name">.skills.type.spell.upgrade</string>
+			<string name="description">.skills.paladin.mastery_2.spell_1.up1.desc</string>
+
+			<array name="description-params">
+				<array><s>strikes</s><s>.skills.desc.params.pillars.strikes</s><s>1</s><s>2</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>96 24 24 24</vec4>
+			</array>
+
+			<string name="id">pal_pillars_pattern</string>
+			<string name="quality">uncommon</string>
+			<int name="starting-level">0</int>
+
+			<dict name="skill">
+				<dict name="binds">
+					<string name="pillar-unit-spawner-2">players/paladin/units/pillar_of_light_spawner_2.unit</string>
+					<string name="pillar-unit-spawner-2-lightning">players/paladin/units/pillar_of_light_spawner_2_lightning.unit</string>
+				</dict>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<string name="pillar-unit-spawner-3">players/paladin/units/pillar_of_light_spawner_3.unit</string>
+						<string name="pillar-unit-spawner-3-lightning">players/paladin/units/pillar_of_light_spawner_3_lightning.unit</string>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">.skills.paladin.mastery_2.spell_1.up2.name</string>
+			<string name="type-name">.skills.type.spell.upgrade</string>
+			<string name="description">.skills.paladin.mastery_2.spell_1.up2.desc</string>
+
+			<array name="description-params">
+				<array><s>damage</s><s>.skills.desc.params.damage.lightning</s><s>25%</s><s>50%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>96 24 24 24</vec4>
+			</array>
+
+			<array name="tags"><s>spell</s><s>physical</s><s>lightning</s></array>
+			<string name="id">pal_pillars_lightning</string>
+			<string name="quality">uncommon</string>
+			<int name="starting-level">0</int>
+
+			<dict name="skill">
+				<dict name="binds">
+					<string name="pillar-unit">players/paladin/units/pillar_of_light_lightning.unit</string>
+					<string name="pillar-unit-spawner-1">players/paladin/units/pillar_of_light_spawner_1_lightning.unit</string>
+					<float name="lightning-mul">0.25</float>
+				</dict>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="lightning-mul">0.5</float>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>

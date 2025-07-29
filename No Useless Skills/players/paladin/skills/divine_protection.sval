@@ -1,0 +1,261 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">.skills.paladin.mastery_2.passive_1.name</string>
+	<string name="type-name">.skills.type.passive</string>
+	<string name="description">.skills.paladin.mastery_2.passive_1.desc</string>
+	<array name="shown-icons"><s>invulnerability</s></array>
+
+	<array name="description-params">
+		<array><s>chance</s><s>.skills.desc.params.chance</s><s>25%</s></array>
+		<array><s>duration</s><b>t</b><s>.skills.desc.params.duration</s><s>3s</s><s>3s</s><s>3.5s</s><s>3.5s</s><s>4s</s></array>
+		<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown</s><s>16s</s><s>15s</s><s>14s</s><s>13s</s><s>12s</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/icons_skills.png</string>
+		<int>100</int><vec4>144 24 24 24</vec4>
+	</array>
+
+	<string name="id">divine_protection</string>
+	<array name="tags"><s>passive</s></array>
+	<int name="starting-level">1</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTMASTERYLEVEL_1</int>
+		<string name="class">Skills::PassiveSkill</string>
+
+		<dict name="binds">
+			<float name="guardian-chance">0.25</float>
+			<int name="stacks-time-add">0</int>
+			<int name="guardian-cd">16000</int>
+
+			<string name="divine-avenger">players/paladin/actions_paladin.sval:dummy</string>
+			<!-- <string name="divine-avenger">players/paladin/actions_paladin.sval:divine_avenger</string> -->
+		</dict>
+
+		<array name="modifiers">
+			<array>
+				<dict>
+					<string name="class">Modifiers::ModifyStack</string>
+					<string name="buff">players/paladin/stacks_paladin.sval:divine_protection</string>
+					<string name="add-time-bind">stacks-time-add</string>
+				</dict>
+
+				<dict>
+					<string name="class">Modifiers::ModifyStack</string>
+					<string name="buff">players/paladin/stacks_paladin.sval:divine_protection_timer</string>
+					<string name="add-time-bind">guardian-cd</string>
+				</dict>
+
+				<dict>
+					<bool name="cond-target-self">true</bool>
+					<array name="conditional">
+						<s>buff stacks</s><s>players/paladin/stacks_paladin.sval:divine_protection_timer</s><s>lt</s><i>1</i>
+						<s>buff stacks</s><s>players/paladin/stacks_paladin.sval:divine_protection</s><s>lt</s><i>1</i>
+						<s>hp</s><s>lt</s><f>0.5</f>
+						<!-- <s>hp</s><s>lt</s><f>0.99</f> -->
+					</array>
+
+					<string name="class">Modifiers::TriggerEffect</string>
+					<string name="trigger">hurt</string>
+					<bool name="target-self">true</bool>
+					<string name="chance-bind">guardian-chance</string>
+					<!-- <string name="timeout-bind">guardian-cd</string> -->
+					<!-- <float name="chance">1</float> -->
+					<int name="timeout">30</int>
+
+					<array name="effects">
+<!-- 						<dict>
+							<string name="class">DebugLog</string>
+							<string name="text">test_guardian</string>
+						</dict> -->
+						<dict>
+							<bool name="target-self">true</bool>
+						</dict>
+
+						<dict>
+							<string name="class">AddStacks</string>
+							<string name="buff">players/paladin/stacks_paladin.sval:divine_protection</string>
+							<bool name="target-self">true</bool>
+							<int name="stacks">1</int>
+							<float name="chance">1</float>
+						</dict>
+						<dict>
+							<string name="class">PlaySound</string>
+							<string name="sound">event:/sfx/player/classes/paladin/divine_protection/divine_protection</string>
+						</dict>
+
+						<dict>
+							<string name="class">PerformFloatingAction</string>
+							<string name="floating-action-bind">divine-avenger</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</array>
+	</dict>
+
+	<array name="upgrades">
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_2</int>
+			<dict name="binds">
+				<int name="stacks-time-add">0</int>
+				<int name="guardian-cd">15000</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_3</int>
+			<dict name="binds">
+				<int name="stacks-time-add">500</int>
+				<int name="guardian-cd">14000</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_4</int>
+			<dict name="binds">
+				<int name="stacks-time-add">500</int>
+				<int name="guardian-cd">13000</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_5</int>
+			<dict name="binds">
+				<int name="stacks-time-add">1000</int>
+				<int name="guardian-cd">12000</int>
+			</dict>
+		</dict>
+	</array>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">.skills.paladin.mastery_2.passive_1.up1.name</string>
+			<string name="type-name">.skills.type.passive.upgrade</string>
+			<string name="description">.skills.paladin.mastery_2.passive_1.up1.desc</string>
+
+			<array name="description-params">
+				<array><s>health-regen</s><s>.skills.desc.params.healthregen</s><s>+250%</s><s>+500%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>144 24 24 24</vec4>
+			</array>
+
+			<string name="id">divine_protection_restoration</string>
+			<string name="quality">uncommon</string>
+
+			<dict name="skill">
+
+				<dict name="binds">
+					<float name="regen-amount">2.5</float>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<dict>
+							<array name="conditional">
+								<s>buff</s><s>has tag</s><s>divine_protection</s>
+							</array>
+							<bool name="cond-target-self">true</bool>
+
+							<string name="class">Modifiers::ConvertStat</string>
+							<string name="from">HealthRegen</string>
+							<string name="to">HealthRegen</string>
+							<string name="mul-bind">regen-amount</string>
+							<bool name="add">true</bool>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="regen-amount">5</float>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">.skills.paladin.mastery_2.passive_1.up2.name</string>
+			<string name="type-name">.skills.type.passive.upgrade</string>
+			<string name="description">.skills.paladin.mastery_2.passive_1.up2.desc</string>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>144 24 24 24</vec4>
+			</array>
+
+			<string name="id">divine_protection_pillars</string>
+			<string name="quality">rare</string>
+			<int name="starting-level">0</int>
+
+			<dict name="skill">
+				<dict name="binds">
+					<string name="divine-avenger">players/paladin/actions_paladin.sval:divine_avenger</string>
+				</dict>
+			</dict>
+		</dict>
+
+<!-- 		<dict>
+			<string name="name">Divine Protection - Avenger</string>
+			<string name="type-name">.skills.type.passive.upgrade</string>
+			<string name="description">You deal more damage while you have the buff.</string>
+
+			<array name="description-params">
+				<array><s>damage</s><s>.skills.desc.params.damage</s><s>+50%</s><s>+100%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>144 24 24 24</vec4>
+			</array>
+
+			<string name="id">divine_protection_avenger</string>
+			<string name="quality">uncommon</string>
+			<int name="starting-level">0</int>
+
+			<dict name="skill">
+
+				<dict name="binds">
+					<float name="damage-mul">1.5</float>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<null />
+					</array>
+					<array>
+						<dict>
+							<array name="conditional">
+								<s>buff</s><s>has tag</s><s>divine_protection</s>
+							</array>
+							<bool name="cond-target-self">true</bool>
+
+							<string name="class">Modifiers::Damage</string>
+							<string name="attack-mul-bind">damage-mul</string>
+							<string name="spell-mul-bind">damage-mul</string>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="damage-mul">2</float>
+					</dict>
+				</dict>
+			</array>
+		</dict> -->
+	</array>
+</dict>
