@@ -162,12 +162,12 @@
 
 	<array name="modifier-skills">
 		<dict>
-			<string name="name">.skills.paladin.mastery_1.spell_1.up1.name</string>
+			<string name="name">.noUselessSkills.paladin.mastery_1.spell_1.up1.name</string>
 			<string name="type-name">.skills.type.spell.upgrade</string>
-			<string name="description">.skills.paladin.mastery_1.spell_1.up1.desc</string>
+			<string name="description">.noUselessSkills.paladin.mastery_1.spell_1.up1.desc</string>
 
 			<array name="description-params">
-				<array><s>speed</s><s>.skills.desc.params.judgement.speed</s><s>+10%</s><s>+20%</s><s>+40%</s></array>
+				<array><s>speed</s><s>.noUselessSkills.desc.params.judgement.speed</s><s>+10%</s><s>+20%</s><s>+40%</s></array>
 			</array>
 
 			<array name="icon">

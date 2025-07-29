@@ -249,9 +249,9 @@
 		</dict>
 
 		<dict>
-			<string name="name">.skills.paladin.spell_2.up3.name</string>
+			<string name="name">.noUselessSkills.paladin.spell_2.up3.name</string>
 			<string name="type-name">.skills.type.spell.upgrade</string>
-			<string name="description">.skills.paladin.spell_2.up3.desc</string>
+			<string name="description">.noUselessSkills.paladin.spell_2.up3.desc</string>
 
 			<array name="description-params">
 				<array><s>damage</s><s>.skills.desc.params.damage</s><s>100</s><s>200</s><s>400</s></array>

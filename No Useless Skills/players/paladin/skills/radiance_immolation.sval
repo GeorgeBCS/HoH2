@@ -2,7 +2,7 @@
 <dict>
 	<string name="name">.skills.paladin.mastery_3.spell_1.name</string>
 	<string name="type-name">.skills.type.spell</string>
-	<string name="description">.skills.paladin.mastery_3.spell_1.desc</string>
+	<string name="description">.noUselessSkills.paladin.mastery_3.spell_1.desc</string>
 
 	<array name="description-params">
 		<array><s>damage</s><s>.skills.desc.params.damage</s><s>150</s><s>225</s><s>300</s><s>375</s><s>450</s></array>
@@ -107,7 +107,7 @@
 		<dict>
 			<string name="name">.skills.paladin.mastery_3.spell_1.up1.name</string>
 			<string name="type-name">.skills.type.spell.upgrade</string>
-			<string name="description">.skills.paladin.mastery_3.spell_1.up1.desc</string>
+			<string name="description">.noUselessSkills.paladin.mastery_3.spell_1.up1.desc</string>
 
 			<array name="description-params">
 				<array><s>size</s><s>.skills.desc.params.size</s><s>+20%</s><s>+40%</s></array>

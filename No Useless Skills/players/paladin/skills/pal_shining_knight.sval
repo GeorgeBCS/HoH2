@@ -244,12 +244,12 @@
 		</dict>
 
 		<dict>
-			<string name="name">.skills.paladin.passive_1.up3.name</string>
+			<string name="name">.noUselessSkills.paladin.passive_1.up3.name</string>
 			<string name="type-name">.skills.type.passive.upgrade</string>
-			<string name="description">.skills.paladin.passive_1.up3.desc</string>
+			<string name="description">.noUselessSkills.paladin.passive_1.up3.desc</string>
 
 			<array name="description-params">
-				<array><s>speed</s><s>.skills.desc.params.knight.speed</s><s>10%</s><s>20%</s><s>30%</s></array>
+				<array><s>speed</s><s>.noUselessSkills.desc.params.knight.speed</s><s>10%</s><s>20%</s><s>30%</s></array>
 			</array>
 
 			<array name="icon">

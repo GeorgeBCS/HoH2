@@ -115,7 +115,7 @@
 		<dict>
 			<string name="name">.skills.paladin.mastery_1.passive_1.up1.name</string>
 			<string name="type-name">.skills.type.passive.upgrade</string>
-			<string name="description">.skills.paladin.mastery_1.passive_1.up1.desc</string>
+			<string name="description">.noUselessSkills.paladin.mastery_1.passive_1.up1.desc</string>
 			<array name="shown-icons"><s>slow</s><s>bleeding</s><s>disarm</s><s>silence</s></array>
 
 			<array name="description-params">
