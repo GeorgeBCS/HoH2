@@ -14,5 +14,24 @@
 	<string name="noUselessSkills.paladin.mastery_1.spell_1.up1.desc">The speed of \cb0dfffJudgement\d strikes is increased by a percent</string>
 	<string name="noUselessSkills.paladin.mastery_1.passive_1.up1.desc">Hitting an enemy inflicted by \cb0dfffSlow\d, \cb0dfffBleeding\d, \cb0dfffDisarm\d, or \cb0dfffSilence\d strikes them with a \cb0dfffJudgement\d hammer.</string>
 	<string name="noUselessSkills.paladin.mastery_3.spell_1.desc">You unleash a massive explosion, dealing Fire damage to all enemies around you.</string>
-	<string name="noUselessSkills.paladin.mastery_3.spell_1.up1.desc">Increases the size of your \cb0dfffImmolation\d.</string>
+
+	<!-- Sorcerer -->
+
+	<string name="noUselessSkills.sorcerer.passive_1.desc">When casting a \cffdfb0Spell\d you gain \cb0dfffElemental Affinity\d of the same element as the spell cast. Your attacks gain Penetration of the corresponding element as long as you have \cb0dfffElemental Affinity\d. You can only have one type of element active at a time.</string>
+	<string name="noUselessSkills.sorcerer.passive_1.up3.desc">While you have \cb0dfffElemental Affinity\d, your damage bonus to that element also applies to your others.</string>
+	<string name="noUselessSkills.stacks.sorcerer.elementalist_fire.name">Fire Affinity</string>
+	<string name="noUselessSkills.stacks.sorcerer.elementalist_ice.name">Ice Affinity</string>
+	<string name="noUselessSkills.stacks.sorcerer.elementalist_lightning.name">Lightning Affinity</string>
+
+
+
+
+
+
+
+
+
+
+
+
 </lang>

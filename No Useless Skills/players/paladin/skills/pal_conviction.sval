@@ -137,8 +137,10 @@
 				<dict name="binds">
 					<float name="mana-cost-mul">0.75</float>
 				</dict>
-
 				<array name="modifiers">
+					<array>
+						<null />
+					</array>
 					<array>
 						<dict>
 							<array name="conditional">
@@ -195,6 +197,12 @@
 				</dict>
 
 				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<null />
+					</array>
 					<array>
 						<dict>
 							<array name="conditional">

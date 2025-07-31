@@ -1,0 +1,87 @@
+<loader>ActorBuffStackDef::LoadMultiple</loader>
+<array>
+	<dict>
+		<string name="id">elementalist_fire</string>
+		<string name="name">.noUselessSkills.stacks.sorcerer.elementalist_fire.name</string>
+		<int name="max">1</int>
+		<bool name="refresh-on-max">true</bool>
+		<bool name="hide-hud-text">true</bool>
+
+		<dict name="buff">
+			<array name="tags">
+				<string>elementalist_fire</string>
+			</array>
+
+			<array name="hud">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>240 28 14 14</vec4>
+			</array>
+
+			<string name="fx">players/sorcerer/effects/affinity_fire.effect</string>
+			<bool name="debuff">false</bool>
+			
+			<array name="modifiers">
+				<dict>
+					<string name="class">Modifiers::DummyModifier</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+
+	<dict>
+		<string name="id">elementalist_ice</string>
+		<string name="name">.noUselessSkills.stacks.sorcerer.elementalist_ice.name</string>
+		<int name="max">1</int>
+		<bool name="refresh-on-max">true</bool>
+		<bool name="hide-hud-text">true</bool>
+
+		<dict name="buff">
+			<array name="tags">
+				<string>elementalist_ice</string>
+			</array>
+
+			<array name="hud">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>240 42 14 14</vec4>
+			</array>
+
+			<string name="fx">players/sorcerer/effects/affinity_ice.effect</string>
+			<bool name="debuff">false</bool>
+			
+			<array name="modifiers">
+				<dict>
+					<string name="class">Modifiers::DummyModifier</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+
+	<dict>
+		<string name="id">elementalist_lightning</string>
+		<string name="name">.noUselessSkills.stacks.sorcerer.elementalist_lightning.name</string>
+		<int name="max">1</int>
+		<bool name="refresh-on-max">true</bool>
+		<bool name="hide-hud-text">true</bool>
+		
+		<dict name="buff">
+			<array name="tags">
+				<string>elementalist_lightning</string>
+			</array>
+
+			<array name="hud">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>240 56 14 14</vec4>
+			</array>
+
+			<string name="fx">players/sorcerer/effects/affinity_lightning.effect</string>
+			<bool name="debuff">false</bool>
+			
+			<array name="modifiers">
+				<dict>
+					<string name="class">Modifiers::DummyModifier</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+
+</array>

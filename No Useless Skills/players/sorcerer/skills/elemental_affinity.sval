@@ -1,0 +1,419 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">.skills.sorcerer.passive_1.name</string>
+	<string name="type-name">.skills.type.passive</string>
+	<string name="description">.noUselessSkills.sorcerer.passive_1.desc</string>
+
+	<array name="description-params">
+		<array><s>penetration</s><s>.skills.desc.params.ele_pen</s><s>+10%</s><s>+15%</s><s>+20%</s><s>+25%</s><s>+30%</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/icons_skills.png</string>
+		<int>100</int><vec4>168 216 24 24</vec4>
+	</array>
+
+	<string name="id">elemental_affinity</string>
+	<array name="tags"><s>passive</s></array>
+	<int name="starting-level">0</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTLEVEL_1</int>
+		<string name="class">Skills::PassiveSkill</string>
+
+		<dict name="binds">
+			<float name="pen-amount-add">0.1</float>
+		</dict>
+
+		<array name="modifiers">
+			<array>
+				<dict>
+					<string name="class">Modifiers::InjectModifiersIntoStack</string>
+					<string name="buff">players/sorcerer/stacks_sorcerer.sval:elementalist_fire</string>
+
+					<array name="modifiers">
+						<dict>
+							<string name="class">Modifiers::ArmorPenetration</string>
+							<string name="fire-penetration-bind">pen-amount-add</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<string name="class">Modifiers::InjectModifiersIntoStack</string>
+					<string name="buff">players/sorcerer/stacks_sorcerer.sval:elementalist_ice</string>
+
+					<array name="modifiers">
+						<dict>
+							<string name="class">Modifiers::ArmorPenetration</string>
+							<string name="ice-penetration-bind">pen-amount-add</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<string name="class">Modifiers::InjectModifiersIntoStack</string>
+					<string name="buff">players/sorcerer/stacks_sorcerer.sval:elementalist_lightning</string>
+
+					<array name="modifiers">
+						<dict>
+							<string name="class">Modifiers::ArmorPenetration</string>
+							<string name="lightning-penetration-bind">pen-amount-add</string>
+						</dict>
+					</array>
+				</dict>
+
+
+					<dict>
+					<string name="class">Modifiers::SkillTriggerEffect</string>
+					<!-- <string name="skill-type">spell</string> -->
+					<!-- <array name="skill-tags"><s>spell</s></array> -->
+					<array name="skill-tags"><s>fire</s></array>
+					<!-- <string name="chance-bind">reset-chance</string> -->
+					<float name="chance">1</float>
+					<bool name="target-self">true</bool>
+					<string name="trigger">castspell</string>
+					<!-- <string name="trigger">attack</string> -->
+					<int name="timeout">0</int>
+					
+					<array name="effects">
+						<dict>
+							<string name="class">DebugLog</string>
+							<string name="text">element_fire</string>
+						</dict>
+						<dict>
+							<string name="class">AddStacks</string>
+							<bool name="target-self">true</bool>
+							<string name="buff">players/sorcerer/stacks_sorcerer.sval:elementalist_fire</string>
+							<int name="stacks">1</int>
+						</dict>
+						<dict>
+							<string name="class">AddStacks</string>
+							<bool name="target-self">true</bool>
+							<string name="buff">players/sorcerer/stacks_sorcerer.sval:elementalist_ice</string>
+							<int name="stacks">-1</int>
+						</dict>
+						<dict>
+							<string name="class">AddStacks</string>
+							<bool name="target-self">true</bool>
+							<string name="buff">players/sorcerer/stacks_sorcerer.sval:elementalist_lightning</string>
+							<int name="stacks">-1</int>
+						</dict>
+					</array>
+				</dict>
+
+				<dict>
+					<string name="class">Modifiers::SkillTriggerEffect</string>
+					<!-- <string name="skill-type">spell</string> -->
+					<!-- <array name="skill-tags"><s>spell</s></array> -->
+					<array name="skill-tags"><s>ice</s></array>
+					<!-- <string name="chance-bind">reset-chance</string> -->
+					<float name="chance">1</float>
+					<bool name="target-self">true</bool>
+					<string name="trigger">castspell</string>
+					<!-- <string name="trigger">attack</string> -->
+					<int name="timeout">0</int>
+					
+					<array name="effects">
+						<dict>
+							<string name="class">DebugLog</string>
+							<string name="text">element_ice</string>
+						</dict>
+						<dict>
+							<string name="class">AddStacks</string>
+							<bool name="target-self">true</bool>
+							<string name="buff">players/sorcerer/stacks_sorcerer.sval:elementalist_ice</string>
+							<int name="stacks">1</int>
+						</dict>
+						<dict>
+							<string name="class">AddStacks</string>
+							<bool name="target-self">true</bool>
+							<string name="buff">players/sorcerer/stacks_sorcerer.sval:elementalist_fire</string>
+							<int name="stacks">-1</int>
+						</dict>
+						<dict>
+							<string name="class">AddStacks</string>
+							<bool name="target-self">true</bool>
+							<string name="buff">players/sorcerer/stacks_sorcerer.sval:elementalist_lightning</string>
+							<int name="stacks">-1</int>
+						</dict>
+					</array>
+				</dict>
+
+				<dict>
+					<string name="class">Modifiers::SkillTriggerEffect</string>
+					<!-- <string name="skill-type">spell</string> -->
+					<!-- <array name="skill-tags"><s>spell</s></array> -->
+					<!-- <array name="skill-tags"><s>lightning</s></array> -->
+					<array name="skill-tags"><s>lightning</s></array>
+					<!-- <string name="chance-bind">reset-chance</string> -->
+					<float name="chance">1</float>
+					<bool name="target-self">true</bool>
+					<string name="trigger">castspell</string>
+					<!-- <string name="trigger">attack</string> -->
+					<int name="timeout">0</int>
+					
+					<array name="effects">
+						<dict>
+							<string name="class">DebugLog</string>
+							<string name="text">element_lightning</string>
+						</dict>
+						<dict>
+							<string name="class">AddStacks</string>
+							<bool name="target-self">true</bool>
+							<string name="buff">players/sorcerer/stacks_sorcerer.sval:elementalist_lightning</string>
+							<int name="stacks">1</int>
+						</dict>
+						<dict>
+							<string name="class">AddStacks</string>
+							<bool name="target-self">true</bool>
+							<string name="buff">players/sorcerer/stacks_sorcerer.sval:elementalist_ice</string>
+							<int name="stacks">-1</int>
+						</dict>
+						<dict>
+							<string name="class">AddStacks</string>
+							<bool name="target-self">true</bool>
+							<string name="buff">players/sorcerer/stacks_sorcerer.sval:elementalist_fire</string>
+							<int name="stacks">-1</int>
+						</dict>
+					</array>
+				</dict>
+
+			</array>
+		</array>
+	</dict>
+
+	<array name="upgrades">
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_2</int>
+			<dict name="binds">
+				<float name="pen-amount-add">0.15</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_3</int>
+			<dict name="binds">
+				<float name="pen-amount-add">0.20</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_4</int>
+			<dict name="binds">
+				<float name="pen-amount-add">0.25</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_5</int>
+			<dict name="binds">
+				<float name="pen-amount-add">0.3</float>
+			</dict>
+		</dict>
+	</array>
+
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">.skills.sorcerer.passive_1.up1.name</string>
+			<string name="description">.skills.sorcerer.passive_1.up1.desc</string>
+
+			<array name="description-params">
+				<array><s>resistance</s><s>.skills.desc.params.ele_res.lvl</s><s>+2</s><s>+3</s><s>+4</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>168 216 24 24</vec4>
+			</array>
+
+			<string name="id">elemental_affinity_ward</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<float name="lvl-res">2</float>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::ConvertStat</string>
+							<string name="from">lvl</string>
+							<string name="to">resistancefire</string>
+							<string name="mul-bind">lvl-res</string>
+							<bool name="add">true</bool>
+						</dict>
+						<dict>
+							<string name="class">Modifiers::ConvertStat</string>
+							<string name="from">lvl</string>
+							<string name="to">resistanceice</string>
+							<string name="mul-bind">lvl-res</string>
+							<bool name="add">true</bool>
+						</dict>
+						<dict>
+							<string name="class">Modifiers::ConvertStat</string>
+							<string name="from">lvl</string>
+							<string name="to">resistancelightning</string>
+							<string name="mul-bind">lvl-res</string>
+							<bool name="add">true</bool>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<float name="lvl-res">3</float>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="lvl-res">4</float>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">.skills.sorcerer.passive_1.up2.name</string>
+			<string name="description">.skills.sorcerer.passive_1.up2.desc</string>
+
+			<array name="description-params">
+				<array><s>penetration</s><s>.skills.desc.params.ele_pen</s><s>+10%</s><s>+15%</s><s>+20%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>168 216 24 24</vec4>
+			</array>
+
+			<string name="id">elemental_affinity_penetration</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<float name="pen-amount">0.1</float>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<null />
+					</array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::ArmorPenetration</string>
+							<string name="fire-penetration-bind">pen-amount</string>
+							<string name="ice-penetration-bind">pen-amount</string>
+							<string name="lightning-penetration-bind">pen-amount</string>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<float name="pen-amount">0.15</float>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="pen-amount">0.2</float>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">.skills.sorcerer.passive_1.up3.name</string>
+			<string name="description">.noUselessSkills.sorcerer.passive_1.up3.desc</string>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>168 216 24 24</vec4>
+			</array>
+
+			<string name="id">elemental_affinity_equilibrium</string>
+			<string name="quality">rare</string>
+
+			<dict name="skill">
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<null />
+					</array>
+					<array>
+						<null />
+					</array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::InjectModifiersIntoStack</string>
+							<string name="buff">players/sorcerer/stacks_sorcerer.sval:elementalist_fire</string>
+
+							<array name="modifiers">
+								<dict>
+									<string name="class">Modifiers::StatConvert</string>
+									<string name="originatingStat">FireDamageMul</string>
+									<string name="modifiedStat">IceDamageMul</string>
+									<float name="mul">1</float>
+								</dict>
+								<dict>
+									<string name="class">Modifiers::StatConvert</string>
+									<string name="originatingStat">FireDamageMul</string>
+									<string name="modifiedStat">LightningDamageMul</string>
+									<float name="mul">1</float>
+								</dict>
+							</array>
+						</dict>
+						<dict>
+							<string name="class">Modifiers::InjectModifiersIntoStack</string>
+							<string name="buff">players/sorcerer/stacks_sorcerer.sval:elementalist_ice</string>
+
+							<array name="modifiers">
+								<dict>
+									<string name="class">Modifiers::StatConvert</string>
+									<string name="originatingStat">IceDamageMul</string>
+									<string name="modifiedStat">FireDamageMul</string>
+									<float name="mul">1</float>
+								</dict>
+								<dict>
+									<string name="class">Modifiers::StatConvert</string>
+									<string name="originatingStat">IceDamageMul</string>
+									<string name="modifiedStat">LightningDamageMul</string>
+									<float name="mul">1</float>
+								</dict>
+							</array>
+						</dict>
+						<dict>
+							<string name="class">Modifiers::InjectModifiersIntoStack</string>
+							<string name="buff">players/sorcerer/stacks_sorcerer.sval:elementalist_lightning</string>
+
+							<array name="modifiers">
+								<dict>
+									<string name="class">Modifiers::StatConvert</string>
+									<string name="originatingStat">LightningDamageMul</string>
+									<string name="modifiedStat">IceDamageMul</string>
+									<float name="mul">1</float>
+								</dict>
+								<dict>
+									<string name="class">Modifiers::StatConvert</string>
+									<string name="originatingStat">LightningDamageMul</string>
+									<string name="modifiedStat">FireDamageMul</string>
+									<float name="mul">1</float>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+			</dict>
+		</dict>
+	</array>
+</dict>
