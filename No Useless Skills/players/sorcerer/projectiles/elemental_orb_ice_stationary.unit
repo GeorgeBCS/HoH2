@@ -1,0 +1,77 @@
+<unit netsync="none">
+	<behavior class="NewProjectile">
+		<string name="anim">default</string>
+		<float name="speed">0.2</float>
+		<string name="ttl-bind">proj-ttl</string>
+		<int name="penetration">999</int>
+		<int name="bounces">999</int>
+		<bool name="bounce-on-collide">true</bool>
+
+		<array name="modifiers">
+			<dict>
+				<string name="class">Projectile::AttachedLoopingSound</string>
+				<string name="sound">event:/sfx/player/classes/sorcerer/elemental_orb/elemental_orb_loop_ice</string>
+			</dict>
+
+			<dict>
+				<string name="class">Projectile::PeriodicEffect</string>
+				<int name="freq">250</int>
+				<!-- <int name="freq">5000</int> -->
+				
+				<array name="effects">
+					<dict>
+						<string name="class">Explode</string>
+						<int name="radius">28</int>
+						<int name="min-radius">8</int>
+						<float name="dist-scaling">1000</float>
+
+						<array name="effects">
+							<dict>
+								<float name="enemy-dmg">1</float>
+							</dict>
+							<dict>
+								<string name="class">Damage</string>
+								<string name="ice-bind">proj-dmg-single</string>
+								<bool name="shield-blockable">true</bool>
+							</dict>
+							<dict>
+								<string name="class">PlaySound</string>
+								<string name="sound">event:/sfx/player/classes/sorcerer/elemental_orb/elemental_orb_hit_ice</string>
+							</dict>
+						</array>
+					</dict>
+				</array>
+			</dict>
+
+
+			<dict>
+				<string name="class">Projectile::SorcererOrb</string>
+				<string name="delay-bind">spew-proj-freq</string>
+				<string name="proj-delay-bind">spew-proj-freq</string>
+				<int name="dist">16</int>
+				<string name="rot-bind">spew-proj-rot</string>
+				<string name="num-shoots-bind">spew-proj-num</string>
+				<string name="projectile">players/sorcerer/projectiles/elemental_orb_spew_ice.unit</string>
+
+			</dict>
+		</array>
+       <array name="destroyed-effects">
+			<dict>
+				<string name="class">SpawnEffect</string>
+				<string name="effect">players/sorcerer/effects/elemental_or_ice_end.effect</string>
+			</dict>
+		</array>
+		<dict name="effect-params">
+			<float name="height">5</float>
+		</dict>
+	</behavior>
+
+	<scenes start="default">
+		<scene name="default">
+			<collision static="false">
+				<circle radius="8" projectile="true" />
+			</collision> 
+			<effect layer="0" src="players/sorcerer/effects/elemental_orb_ice.effect" />
+		</scene>
+	</scenes>
+</unit>

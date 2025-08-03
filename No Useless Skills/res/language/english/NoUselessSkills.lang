@@ -17,8 +17,13 @@
 
 	<!-- Sorcerer -->
 
+	<string name="noUselessSkills.sorcerer.spell_2.up1.name">Diverging Forces</string>
+	<string name="noUselessSkills.sorcerer.spell_2.up1.desc">You now create an orb of each element, each dealing 50% damage.</string>
 	<string name="noUselessSkills.sorcerer.passive_1.desc">When casting a \cffdfb0Spell\d you gain \cb0dfffElemental Affinity\d of the same element as the spell cast. Your attacks gain Penetration of the corresponding element as long as you have \cb0dfffElemental Affinity\d. You can only have one type of element active at a time.</string>
 	<string name="noUselessSkills.sorcerer.passive_1.up3.desc">While you have \cb0dfffElemental Affinity\d, your damage bonus to that element also applies to your others.</string>
+	<string name="noUselessSkills.sorcerer.mastery_2.passive_1.up1.name">Freezing Mists</string>
+	<string name="noUselessSkills.sorcerer.mastery_2.passive_1.up1.desc">Killing an enemy has a chance to spawn an Ice Orb.</string>
+	<string name="NoUselessSkills.sorcerer.mastery_2.passive_1.up2.desc">You block a percentage of Fire, Ice, and Lightning damage. When blocking, three shards from your frost nova are unleashed.</string>
 	<string name="noUselessSkills.stacks.sorcerer.elementalist_fire.name">Fire Affinity</string>
 	<string name="noUselessSkills.stacks.sorcerer.elementalist_ice.name">Ice Affinity</string>
 	<string name="noUselessSkills.stacks.sorcerer.elementalist_lightning.name">Lightning Affinity</string>

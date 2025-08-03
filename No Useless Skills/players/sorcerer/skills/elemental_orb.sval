@@ -1,0 +1,255 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">.skills.sorcerer.spell_2.name</string>
+	<string name="type-name">.skills.type.spell</string>
+	<string name="description">.skills.sorcerer.spell_2.desc</string>
+
+	<array name="description-params">
+		<array><s>damage</s><s>.skills.desc.params.damage</s><s>30</s><s>36</s><s>45</s><s>54</s><s>66</s></array>
+		<array><s>tick-rate</s><b>t</b><s>.skills.desc.params.tick_rate</s><s>0.25s</s></array>
+		<array><s>duration</s><b>t</b><s>.skills.desc.params.duration</s><s>3s</s></array>
+		<array><s>mana-cost</s><s>.skills.desc.params.mana_cost</s><s>30</s><s>30</s><s>40</s><s>40</s><s>50</s></array>
+		<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown</s><s>5s</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/icons_skills.png</string>
+		<int>100</int><vec4>72 216 24 24</vec4>
+	</array>
+
+	<string name="id">elemental_orb</string>
+	<string name="type">spell</string>
+	<array name="tags"><s>spell</s></array>
+	<int name="starting-level">0</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTLEVEL_1</int>
+		<string name="class">Skills::PlayerSkillDirectional</string>
+		<string name="anim">cast</string>
+		<int name="anim-length">600</int>
+		
+		<int name="cooldown">5000</int>
+		<int name="castpoint">150</int>
+		<float name="cast-speed-mul">1</float>
+		<float name="move-speed-mul">0.5</float>
+		<ivec2 name="move-speed">0 250</ivec2>
+		<ivec2 name="blocking">0 250</ivec2>
+		<bool name="repeating">true</bool>
+
+		<int name="mana-cost">30</int>
+
+		<dict name="binds">
+			<int name="proj-ttl">3000</int>
+			<int name="proj-dmg">10</int>
+			<int name="proj-dmg-single">15</int>
+			<int name="spew-proj-num">1</int>
+			<float name="spew-proj-rot">60</float>
+			<int name="spew-proj-freq">250</int>
+		</dict>
+		
+		<dict name="actions">
+			<array name="cast">
+				<dict>
+					<string name="class">PlaySound</string>
+					<string name="sound">event:/sfx/player/classes/sorcerer/elemental_orb/elemental_orb_cast</string>
+				</dict>
+				<dict>
+					<string name="class">ShootProjectile</string>
+					<string name="projectile">players/sorcerer/projectiles/elemental_orb.unit</string>
+					<int name="dist">4</int>
+					<int name="projectiles">1</int>
+					<int name="spread">0</int>
+				</dict>
+			</array>
+		</dict>
+
+		<array name="timeline">
+			<i>150</i><s>cast</s>
+		</array>
+	</dict>
+
+	<array name="upgrades">
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_2</int>
+			<int name="mana-cost">30</int>
+			<dict name="binds">
+				<int name="proj-dmg">12</int>
+				<int name="proj-dmg-single">18</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_3</int>
+			<int name="mana-cost">40</int>
+			<dict name="binds">
+				<int name="proj-dmg">15</int>
+				<int name="proj-dmg-single">23</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_4</int>
+			<int name="mana-cost">40</int>
+			<dict name="binds">
+				<int name="proj-dmg">18</int>
+				<int name="proj-dmg-single">27</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_5</int>
+			<int name="mana-cost">50</int>
+			<dict name="binds">
+				<int name="proj-dmg">22</int>
+				<int name="proj-dmg-single">33</int>
+			</dict>
+		</dict>
+	</array>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">.noUselessSkills.sorcerer.spell_2.up1.name</string>
+			<string name="description">.noUselessSkills.sorcerer.spell_2.up1.desc</string>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>72 216 24 24</vec4>
+			</array>
+
+			<string name="id">elemental_orb_affinity</string>
+			<string name="quality">rare</string>
+
+			<dict name="skill">
+				<dict name="actions">
+					<array name="cast">
+					</array>
+					<array name="cast_fire">
+						<dict>
+							<string name="class">PlaySound</string>
+							<string name="sound">event:/sfx/player/classes/sorcerer/elemental_orb/elemental_orb_cast_fire</string>
+						</dict>
+						<dict>
+							<string name="class">ShootProjectileRotation</string>
+							<string name="projectile">players/sorcerer/projectiles/elemental_orb_fire.unit</string>
+							<int name="dist">4</int>
+							<int name="projectiles">1</int>
+							<float name="rotation">-30</float>
+							
+						</dict>
+					</array>
+
+					<array name="cast_ice">
+						<dict>
+							<string name="class">PlaySound</string>
+							<string name="sound">event:/sfx/player/classes/sorcerer/elemental_orb/elemental_orb_cast_ice</string>
+						</dict>
+						<dict>
+							<string name="class">ShootProjectileRotation</string>
+							<string name="projectile">players/sorcerer/projectiles/elemental_orb_ice.unit</string>
+							<int name="dist">4</int>
+							<int name="projectiles">1</int>
+							<float name="rotation">30</float>
+						</dict>
+					</array>
+
+					<array name="cast_lightning">
+						<dict>
+							<string name="class">PlaySound</string>
+							<string name="sound">event:/sfx/player/classes/sorcerer/elemental_orb/elemental_orb_cast_lightning</string>
+						</dict>
+						<dict>
+							<string name="class">ShootProjectileRotation</string>
+							<string name="projectile">players/sorcerer/projectiles/elemental_orb_lightning.unit</string>
+							<int name="dist">4</int>
+							<int name="projectiles">1</int>
+							<float name="rotation">0</float>
+						</dict>
+					</array>
+				</dict>
+
+				<array name="timeline">
+					<i>150</i><s>cast_fire</s>
+					<i>150</i><s>cast_ice</s>
+					<i>150</i><s>cast_lightning</s>
+				</array>
+			</dict>
+		</dict>
+
+		<dict>
+			<string name="name">.skills.sorcerer.spell_2.up2.name</string>
+			<string name="description">.skills.sorcerer.spell_2.up2.desc</string>
+
+			<array name="description-params">
+				<array><s>duration</s><s>.skills.desc.params.duration</s><s>+50%</s><s>+100%</s><s>+150%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>72 216 24 24</vec4>
+			</array>
+
+			<string name="id">elemental_orb_duration</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<int name="proj-ttl">4500</int>
+				</dict>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<int name="proj-ttl">6000</int>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<int name="proj-ttl">7500</int>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">.skills.sorcerer.spell_2.up3.name</string>
+			<string name="description">.skills.sorcerer.spell_2.up3.desc</string>
+
+			<array name="description-params">
+				<array><s>projectiles</s><s>.skills.desc.params.projectile.number</s><s>3</s><s>5</s><s>7</s></array>
+				<array><s>damage</s><s>.skills.desc.params.damage</s><s>25%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>72 216 24 24</vec4>
+			</array>
+
+			<string name="id">elemental_orb_spew</string>
+			<string name="quality">uncommon</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<int name="spew-proj-freq">250</int>
+					<float name="spew-proj-rot">75</float>
+					<int name="spew-proj-num">3</int>
+				</dict>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="spew-proj-rot">85</float>
+						<int name="spew-proj-num">5</int>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="spew-proj-rot">95</float>
+						<int name="spew-proj-num">7</int>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>

@@ -1,0 +1,191 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">.skills.sorcerer.mastery_2.spell_1.name</string>
+	<string name="type-name">.skills.type.spell</string>
+	<string name="description">.skills.sorcerer.mastery_2.spell_1.desc</string>
+
+	<array name="description-params">
+		<array><s>shards</s><s>.skills.desc.params.frost_shards</s><s>12</s></array>
+		<array><s>damage</s><s>.skills.desc.params.damage</s><s>50</s><s>70</s><s>90</s><s>110</s><s>130</s></array>
+		<array><s>mana-cost</s><s>.skills.desc.params.mana_cost</s><s>40</s><s>40</s><s>50</s><s>50</s><s>60</s></array>
+		<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown</s><s>2s</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/icons_skills.png</string>
+		<int>100</int><vec4>120 192 24 24</vec4>
+	</array>
+	
+	<string name="id">ice_frost_nova</string>
+	<string name="type">spell</string>
+	<array name="tags"><s>spell</s><s>ice</s></array>
+	<int name="starting-level">1</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTMASTERYLEVEL_1</int>
+		<string name="class">Skills::PlayerSkillDirectional</string>
+		<string name="anim">cast</string>
+		<int name="anim-length">600</int>
+		
+		<int name="cooldown">3000</int>
+		<float name="move-speed-mul">0.7</float>
+		<ivec2 name="move-speed">0 150</ivec2>
+		<float name="cast-speed-mul">1</float>
+		<ivec2 name="blocking">0 150</ivec2>
+		<ivec2 name="update-aim">0 150</ivec2>
+		<int name="castpoint">150</int>
+		<bool name="repeating">true</bool>
+		
+		<int name="mana-cost">40</int>
+		
+		<dict name="binds">
+			<int name="nova-num">12</int>
+			<int name="nova-damage">50</int>
+			<float name="retarget-chance">0</float>
+		</dict>
+
+		<dict name="actions">
+			<array name="cast">
+				<dict>
+					<string name="class">PlaySound</string>
+					<string name="sound">event:/sfx/player/classes/sorcerer/frost_nova/frost_nova_cast</string>
+				</dict>
+				<dict>
+					<string name="class">Nova</string>
+					<string name="projectile">players/sorcerer/projectiles/frost_nova.unit</string>
+					<string name="projectiles-bind">nova-num</string>
+					<int name="proj-dist">12</int>
+				</dict>
+			</array>
+		</dict>
+		
+		<array name="timeline">
+			<i>150</i><s>cast</s>
+		</array>
+	</dict>
+
+	<array name="upgrades">
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_2</int>
+			<int name="mana-cost">40</int>
+			<dict name="binds">
+				<int name="nova-damage">70</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_3</int>
+			<int name="mana-cost">50</int>
+			<dict name="binds">
+				<int name="nova-damage">90</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_4</int>
+			<int name="mana-cost">50</int>
+			<dict name="binds">
+				<int name="nova-damage">110</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_5</int>
+			<int name="mana-cost">60</int>
+			<dict name="binds">
+				<int name="nova-damage">130</int>
+			</dict>
+		</dict>
+	</array>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">.skills.sorcerer.mastery_2.spell_1.up1.name</string>
+			<string name="description">.skills.sorcerer.mastery_2.spell_1.up1.desc</string>
+
+			<array name="description-params">
+				<array><s>chance</s><s>.skills.desc.params.chance</s><s>50%</s><s>100%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>120 192 24 24</vec4>
+			</array>
+
+			<string name="id">ice_frost_nova_retarget</string>
+			<string name="quality">uncommon</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<float name="retarget-chance">0.5</float>
+				</dict>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="retarget-chance">1</float>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">.skills.sorcerer.mastery_2.spell_1.up2.name</string>
+			<string name="description">.skills.sorcerer.mastery_2.spell_1.up2.desc</string>
+
+			<array name="description-params">
+				<array><s>chance</s><s>.skills.desc.params.chance</s><s>50%</s><s>100%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>120 192 24 24</vec4>
+			</array>
+
+			<string name="id">ice_frost_nova_kill</string>
+			<string name="quality">uncommon</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<float name="kill-chance">0.5</float>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<dict>
+							<string name="class">Modifiers::SkillTriggerEffect</string>
+							<string name="trigger">kill</string>
+							<string name="skill-id">ice_frost_nova</string>
+							<bool name="target-self">false</bool>
+							<string name="chance-bind">kill-chance</string>
+							<array name="effects">
+								<dict>
+									<string name="class">DebugLog</string>
+									<string name="text">test_splinters</string>
+								</dict>
+								<dict>
+									<string name="class">PlaySound</string>
+									<string name="sound">event:/sfx/player/classes/sorcerer/frost_nova/frost_nova_splinter</string>
+								</dict>
+								<dict>
+									<string name="class">Nova</string>
+									<string name="projectile">players/sorcerer/projectiles/frost_nova.unit</string>
+									<int name="projectiles">6</int>
+									<int name="proj-dist">16</int>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="kill-chance">1</float>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>

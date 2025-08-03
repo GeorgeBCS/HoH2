@@ -1,0 +1,301 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">.skills.sorcerer.mastery_2.passive_1.name</string>
+	<string name="type-name">.skills.type.passive</string>
+	<string name="description">.skills.sorcerer.mastery_2.passive_1.desc</string>
+	<array name="shown-icons"><s>freeze</s></array>
+
+	<array name="description-params">
+		<array><s>damage</s><s>.skills.desc.params.damage</s><s>+10%</s><s>+20%</s><s>+30%</s><s>+40%</s><s>+50%</s></array>
+		<array><s>chance</s><s>.skills.desc.params.chance</s><s>10%</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/icons_skills.png</string>
+		<int>100</int><vec4>48 264 24 24</vec4>
+	</array>
+
+	<string name="id">ice_mastery</string>
+	<array name="tags"><s>passive</s></array>
+	<int name="starting-level">1</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTMASTERYLEVEL_1</int>
+		<string name="class">Skills::PassiveSkill</string>
+
+		<dict name="binds">
+			<float name="ice-dmg">0.1</float>
+			<float name="freeze-chance">0.1</float>
+			<string name="freeze-buff">tweak/buffs/status_effects.sval:freeze</string>
+		</dict>
+
+		<array name="modifiers">
+			<array>
+				<dict>
+					<string name="class">Modifiers::DamageMulAdd</string>
+					<string name="ice-bind">ice-dmg</string>
+				</dict>
+
+				<dict>
+					<string name="class">Modifiers::SkillTriggerEffect</string>
+					<string name="trigger">hit</string>
+					<array name="skill-tags"><s>ice</s></array>
+					<bool name="target-self">false</bool>
+					<string name="chance-bind">freeze-chance</string>
+					<!-- <int name="timeout">1000</int> -->
+
+					<array name="effects">
+						<dict>
+							<bool name="only-actors">true</bool>
+						</dict>
+						<dict>
+							<string name="class">PlaySound</string>
+							<string name="sound">event:/sfx/player/classes/sorcerer/ice_mastery/ice_mastery</string>
+						</dict>
+						<dict>
+							<string name="class">SpawnEffect</string>
+							<string name="effect">players/sorcerer/effects/ice_mastery_freeze.effect</string>
+						</dict>
+						<dict>
+							<string name="class">ApplyBuff</string>
+							<string name="buff-bind">freeze-buff</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<string name="class">Modifiers::SkillTriggerEffect</string>
+					<string name="trigger">spellhit</string>
+					<array name="skill-tags"><s>ice</s></array>
+					<bool name="target-self">false</bool>
+					<string name="chance-bind">freeze-chance</string>
+					<!-- <int name="timeout">1000</int> -->
+
+					<array name="effects">
+						<dict>
+							<bool name="only-actors">true</bool>
+						</dict>
+						<dict>
+							<string name="class">PlaySound</string>
+							<string name="sound">event:/sfx/player/classes/sorcerer/ice_mastery/ice_mastery</string>
+						</dict>
+						<dict>
+							<string name="class">SpawnEffect</string>
+							<string name="effect">players/sorcerer/effects/ice_mastery_freeze.effect</string>
+						</dict>
+						<dict>
+							<string name="class">ApplyBuff</string>
+							<string name="buff-bind">freeze-buff</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</array>
+	</dict>
+
+	<array name="upgrades">
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_2</int>
+			<dict name="binds">
+				<float name="ice-dmg">0.2</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_3</int>
+			<dict name="binds">
+				<float name="ice-dmg">0.3</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_4</int>
+			<dict name="binds">
+				<float name="ice-dmg">0.4</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_5</int>
+			<dict name="binds">
+				<float name="ice-dmg">0.5</float>
+			</dict>
+		</dict>
+	</array>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">.noUselessSkills.sorcerer.mastery_2.passive_1.up1.name</string>
+			<string name="description">.noUselessSkills.sorcerer.mastery_2.passive_1.up1.desc</string>
+
+			<array name="description-params">
+				<array><s>damage</s><s>.skills.desc.params.damage</s><s>50</s><s>100</s><s>200</s></array>
+				<array><s>projectiles</s><s>.skills.desc.params.projectile.number</s><s>1</s><s>3</s><s>5</s></array>
+				<array><s>chance</s><s>.skills.desc.params.chance</s><s>10%</s></array>
+				<!-- <array><s>effectcd</s><s>.skills.desc.params.cooldown.effect</s><s>1s</s></array> -->
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>48 264 24 24</vec4>
+			</array>
+
+			<string name="id">ice_mastery_shatter</string>
+			<string name="quality">uncommon</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<float name="shatter-chance">.1</float>
+					<int name="proj-ttl">3000</int>
+					<int name="proj-dmg-single">20</int>
+					<int name="spew-proj-num">1</int>
+					<float name="spew-proj-rot">60</float>
+					<int name="spew-proj-freq">250</int>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+
+					<!-- Test guaranteed shatter against frozen enemies? -->
+					<array>
+						<dict>
+							<string name="class">Modifiers::TriggerEffect</string>
+							<string name="trigger">kill</string>
+							<bool name="target-self">false</bool>
+							<string name="chance-bind">shatter-chance</string>
+							<int name="timeout">0</int>
+
+							<array name="effects">
+								<dict>
+									<string name="class">PlaySound</string>
+									<string name="sound">event:/sfx/player/classes/sorcerer/elemental_orb/elemental_orb_cast_ice</string>
+								</dict>
+								<dict>
+									<string name="class">ShootProjectileRotation</string>
+									<string name="projectile">players/sorcerer/projectiles/elemental_orb_ice_stationary.unit</string>
+									<int name="dist">0</int>
+									<int name="projectiles">1</int>
+									<!--<string name="class">SpawnUnit</string>
+									<string name="unit">players/sorcerer/projectiles/elemental_orb_ice.unit</string>-->
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<float name="shatter-chance">0.1</float>
+						<int name="proj-dmg-single">25</int>
+						<int name="spew-proj-num">3</int>
+						<float name="spew-proj-rot">75</float>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="shatter-chance">0.1</float>
+						<int name="proj-dmg-single">30</int>
+						<int name="spew-proj-num">5</int>
+						<float name="spew-proj-rot">85</float>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">.skills.sorcerer.mastery_2.passive_1.up2.name</string>
+			<string name="description">.NoUselessSkills.sorcerer.mastery_2.passive_1.up2.desc</string>
+
+			<array name="description-params">
+				<array><s>block</s><s>.skills.desc.params.block</s><s>10%</s><s>20%</s><s>40%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>48 264 24 24</vec4>
+			</array>
+
+			<string name="id">ice_mastery_block</string>
+			<string name="quality">uncommon</string>
+			<int name="starting-level">0</int>
+
+			<dict name="skill">
+				<dict name="binds">
+					<float name="block-amount">0.1</float>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<null />
+					</array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::Block</string>
+							<float name="chance">1.0</float>
+							<string name="fire-based-bind">block-amount</string>
+							<string name="ice-based-bind">block-amount</string>
+							<string name="lightning-based-bind">block-amount</string>
+							<int name="timeout">0</int>
+							<int name="arc">360</int>
+							<string name="fx">players/wizard/effects/barrier_frost_reaction.effect</string>
+							<bool name="only-melee">false</bool>
+							<bool name="only-projectile">false</bool>
+							<array name="effects">
+								<dict>
+									<string name="class">PlaySound</string>
+									<string name="sound">event:/sfx/player/classes/wizard/barrier/barrier_impact_ice</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::Block</string>
+							<float name="chance">1.0</float>
+							<int name="timeout">500</int>
+							<int name="arc">360</int>
+							<bool name="only-melee">false</bool>
+							<bool name="only-projectile">false</bool>
+							<array name="effects">
+								<dict>
+									<string name="weapon-info">ice_frost_nova</string>
+								</dict>
+								<dict>
+									<string name="class">ShootProjectileRotationFan</string>
+									<string name="projectile">players/sorcerer/projectiles/frost_nova.unit</string>
+									<int name="dist">0</int>
+									<int name="projectiles">3</int>
+									<int name="spread">20</int>
+									<float name="rotation">180</float>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<float name="block-amount">0.2</float>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="block-amount">0.4</float>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<!-- freeze ring -->
+
+	</array>
+</dict>
