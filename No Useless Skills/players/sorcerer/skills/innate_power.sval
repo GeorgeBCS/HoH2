@@ -1,0 +1,355 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">.skills.sorcerer.passive_2.name</string>
+	<string name="type-name">.skills.type.passive</string>
+	<string name="description">.skills.sorcerer.passive_2.desc</string>
+
+	<array name="description-params">
+		<array><s>spell-crit</s><s>.skills.desc.params.crit.chance.spell</s><s>4%</s><s>5%</s><s>6.5%</s><s>8%</s><s>10%</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/icons_skills.png</string>
+		<int>100</int><vec4>24 216 24 24</vec4>
+	</array>
+
+	<string name="id">innate_power</string>
+	<array name="tags"><s>passive</s></array>
+	<int name="starting-level">1</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTLEVEL_1</int>
+		<string name="class">Skills::PassiveSkill</string>
+
+		<dict name="binds">
+			<float name="crit-chance">0.04</float>
+			<!-- <float name="crit-chance">0.5</float> -->
+		</dict>
+
+		<array name="modifiers">
+			<array>
+				<dict>
+					<string name="class">Modifiers::CriticalHit</string>
+					<string name="spell-chance-bind">crit-chance</string>
+				</dict>
+				<dict>
+					<array name="conditional">
+							<s>buff</s>
+							<s>hasnt tag</s>
+							<s>uncontrolled_power_break</s>
+					</array>
+					<string name="class">Modifiers::TimedTriggerEffect</string>
+					<float name="chance">1</float>
+					<int name="freq">1000</int>
+					<array name="effects">
+						<dict>
+							<string name="class">AddStacks</string>
+							<bool name="target-self">true</bool>
+							<string name="buff">players/sorcerer/stacks_sorcerer.sval:uncontrolled_power</string>
+							<int name="stacks">1</int>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<string name="class">Modifiers::SkillTriggerEffect</string>
+					<array name="skill-tags"><s>arcane</s></array>
+					<float name="chance">1</float>
+					<bool name="target-self">true</bool>
+					<string name="trigger">attack</string>
+					<int name="timeout">0</int>
+					
+					<array name="effects">
+						<dict>
+							<string name="class">AddStacks</string>
+							<bool name="target-self">true</bool>
+							<string name="buff">players/sorcerer/stacks_sorcerer.sval:uncontrolled_power_break</string>
+							<int name="stacks">-1</int>
+						</dict>
+						<dict>
+							<string name="class">AddStacks</string>
+							<bool name="target-self">true</bool>
+							<string name="buff">players/sorcerer/stacks_sorcerer.sval:uncontrolled_power</string>
+							<int name="stacks">1</int>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<string name="class">Modifiers::SkillTriggerEffect</string>
+					<array name="skill-tags"><s>ranged</s></array>
+					<float name="chance">1</float>
+					<bool name="target-self">true</bool>
+					<string name="trigger">attack</string>
+					<int name="timeout">0</int>
+					
+					<array name="effects">
+						<dict>
+							<string name="class">AddStacks</string>
+							<bool name="target-self">true</bool>
+							<string name="buff">players/sorcerer/stacks_sorcerer.sval:uncontrolled_power_break</string>
+							<int name="stacks">1</int>
+						</dict>
+						<dict>
+							<string name="class">AddStacks</string>
+							<bool name="target-self">true</bool>
+							<string name="buff">players/sorcerer/stacks_sorcerer.sval:uncontrolled_power</string>
+							<int name="stacks">-1</int>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<string name="class">Modifiers::SkillTriggerEffect</string>
+					<array name="skill-tags"><s>melee</s></array>
+					<float name="chance">1</float>
+					<bool name="target-self">true</bool>
+					<string name="trigger">attack</string>
+					<int name="timeout">0</int>
+					
+					<array name="effects">
+						<dict>
+							<string name="class">AddStacks</string>
+							<bool name="target-self">true</bool>
+							<string name="buff">players/sorcerer/stacks_sorcerer.sval:uncontrolled_power_break</string>
+							<int name="stacks">1</int>
+						</dict>
+						<dict>
+							<string name="class">AddStacks</string>
+							<bool name="target-self">true</bool>
+							<string name="buff">players/sorcerer/stacks_sorcerer.sval:uncontrolled_power</string>
+							<int name="stacks">-1</int>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</array>
+	</dict>
+
+	<array name="upgrades">
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_2</int>
+			<dict name="binds">
+				<float name="crit-chance">0.05</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_3</int>
+			<dict name="binds">
+				<float name="crit-chance">0.065</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_4</int>
+			<dict name="binds">
+				<float name="crit-chance">0.08</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTLEVEL_5</int>
+			<dict name="binds">
+				<float name="crit-chance">0.1</float>
+			</dict>
+		</dict>
+	</array>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">.skills.sorcerer.passive_2.up1.name</string>
+			<string name="description">.noUselessSkills.sorcerer.passive_2.up1.desc</string>
+
+			<array name="description-params">
+				<array><s>damage</s><s>.noUselessSkills.desc.params.crit.conversion</s><s>20%</s><s>40%</s><s>80%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>24 216 24 24</vec4>
+			</array>
+
+			<string name="id">innate_power_critdamage</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<float name="spell-crit-conversion">0.2</float>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::InjectModifiersIntoStack</string>
+							<string name="buff">players/sorcerer/stacks_sorcerer.sval:uncontrolled_power</string>
+
+						<array name="modifiers">
+								<dict>
+									<string name="class">Modifiers::StatConvert</string>
+									<string name="originatingStat">SpellCritChance</string>
+									<string name="modifiedStat">MainHand_CritChance</string>
+									<string name="mul-bind">spell-crit-conversion</string>
+								</dict>
+								<dict>
+									<string name="class">Modifiers::StatConvert</string>
+									<string name="originatingStat">SpellCritDamage</string>
+									<string name="modifiedStat">Mainhand_CritDamage</string>
+									<string name="mul-bind">spell-crit-conversion</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<float name="spell-crit-conversion">0.4</float>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="spell-crit-conversion">0.8</float>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">.skills.sorcerer.passive_2.up2.name</string>
+			<string name="description">.skills.sorcerer.passive_2.up2.desc</string>
+
+			<array name="description-params">
+				<array><s>weapon-speed</s><s>.skills.desc.params.weapon_speed</s><s>10%</s><s>20%</s><s>30%</s></array>
+				<array><s>cast-speed</s><s>.skills.desc.params.cast_speed</s><s>10%</s><s>20%</s><s>30%</s></array>
+				<array><s>move-speed</s><s>.skills.desc.params.mspeed</s><s>10%</s></array>
+				<array><s>duration</s><b>t</b><s>.skills.desc.params.duration</s><s>4s</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>24 216 24 24</vec4>
+			</array>
+
+			<string name="id">innate_power_surge</string>
+
+			<dict name="skill">
+				<dict name="binds">
+					<string name="surge-buff">players/sorcerer/buffs_sorcerer.sval:powersurge_1</string>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<null />
+					</array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::SkillTriggerEffect</string>
+							<string name="skill-type">spell</string>
+							<string name="trigger">crit</string>
+							<float name="chance">1</float>
+							<int name="timeout">100</int>
+							<bool name="target-self">true</bool>
+							
+							<array name="effects">
+								<dict>
+									<string name="class">ApplyBuff</string>
+									<string name="buff-bind">surge-buff</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<string name="surge-buff">players/sorcerer/buffs_sorcerer.sval:powersurge_2</string>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<string name="surge-buff">players/sorcerer/buffs_sorcerer.sval:powersurge_3</string>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+
+		<dict>
+			<string name="name">.skills.sorcerer.passive_2.up3.name</string>
+			<string name="description">.skills.sorcerer.passive_2.up3.desc</string>
+
+			<array name="description-params">
+				<array><s>mana</s><s>.skills.desc.params.mana</s><s>1.5%</s><s>3%</s><s>5%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>24 216 24 24</vec4>
+			</array>
+
+			<string name="id">innate_power_mana</string>
+			<!-- <string name="quality">uncommon</string> -->
+
+			<dict name="skill">
+				<dict name="binds">
+					<float name="mana-mul">0.015</float>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<null />
+					</array>
+					<array>
+						<null />
+					</array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::SkillTriggerEffect</string>
+							<array name="skill-tags"><s>spell</s></array>
+							<string name="trigger">crit</string>
+							<float name="chance">1</float>
+							<int name="timeout">0</int>
+							<bool name="target-self">true</bool>
+							
+							<array name="effects">
+								<dict>
+									<string name="class">GivePercentageMana</string>
+									<string name="mana-bind">mana-mul</string>
+									<bool name="curr-mana">false</bool>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<float name="mana-mul">0.03</float>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="mana-mul">0.05</float>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+		
+		<!-- spell crit chance to shred resistance -->
+	</array>
+</dict>

@@ -84,4 +84,62 @@
 		</dict>
 	</dict>
 
+	<dict>
+		<string name="id">uncontrolled_power</string>
+		<string name="name">.noUselessSkills.stacks.sorcerer.uncontrolledPower.name</string>
+		<int name="max">1</int>
+		<bool name="refresh-on-max">true</bool>
+		<bool name="hide-hud-text">true</bool>
+
+		<dict name="timer">
+			<dict>
+				<array name="conditional">
+					<s>buff</s>
+					<s>hasnt tag</s>
+					<s>uncontrolled_power_break</s>
+				</array>
+			</dict>
+
+			<int name="time">1000</int>
+			<int name="add-stack">1</int>
+
+			<bool name="gain-set">true</bool>
+			<bool name="add-set">true</bool>
+			<bool name="sub-set">true</bool>
+		</dict>
+		
+		<dict name="buff">
+			<array name="tags">
+				<string>uncontrolled_power</string>
+			</array>
+
+			<bool name="debuff">false</bool>
+
+			<array name="modifiers">
+				<dict>
+					<string name="class">Modifiers::DummyModifier</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+
+	<dict>
+		<string name="id">uncontrolled_power_break</string>
+		<int name="max">1</int>
+		<bool name="refresh-on-max">true</bool>
+		<bool name="hide-hud-text">true</bool>
+		<dict name="buff">
+			<array name="tags">
+				<string>uncontrolled_power_break</string>
+			</array>
+
+			<bool name="debuff">false</bool>
+
+			<array name="modifiers">
+				<dict>
+					<string name="class">Modifiers::DummyModifier</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
 </array>

@@ -8,7 +8,7 @@ class ShootProjectileRotation : ShootProjectile
 		m_rotation = GetParamFloat(unit, params, "rotation", false, 0) * PI / 180.0;		
 	}	
 	
-	vec2 GetShootDir(vec2 dir, int i, bool allowRandom)
+	vec2 GetShootDir(vec2 dir, int i, bool allowRandom) override
 	{
 		if (allowRandom && (m_spread > 0 || m_spreadMin > 0))
 		{
