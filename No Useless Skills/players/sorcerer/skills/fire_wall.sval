@@ -1,0 +1,340 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">.skills.sorcerer.mastery_1.spell_1.name</string>
+	<string name="type-name">.skills.type.spell.upgrade</string>
+	<string name="description">.skills.sorcerer.mastery_1.spell_1.desc</string>
+
+	<array name="description-params">
+		<array><s>damage</s><s>.skills.desc.params.damage</s><s>30</s><s>35</s><s>40</s><s>45</s><s>50</s></array>
+		<array><s>tick-rate</s><s>.skills.desc.params.tick_rate</s><s>0.5s</s></array>
+		<array><s>duration</s><s>.skills.desc.params.duration</s><s>8s</s><s>9s</s><s>10s</s><s>11s</s><s>12s</s></array>
+		<array><s>mana-cost</s><s>.skills.desc.params.mana_cost</s><s>50</s><s>50</s><s>60</s><s>60</s><s>70</s></array>
+		<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown</s><s>13s</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/icons_skills.png</string>
+		<int>100</int><vec4>120 240 24 24</vec4>
+	</array>
+
+	<string name="id">fire_wall</string>
+	<string name="type">spell</string>
+	<array name="tags"><s>spell</s><s>fire</s></array>
+	<int name="starting-level">1</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTMASTERYLEVEL_1</int>
+		<string name="class">Skills::PlayerSkillDirectional</string>
+		<string name="anim">cast</string>
+		<int name="anim-length">900</int>
+
+		<int name="cooldown">13000</int>
+		<float name="move-speed-mul">0</float>
+		<ivec2 name="move-speed">0 300</ivec2>
+		<float name="cast-speed-mul">1</float>
+		<ivec2 name="blocking">0 300</ivec2>
+		<ivec2 name="update-aim">0 300</ivec2>
+		<int name="castpoint">300</int>
+		<bool name="repeating">false</bool>
+
+		<int name="mana-cost">50</int>
+
+
+
+		<dict name="binds">
+			<string name="spawn-sound">event:/sfx/player/classes/sorcerer/flame_wall/flame_wall_cast</string>
+			<string name="wall-unit">players/sorcerer/projectiles/wall_fire.unit</string>
+			<int name="wall-ttl">8000</int>
+			<int name="wall-dmg">30</int>
+			<string name="wall-buff">null</string>
+		</dict>
+
+		<array name="modifiers">
+			<array>
+				<dict>
+					<string name="class">Modifiers::ModifySummons</string>
+					<string name="unit">players/sorcerer/projectiles/wall_fire.unit</string>
+					<int name="add-max-num">100</int>
+				</dict>
+			</array>
+		</array>
+
+%defblock SpawnWallUnit DELAY OFFSET
+<dict>
+	<string name="class">PlaySound</string>
+	<string name="sound-bind">spawn-sound</string>
+</dict>
+<dict>
+	<string name="class">SpawnUnit</string>
+	<string name="unit-bind">wall-unit</string>
+	<bool name="safe-spawn">false</bool>
+	<int name="delay">%%DELAY%%</int>
+	<bool name="rotate-offset">true</bool>
+	<vec2 name="offset">%%OFFSET%%</vec2>
+	<bool name="set-effect-angle">true</bool>
+</dict>
+%endblock
+
+		<dict name="actions">
+			<array name="start">
+				<dict>
+					<string name="class">PlaySound</string>
+					<string name="sound">event:/sfx/player/classes/sorcerer/flame_wall/flame_wall_pre</string>
+				</dict>
+			</array>
+
+			<array name="cast">
+				<dict>
+					<string name="class">Hitscan</string>
+					<int name="rays">1</int>
+					<int name="penetrating">0</int>
+					<int name="range">40</int>
+
+					<array name="effects">
+					</array>
+
+					<array name="miss-effects">
+						<dict>
+							<vec2 name="pos-rotated">-10 0</vec2>
+						</dict>
+						<dict>
+							<string name="class">SpawnUnit</string>
+							<string name="unit-bind">wall-unit</string>
+							<bool name="safe-spawn">false</bool>
+						</dict>
+						<dict>
+							<string name="class">ShootProjectileFan</string>
+							<string name="projectile">players/sorcerer/projectiles/wall_projectile.unit</string>
+							<int name="projectiles">2</int>
+							<int name="spread">180</int>
+						</dict>
+					</array>
+				</dict>
+			</array>
+
+			<array name="flamestep">
+				<dict>
+					<string name="class">DebugLog</string>
+					<string name="text">test_flame_step_3</string>
+				</dict>
+				<dict>
+					<string name="class">PlaySound</string>
+					<string name="sound-bind">spawn-sound</string>
+				</dict>
+				<dict>
+					<string name="class">SpawnUnit</string>
+					<string name="unit-bind">wall-unit</string>
+					<bool name="safe-spawn">false</bool>
+				</dict>
+			</array>
+		</dict>
+			
+		<array name="timeline">
+			<i>100</i><s>start</s>
+			<i>300</i><s>cast</s>
+		</array>
+	</dict>
+
+	<array name="upgrades">
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_2</int>
+			<int name="mana-cost">50</int>
+			<dict name="binds">
+				<int name="wall-ttl">9000</int>
+				<int name="wall-dmg">35</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_3</int>
+			<int name="mana-cost">60</int>
+			<dict name="binds">
+				<int name="wall-ttl">10000</int>
+				<int name="wall-dmg">40</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_4</int>
+			<int name="mana-cost">60</int>
+			<dict name="binds">
+				<int name="wall-ttl">11000</int>
+				<int name="wall-dmg">45</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_5</int>
+			<int name="mana-cost">70</int>
+			<dict name="binds">
+				<int name="wall-ttl">12000</int>
+				<int name="wall-dmg">50</int>
+			</dict>
+		</dict>
+	</array>
+	<array name="modifier-skills">
+
+		<dict>
+			<string name="name">.skills.sorcerer.mastery_1.spell_1.up1.name</string>
+			<string name="description">.skills.sorcerer.mastery_1.spell_1.up1.desc</string>
+
+			<array name="description-params">
+				<array><s>damage</s><s>.skills.desc.params.damage.fire</s><s>50</s><s>100</s><s>150</s></array>
+				<array><s>tick-rate</s><b>t</b><s>.skills.desc.params.tick_rate</s><s>0.5s</s></array>
+				<array><s>duration</s><b>t</b><s>.skills.desc.params.duration</s><s>4s</s></array>
+			<array><s>chance</s><s>.noUselessSkills.desc.params.crit.additional</s><s>+10%</s><s>+20%</s><s>+30%</s></array> 
+			</array>
+
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>120 240 24 24</vec4>
+			</array>
+
+			<string name="id">fire_wall_flamewalker</string>
+			<string name="quality">uncommon</string>
+			<int name="starting-level">0</int>
+			
+			<dict name="skill">
+				<dict name="binds">
+					<string name="wall-buff">players/sorcerer/buffs_sorcerer.sval:flamewalker_1</string>
+					<float name="wall-crit-dmg">.1</float>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::InjectModifiersIntoStack</string>
+							<string name="buff">players/sorcerer/stacks_sorcerer.sval:flamewalker</string>
+
+							<array name="modifiers">
+								<dict>
+									<string name="class">Modifiers::ConvertStat</string>
+									<string name="from">SpellCritDamage</string>
+									<string name="to">SpellCritDamage</string>
+									<string name="mul-bind">wall-crit-damage</string>
+									<bool name="add">true</bool>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array> 
+			</dict>
+
+		
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<string name="wall-buff">players/sorcerer/buffs_sorcerer.sval:flamewalker_2</string>
+						<float name="wall-crit-dmg">.2</float>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<string name="wall-buff">players/sorcerer/buffs_sorcerer.sval:flamewalker_3</string>
+						<float name="wall-crit-dmg">.3</float>
+					</dict>
+				</dict>
+			</array> 
+		</dict>
+
+		<dict>
+			<string name="name">.skills.sorcerer.mastery_1.spell_1.up2.name</string>
+			<string name="description">.skills.sorcerer.mastery_1.spell_1.up2.desc</string>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>120 240 24 24</vec4>
+			</array>
+
+			<string name="id">fire_wall_dash</string>
+			<string name="quality">rare</string>
+			<int name="starting-level">0</int>
+
+			<dict name="skill">
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<null />
+					</array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::TriggerEffect</string>
+							<string name="trigger">dash</string>
+							<bool name="target-self">true</bool>
+							<float name="chance">1</float>
+							<int name="timeout">0</int>
+
+							<array name="effects">
+								<dict>
+									<string name="class">DebugLog</string>
+									<string name="text">test_flame_step</string>
+								</dict>
+								<dict>
+									<string name="class">PerformFloatingAction</string>
+									<string name="floating-action">players/sorcerer/actions_sorcerer.sval:flamestep</string>
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+			</dict>
+		</dict>
+
+		<dict>
+			<string name="name">.skills.sorcerer.mastery_1.spell_1.up3.name</string>
+			<string name="description">.skills.sorcerer.mastery_1.spell_1.up3.desc</string>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>120 240 24 24</vec4>
+			</array>
+
+			<string name="id">fire_wall_targeted</string>
+			<string name="quality">uncommon</string>
+			<int name="starting-level">0</int>
+
+			<dict name="skill">
+				<string name="class">Skills::PlayerSkillPosition</string>
+				<int name="radius">32</int>
+				<int name="range">120</int>
+				<int name="range-min">0</int>
+				<bool name="raycast-to-target">true</bool>
+
+				<dict name="actions">
+					<array name="start">
+						<dict>
+							<string name="class">PlaySound</string>
+							<string name="sound">event:/SFX/Character/Classes/wizard/wall_of_flames/wall_of_flames_start_cast</string>
+						</dict>
+					</array>
+
+					<array name="cast">
+						<dict>
+							<vec2 name="pos-rotated">-10 0</vec2>
+						</dict>
+						<dict>
+							<string name="class">SpawnUnit</string>
+							<string name="unit-bind">wall-unit</string>
+							<bool name="safe-spawn">false</bool>
+						</dict>
+						<dict>
+							<string name="class">ShootProjectileFan</string>
+							<string name="projectile">players/sorcerer/projectiles/wall_projectile.unit</string>
+							<int name="projectiles">2</int>
+							<int name="spread">180</int>
+						</dict>
+					</array>
+				</dict>
+			</dict>
+		</dict>
+
+		<!-- ring of flames -->
+		<!-- debuffs -->
+	</array>
+</dict>

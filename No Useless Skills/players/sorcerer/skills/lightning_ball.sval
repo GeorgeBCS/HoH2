@@ -1,0 +1,223 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">.skills.sorcerer.mastery_3.spell_1.name</string>
+	<string name="type-name">.skills.type.spell</string>
+	<string name="description">.skills.sorcerer.mastery_3.spell_1.desc</string>
+
+	<array name="description-params">
+		<array><s>damage</s><s>.skills.desc.params.damage</s><s>100</s><s>120</s><s>150</s><s>180</s><s>220</s></array>
+		<array><s>charge-time</s><b>t</b><s>.skills.desc.params.charge.max</s><s>1s</s></array>
+		<array><s>mana-cost</s><s>.skills.desc.params.mana_cost</s><s>50</s><s>50</s><s>60</s><s>60</s><s>70</s></array>
+		<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown</s><s>7s</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/icons_skills.png</string>
+		<int>100</int><vec4>144 168 24 24</vec4>
+	</array>
+
+	<string name="id">lightning_ball</string>
+	<string name="type">spell</string>
+	<array name="tags"><s>spell</s><s>lightning</s></array>
+	<int name="starting-level">1</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTMASTERYLEVEL_1</int>
+		<string name="class">Skills::PlayerSkillDirectionalCharged</string>
+		<string name="anim">cast</string>
+		<string name="charge-anim">cast-channel</string>
+
+		<string name="charge-sound">event:/sfx/player/classes/sorcerer/lightning_ball/lightning_ball_charge</string>
+		
+		<int name="cooldown">7000</int>
+		<int name="castpoint">150</int>
+		<float name="cast-speed-mul">1</float>
+		<float name="move-speed-mul">0</float>
+		<ivec2 name="move-speed">0 150</ivec2>
+		<ivec2 name="blocking">0 150</ivec2>
+
+		<int name="charge-time">1000</int>
+		<int name="charge-time-max">1000</int>
+		<string name="charge-fx">players/sorcerer/effects/lightning_ball_cast.effect</string>
+		<float name="charging-move-speed-mul">0.5</float>
+		<vec2 name="intensity-range">0 1</vec2>
+		
+		<int name="charge-cost-freq">1000</int>
+		<int name="mana-cost">50</int>
+
+		<dict name="binds">
+			<string name="proj-unit">players/sorcerer/projectiles/lightning_ball.unit</string>
+			<string name="static-unit">null</string>
+			<int name="lightning-dmg">100</int>
+			<int name="bolt-freq">50000</int>
+
+			<float name="proj-hit-ttl-mul">1</float>
+			<int name="proj-hit-ttl-add">0</int>
+		</dict>
+
+		<array name="modifiers">
+			<array>
+				<dict>
+					<string name="class">Modifiers::ModifySummons</string>
+					<string name="unit">players/sorcerer/projectiles/static_area.unit</string>
+					<int name="add-max-num">100</int>
+				</dict>
+			</array>
+		</array>
+
+
+		<dict name="actions">
+			<array name="cast">
+				<dict>
+					<string name="class">PlaySound</string>
+					<string name="sound">event:/sfx/player/classes/sorcerer/lightning_ball/lightning_ball_cast</string>
+				</dict>
+				<dict>
+					<string name="class">ShootProjectile</string>
+					<string name="projectile-bind">proj-unit</string>
+					<int name="dist">8</int>
+				</dict>
+
+				<dict>
+					<string name="class">ShootProjectile</string>
+					<string name="projectile-bind">static-unit</string>
+					<int name="dist">0</int>
+				</dict>
+
+<!-- 				<dict>
+					<string name="class">SpawnUnit</string>
+					<string name="unit">players/sorcerer/projectiles/static_area.unit</string>
+				</dict> -->
+
+<!-- 				<dict>
+					<string name="class">ShootProjectileFan</string>
+					<string name="projectile-bind">proj-unit</string>
+					<int name="dist">8</int>
+					<int name="projectiles">3</int>
+					<int name="spread">270</int>
+				</dict> -->
+			</array>
+		</dict>
+		
+		<array name="timeline">
+			<i>150</i><s>cast</s>
+		</array>
+	</dict>
+
+	<array name="upgrades">
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_2</int>
+			<int name="mana-cost">50</int>
+			<dict name="binds">
+				<int name="lightning-dmg">120</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_3</int>
+			<int name="mana-cost">60</int>
+			<dict name="binds">
+				<int name="lightning-dmg">150</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_4</int>
+			<int name="mana-cost">60</int>
+			<dict name="binds">
+				<int name="lightning-dmg">180</int>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_5</int>
+			<int name="mana-cost">70</int>
+			<dict name="binds">
+				<int name="lightning-dmg">220</int>
+			</dict>
+		</dict>
+	</array>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">.skills.sorcerer.mastery_3.spell_1.up1.name</string>
+			<string name="description">.skills.sorcerer.mastery_3.spell_1.up1.desc</string>
+
+			<array name="description-params">
+				<array><s>lifetime</s><s>.skills.desc.params.projectile.lifetime</s><s>+25%</s><s>+50%</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>144 168 24 24</vec4>
+			</array>
+
+			<string name="id">lightning_ball_ttl</string>
+			<string name="quality">uncommon</string>
+			<int name="starting-level">0</int>
+
+			<dict name="skill">
+				<dict name="binds">
+					<float name="proj-hit-ttl-mul">1</float>
+					<int name="proj-hit-ttl-add">150</int>
+				</dict>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="proj-hit-ttl-mul">1</float>
+						<int name="proj-hit-ttl-add">300</int>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">.skills.sorcerer.mastery_3.spell_1.up2.name</string>
+			<string name="description">.skills.sorcerer.mastery_3.spell_1.up2.desc</string>
+
+			<array name="description-params">
+				<array><s>damage</s><s>.skills.desc.params.damage</s><s>10%</s></array>
+				<array><s>duration</s><s>.skills.desc.params.duration</s><s>4s</s><s>8s</s>></array>
+				<array><s>tick-rate</s><s>.skills.desc.params.tick_rate</s><s>0.5s</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>144 168 24 24</vec4>
+			</array>
+
+			<string name="id">lightning_ball_static</string>
+			<string name="quality">uncommon</string>
+			<int name="starting-level">0</int>
+
+			<dict name="skill">
+				<dict name="binds">
+					<string name="static-unit">players/sorcerer/projectiles/lightning_ball_spawn_static.unit</string>
+					<int name="static-ttl">4000</int>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::ModifySummons</string>
+							<string name="unit">players/sorcerer/projectiles/static_area.unit</string>
+							<int name="add-max-num">100</int>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<int name="static-ttl">8000</int>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>

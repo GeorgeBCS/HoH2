@@ -1,0 +1,269 @@
+%include "players/skills_cost.inc"
+<dict>
+	<string name="name">.skills.sorcerer.mastery_3.passive_1.name</string>
+	<string name="type-name">.skills.type.passive</string>
+	<string name="description">.skills.sorcerer.mastery_3.passive_1.desc</string>
+	<array name="shown-icons"><s>stun</s></array>
+
+	<array name="description-params">
+		<array><s>damage</s><s>.skills.desc.params.damage</s><s>+10%</s><s>+20%</s><s>+30%</s><s>+40%</s><s>+50%</s></array>
+		<array><s>chance</s><s>.skills.desc.params.chance</s><s>10%</s></array>
+	</array>
+
+	<array name="icon">
+		<string>players/icons_skills.png</string>
+		<int>100</int><vec4>72 312 24 24</vec4>
+	</array>
+
+	<string name="id">lightning_mastery</string>
+	<array name="tags"><s>passive</s></array>
+	<int name="starting-level">1</int>
+
+	<dict name="skill">
+		<int name="skill-cost">SKILLCOSTMASTERYLEVEL_1</int>
+		<string name="class">Skills::PassiveSkill</string>
+
+		<dict name="binds">
+			<float name="lightning-dmg">0.1</float>
+			<float name="stun-chance">0.1</float>
+		</dict>
+
+		<array name="modifiers">
+			<array>
+				<dict>
+					<string name="class">Modifiers::DamageMulAdd</string>
+					<string name="lightning-bind">lightning-dmg</string>
+				</dict>
+
+				<dict>
+					<string name="class">Modifiers::SkillTriggerEffect</string>
+					<array name="skill-tags"><s>lightning</s></array>
+					<string name="trigger">hit</string>
+					<string name="chance-bind">stun-chance</string>
+					<int name="timeout">0</int>
+					
+					<array name="effects">
+						<dict>
+							<string name="class">ApplyBuff</string>
+							<string name="buff">tweak/buffs/status_effects.sval:stun</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<string name="class">Modifiers::SkillTriggerEffect</string>
+					<array name="skill-tags"><s>lightning</s></array>
+					<string name="trigger">spellhit</string>
+					<string name="chance-bind">stun-chance</string>
+					<int name="timeout">0</int>
+					
+					<array name="effects">
+						<dict>
+							<string name="class">ApplyBuff</string>
+							<string name="buff">tweak/buffs/status_effects.sval:stun</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</array>
+	</dict>
+
+	<array name="upgrades">
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_2</int>
+			<dict name="binds">
+				<float name="lightning-dmg">0.2</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_3</int>
+			<dict name="binds">
+				<float name="lightning-dmg">0.3</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_4</int>
+			<dict name="binds">
+				<float name="lightning-dmg">0.4</float>
+			</dict>
+		</dict>
+		<dict>
+			<int name="skill-cost">SKILLCOSTMASTERYLEVEL_5</int>
+			<dict name="binds">
+				<float name="lightning-dmg">0.5</float>
+			</dict>
+		</dict>
+	</array>
+
+	<array name="modifier-skills">
+		<dict>
+			<string name="name">.skills.sorcerer.mastery_3.passive_1.up1.name</string>
+			<string name="description">.skills.sorcerer.mastery_3.passive_1.up1.desc</string>
+
+			<array name="description-params">
+				<array><s>chance</s><s>.skills.desc.params.chance</s><s>10%</s></array>
+				<array><s>damage</s><s>.skills.desc.params.damage</s><s>30</s><s>40</s><s>50</s></array>
+				<array><s>chains</s><s>.skills.desc.params.chains</s><s>1</s><s>2</s><s>3</s></array>
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>72 312 24 24</vec4>
+			</array>
+
+			<string name="id">lightning_mastery_arc</string>
+			<string name="quality">uncommon</string>
+			<int name="starting-level">0</int>
+
+			<dict name="skill">
+				<dict name="binds">
+					<string name="mastery-action">players/sorcerer/actions_sorcerer.sval:lightning_mastery_1</string>
+					<float name="arc-chance">0.1</float>
+					<!-- <int name="arc-dmg">30</int> -->
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::SkillTriggerEffect</string>
+							<array name="skill-tags"><s>lightning</s></array>
+							<string name="trigger">hit</string>
+							<string name="chance-bind">arc-chance</string>
+							<int name="timeout">0</int>
+							
+							<array name="effects">
+								<dict>
+									<string name="class">DebugLog</string>
+									<string name="text">test_lightning_mastery_weapon</string>
+								</dict>
+								<dict>
+									<string name="class">PerformFloatingAction</string>
+									<string name="floating-action-bind">mastery-action</string>
+									<float name="chance">1</float>
+								</dict>
+							</array>
+						</dict>
+						<dict>
+							<string name="class">Modifiers::SkillTriggerEffect</string>
+							<array name="skill-tags"><s>lightning</s></array>
+							<string name="trigger">spellhit</string>
+							<string name="chance-bind">arc-chance</string>
+							<int name="timeout">0</int>
+							
+							<array name="effects">
+								<dict>
+									<string name="class">DebugLog</string>
+									<string name="text">test_lightning_mastery_spell</string>
+								</dict>
+								<dict>
+									<string name="class">PerformFloatingAction</string>
+									<string name="floating-action-bind">mastery-action</string>
+									<float name="chance">1</float>
+								</dict>
+							</array>
+						</dict>
+
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<string name="mastery-action">players/sorcerer/actions_sorcerer.sval:lightning_mastery_2</string>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<string name="mastery-action">players/sorcerer/actions_sorcerer.sval:lightning_mastery_3</string>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+
+		<dict>
+			<string name="name">.skills.sorcerer.mastery_3.passive_1.up2.name</string>
+			<string name="description">.skills.sorcerer.mastery_3.passive_1.up2.desc</string>
+
+			<array name="description-params">
+				<array><s>chance</s><s>.skills.desc.params.chance</s><s>30%</s><s>40%</s><s>50%</s></array>
+				<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown.effect</s><s>1s</s><s>0.5s</s><s>0.25s</s></array>
+
+			</array>
+
+			<array name="icon">
+				<string>players/icons_skills.png</string>
+				<int>100</int><vec4>72 312 24 24</vec4>
+			</array>
+
+			<string name="id">lightning_mastery_block</string>
+			<string name="quality">uncommon</string>
+			<int name="starting-level">0</int>
+
+			<dict name="skill">
+				<dict name="binds">
+					<float name="null-chance">0.3</float>
+					<int name="null-cd">1000</int>
+				</dict>
+
+				<array name="modifiers">
+					<array>
+						<null />
+					</array>
+					<array>
+						<null />
+					</array>
+					<array>
+						<dict>
+							<string name="class">Modifiers::Block</string>
+							<!-- <float name="chance">0.5</float> -->
+							<string name="chance-bind">null-chance</string>
+							<float name="any-based">1</float>
+							
+							<!-- <int name="timeout">0</int> -->
+							<string name="timeout-bind">null-cd</string>
+							<int name="arc">360</int>
+							<bool name="only-melee">false</bool>
+							<bool name="only-projectile">false</bool>
+							<bool name="shield-block">true</bool>
+
+							<array name="effects">
+								<dict>
+									<string name="class">PlaySound</string>
+									<string name="sound">event:/sfx/player/classes/sorcerer/lightning_mastery/lightning_mastery</string>
+								</dict>
+								<dict>
+									<string name="class">SpawnEffect</string>
+									<string name="effect">players/sorcerer/effects/null_field.effect</string>
+									<bool name="attach-to-owner">true</bool>
+									
+								</dict>
+							</array>
+						</dict>
+					</array>
+				</array>
+			</dict>
+
+			<array name="upgrades">
+				<dict>
+					<string name="quality">uncommon</string>
+					<dict name="binds">
+						<float name="null-chance">0.4</float>
+						<int name="null-cd">500</int>
+					</dict>
+				</dict>
+				<dict>
+					<string name="quality">rare</string>
+					<dict name="binds">
+						<float name="null-chance">0.5</float>
+						<int name="null-cd">250</int>
+					</dict>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>

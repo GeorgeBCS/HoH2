@@ -2,6 +2,7 @@
 	<string name="noUselessSkills.desc.params.knight.speed">Weapon, Cast, and Movement Speed:</string>
 	<string name="noUselessSkills.desc.params.judgement.speed">Increased Strike Speed:</string>
 	<string name="noUselessSkills.desc.params.crit.conversion">Spell to Weapon Crit Conversion:</string>
+	<string name="noUselessSkills.desc.params.crit.additional">Spell Crit Damage:</string>
 	
 	<!-- Paladin -->
 
@@ -14,6 +15,7 @@
 	<string name="noUselessSkills.paladin.mastery_1.spell_1.up1.name">Speedy Trial</string>
 	<string name="noUselessSkills.paladin.mastery_1.spell_1.up1.desc">The speed of \cb0dfffJudgement\d strikes is increased by a percent</string>
 	<string name="noUselessSkills.paladin.mastery_1.passive_1.up1.desc">Hitting an enemy inflicted by \cb0dfffSlow\d, \cb0dfffBleeding\d, \cb0dfffDisarm\d, or \cb0dfffSilence\d strikes them with a \cb0dfffJudgement\d hammer.</string>
+	<string name="noUselessSkills.paladin.mastery_2.passive_1.up2.desc">Taking damage when below half health has a chance to activate \cb0dfffDivine Pillars\d. This effect has a short Cooldown</string>
 	<string name="noUselessSkills.paladin.mastery_3.spell_1.desc">You unleash a massive explosion, dealing Fire damage to all enemies around you.</string>
 
 	<!-- Sorcerer -->
@@ -23,6 +25,7 @@
 	<string name="noUselessSkills.sorcerer.passive_1.desc">When casting a \cffdfb0Spell\d you gain \cb0dfffElemental Affinity\d of the same element as the spell cast. Your attacks gain Penetration of the corresponding element as long as you have \cb0dfffElemental Affinity\d. You can only have one type of element active at a time.</string>
 	<string name="noUselessSkills.sorcerer.passive_1.up3.desc">While you have \cb0dfffElemental Affinity\d, your damage bonus to that element also applies to your others.</string>
 	<string name="noUselessSkills.sorcerer.passive_2.up1.desc">A percent of your \cffdfb0Spell Crit Chance\d and \cffdfb0Spell Crit Damage\d is converted to \cffdfb0Weapon Crit Chance\d and \cffdfb0Weapon Crit Damage\d while using an \cffdfb0Arcane\d Weapon</string>
+	<string name="noUselessSkills.sorcerer.mastery_1.spell_1.up1.desc">You and your allies entering the wall are ignited with a temporary aura that deals Fire damage to nearby enemies. You also gain a multiplier to your Spell Crit Damage</string>
 	<string name="noUselessSkills.sorcerer.mastery_2.passive_1.up1.name">Freezing Mists</string>
 	<string name="noUselessSkills.sorcerer.mastery_2.passive_1.up1.desc">Killing an enemy has a chance to spawn an Ice Orb.</string>
 	<string name="NoUselessSkills.sorcerer.mastery_2.passive_1.up2.desc">You block a percentage of Fire, Ice, and Lightning damage. When blocking, three shards from your frost nova are unleashed.</string>
@@ -30,7 +33,7 @@
 	<string name="noUselessSkills.stacks.sorcerer.elementalist_ice.name">Ice Affinity</string>
 	<string name="noUselessSkills.stacks.sorcerer.elementalist_lightning.name">Lightning Affinity</string>
 	<string name="noUselessSkills.stacks.sorcerer.uncontrolledPower.name">Uncontrolled Power</string>
-
+	<string name="noUselessSkills.stacks.sorcerer.flamewalker.name">Flamewalker</string>
 
 
 

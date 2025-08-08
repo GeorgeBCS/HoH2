@@ -101,7 +101,8 @@
 			<string name="description">.skills.sorcerer.mastery_2.spell_1.up1.desc</string>
 
 			<array name="description-params">
-				<array><s>chance</s><s>.skills.desc.params.chance</s><s>50%</s><s>100%</s></array>
+				<array><s>chance</s><s>.skills.desc.params.chance</s><s>40%</s><s>80%</s></array>
+				<array><s>effect-cd</s><s>.skills.desc.params.cooldown.effect</s><s>.5s</s></array>
 			</array>
 
 			<array name="icon">
@@ -157,6 +158,7 @@
 							<string name="skill-id">ice_frost_nova</string>
 							<bool name="target-self">false</bool>
 							<string name="chance-bind">kill-chance</string>
+							<int name="timeout">500</int>
 							<array name="effects">
 								<dict>
 									<string name="class">DebugLog</string>

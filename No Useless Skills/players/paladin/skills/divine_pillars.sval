@@ -200,7 +200,7 @@
 			<string name="description">.skills.paladin.mastery_2.spell_1.up2.desc</string>
 
 			<array name="description-params">
-				<array><s>damage</s><s>.skills.desc.params.damage.lightning</s><s>25%</s><s>50%</s></array>
+				<array><s>damage</s><s>.skills.desc.params.damage.lightning</s><s>50%</s><s>100%</s></array>
 			</array>
 
 			<array name="icon">
@@ -217,7 +217,7 @@
 				<dict name="binds">
 					<string name="pillar-unit">players/paladin/units/pillar_of_light_lightning.unit</string>
 					<string name="pillar-unit-spawner-1">players/paladin/units/pillar_of_light_spawner_1_lightning.unit</string>
-					<float name="lightning-mul">0.25</float>
+					<float name="lightning-mul">0.5</float>
 				</dict>
 			</dict>
 
@@ -225,7 +225,7 @@
 				<dict>
 					<string name="quality">rare</string>
 					<dict name="binds">
-						<float name="lightning-mul">0.5</float>
+						<float name="lightning-mul">1</float>
 					</dict>
 				</dict>
 			</array>

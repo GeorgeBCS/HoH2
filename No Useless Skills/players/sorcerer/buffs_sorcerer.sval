@@ -1,0 +1,103 @@
+<svals>
+%defblock PowerSurge LVL AMOUNT
+<dict name="powersurge_%%LVL%%">
+	<int name="duration">4000</int>
+	<bool name="debuff">false</bool>
+
+	<string name="fx">players/ranger/effects/dodge_buff.effect</string>
+	<!-- <string name="icon">special/icons/stun.unit</string> -->
+
+	<array name="modifiers">
+		<dict>
+			<string name="class">Modifiers::SpeedAdd</string>
+			<!-- <float name="move-speed">%%AMOUNT%%</float> -->
+			<float name="move-speed">0.1</float>
+		</dict>
+		<dict>
+			<string name="class">Modifiers::SpeedAdd</string>
+			<float name="attack-speed">%%AMOUNT%%</float>
+			<float name="cast-speed">%%AMOUNT%%</float>
+		</dict>
+	</array>
+</dict>
+%endblock
+
+%block PowerSurge 1 0.1
+%block PowerSurge 2 0.2
+%block PowerSurge 3 0.3
+
+
+
+
+%defblock Flamewalker LVL AMOUNT
+<dict name="flamewalker_%%LVL%%">
+	<int name="duration">4000</int>
+	<bool name="debuff">false</bool>
+
+	<string name="fx">players/sorcerer/effects/flame_walker.effect</string>
+	<!-- <string name="icon">special/icons/stun.unit</string> -->
+
+	<array name="modifiers">
+		<dict>
+			<string name="class">Modifiers::Aura</string>
+			<string name="buff">players/sorcerer/buffs_sorcerer.sval:flamewalker_damage_%%LVL%%</string>
+			<bool name="friendly">false</bool>
+			<int name="range">60</int>
+			<int name="freq">250</int>
+		</dict>
+	</array>
+</dict>
+%endblock
+
+%block Flamewalker 1
+%block Flamewalker 2
+%block Flamewalker 3
+
+
+
+%defblock FlamewalkerDamage LVL DMG
+<dict name="flamewalker_damage_%%LVL%%">
+	<int name="duration">500</int>
+	<bool name="debuff">true</bool>
+
+	<dict name="tick">
+		<int name="freq">500</int>
+		<bool name="immediate">true</bool>
+
+		<array name="effects">
+			<dict>
+				<float name="enemy-dmg">1</float>
+			</dict>
+			<dict>
+				<string name="class">Damage</string>
+				<int name="fire">%%DMG%%</int>
+			</dict>
+		</array>
+	</dict>
+</dict>
+%endblock
+
+%block FlamewalkerDamage 1 50
+%block FlamewalkerDamage 2 100
+%block FlamewalkerDamage 3 150
+
+
+
+	<dict name="flame_step">
+		<int name="duration">450</int>
+		<bool name="debuff">false</bool>
+		<string name="icon">special/icons/slow.unit</string>
+
+		<dict name="move">
+			<int name="freq">32</int>
+			<array name="effects">
+				<dict>
+					<string name="class">PerformFloatingAction</string>
+					<string name="floating-action">players/sorcerer/actions_sorcerer.sval:fire_mastery</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+
+
+</svals>

@@ -1,0 +1,75 @@
+<unit netsync="none">
+	<behavior class="NewProjectile">
+		<string name="anim">default</string>
+		<float name="speed">12</float>
+		<int name="ttl">850</int>
+		<int name="penetration">999</int>
+		<int name="bounces">6</int>
+		<bool name="bounce-on-collide">false</bool>
+		
+		<array name="modifiers">
+			<dict>
+				<string name="class">Projectile::Speed</string>
+				<float name="hit-speed-mul">1</float>
+				<float name="hit-intensity-mul">1</float>
+				<float name="bounce-speed-mul">1</float>
+				<float name="bounce-intensity-mul">1</float>
+			</dict>
+			
+			<dict>
+				<string name="class">Projectile::Retargeter</string>
+				<int name="target-range">100</int>
+				<float name="interception">0</float>
+				<!-- <float name="chance">0</float> -->
+				<string name="chance-bind">retarget-chance</string>
+				<bool name="destroy-on-fail">false</bool>
+				<bool name="destroy-on-failed-chance">true</bool>
+				<bool name="retarget-on-hit">true</bool>
+				<bool name="retarget-on-collide">false</bool>
+				<bool name="retarget-on-ground-bounce">false</bool>
+				<bool name="raycast">false</bool>
+			</dict>
+		</array>
+
+		<array name="hit-effects">
+			<dict>
+				<string name="class">Damage</string>
+				<string name="ice-bind">nova-damage</string>
+				<bool name="shield-blockable">true</bool>
+			</dict>
+			<dict>
+				<string name="class">SpawnEffect</string>
+				<string name="effect">effects/generic/impacts/ice_impact_2.effect</string>
+			</dict>
+			<dict>
+				<string name="class">PlaySound</string>
+				<string name="sound">event:/sfx/player/classes/sorcerer/frost_nova/frost_nova_hit</string>
+			</dict>
+		</array>
+
+		<array name="destroyed-effects">
+			<dict>
+				<string name="class">PlaySound</string>
+				<string name="sound">event:/sfx/player/classes/sorcerer/frost_nova/frost_nova_projectile_destroyed</string>
+			</dict>
+			<dict>
+				<string name="class">SpawnEffect</string>
+				<string name="effect">effects/generic/impacts/ice_impact_1.effect</string>
+			</dict>
+		</array>
+		
+		<dict name="effect-params">
+			<float name="height">3</float>
+		</dict>
+	</behavior>
+	
+	<scenes>
+		<scene name="default">
+			<collision static="false">
+				<circle radius="5" projectile="true" />
+			</collision>
+
+			<effect src="players/sorcerer/effects/frostnova_ice_shard.effect" />
+		</scene>
+	</scenes>
+</unit>

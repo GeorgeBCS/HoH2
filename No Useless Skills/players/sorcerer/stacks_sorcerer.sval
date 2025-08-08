@@ -85,6 +85,47 @@
 	</dict>
 
 	<dict>
+		<string name="id">flamewalkercrit</string>
+		<string name="name">.noUselessSkills.stacks.sorcerer.flamewalker.name</string>
+		<int name="max">1</int>
+		<bool name="refresh-on-max">true</bool>
+		<bool name="hide-hud-text">true</bool>
+
+		<dict name="timer">
+			<int name="time">4000</int>
+			<int name="add-stack">-1</int>
+
+			<bool name="gain-set">true</bool>
+			<bool name="add-set">true</bool>
+			<bool name="sub-set">true</bool>
+
+			<bool name="gain-reset">true</bool>
+			<bool name="add-reset">true</bool>
+			<bool name="sub-reset">true</bool>
+		</dict>
+		
+		<dict name="buff">
+			<array name="tags">
+				<string>flamewalkercrit</string>
+			</array>
+
+			<array name="hud">
+				<string>players/icons_skills.png</string>
+				<int>100</int>
+				<vec4>240 168 14 14</vec4>
+			</array>
+
+			<bool name="debuff">false</bool>
+
+			<array name="modifiers">
+				<dict>
+					<string name="class">Modifiers::DummyModifier</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+	
+	<dict>
 		<string name="id">uncontrolled_power</string>
 		<string name="name">.noUselessSkills.stacks.sorcerer.uncontrolledPower.name</string>
 		<int name="max">1</int>
