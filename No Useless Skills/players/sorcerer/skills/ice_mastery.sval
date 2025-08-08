@@ -206,7 +206,7 @@
 
 		<dict>
 			<string name="name">.skills.sorcerer.mastery_2.passive_1.up2.name</string>
-			<string name="description">.NoUselessSkills.sorcerer.mastery_2.passive_1.up2.desc</string>
+			<string name="description">.noUselessSkills.sorcerer.mastery_2.passive_1.up2.desc</string>
 
 			<array name="description-params">
 				<array><s>block</s><s>.skills.desc.params.block</s><s>10%</s><s>20%</s><s>40%</s></array>

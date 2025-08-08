@@ -100,7 +100,7 @@
 			<string name="description">.skills.sorcerer.mastery_3.passive_1.up1.desc</string>
 
 			<array name="description-params">
-				<array><s>chance</s><s>.skills.desc.params.chance</s><s>10%</s></array>
+				<array><s>chance</s><s>.skills.desc.params.chance</s><s>50%</s></array>
 				<array><s>damage</s><s>.skills.desc.params.damage</s><s>30</s><s>40</s><s>50</s></array>
 				<array><s>chains</s><s>.skills.desc.params.chains</s><s>1</s><s>2</s><s>3</s></array>
 			</array>
@@ -117,7 +117,7 @@
 			<dict name="skill">
 				<dict name="binds">
 					<string name="mastery-action">players/sorcerer/actions_sorcerer.sval:lightning_mastery_1</string>
-					<float name="arc-chance">0.1</float>
+					<float name="arc-chance">0.5</float>
 					<!-- <int name="arc-dmg">30</int> -->
 				</dict>
 
@@ -187,11 +187,11 @@
 
 		<dict>
 			<string name="name">.skills.sorcerer.mastery_3.passive_1.up2.name</string>
-			<string name="description">.skills.sorcerer.mastery_3.passive_1.up2.desc</string>
+			<string name="description">.noUselessSkills.sorcerer.mastery_3.passive_1.up2.desc</string>
 
 			<array name="description-params">
-				<array><s>chance</s><s>.skills.desc.params.chance</s><s>30%</s><s>40%</s><s>50%</s></array>
-				<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown.effect</s><s>1s</s><s>0.5s</s><s>0.25s</s></array>
+				<array><s>block</s><s>.skills.desc.params.block</s><s>20%</s><s>40%</s><s>60%</s></array>
+				<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown.effect</s><s>0.5s</s><s>0.25s</s><s>0.1s</s></array>
 
 			</array>
 
@@ -206,8 +206,8 @@
 
 			<dict name="skill">
 				<dict name="binds">
-					<float name="null-chance">0.3</float>
-					<int name="null-cd">1000</int>
+					<float name="null-block">0.2</float>
+					<int name="null-cd">500</int>
 				</dict>
 
 				<array name="modifiers">
@@ -220,9 +220,8 @@
 					<array>
 						<dict>
 							<string name="class">Modifiers::Block</string>
-							<!-- <float name="chance">0.5</float> -->
-							<string name="chance-bind">null-chance</string>
-							<float name="any-based">1</float>
+							<float name="chance">1</float>
+							<string name="any-based-bind">null-block</string>
 							
 							<!-- <int name="timeout">0</int> -->
 							<string name="timeout-bind">null-cd</string>
@@ -252,15 +251,15 @@
 				<dict>
 					<string name="quality">uncommon</string>
 					<dict name="binds">
-						<float name="null-chance">0.4</float>
-						<int name="null-cd">500</int>
+						<float name="null-block">0.4</float>
+						<int name="null-cd">250</int>
 					</dict>
 				</dict>
 				<dict>
 					<string name="quality">rare</string>
 					<dict name="binds">
-						<float name="null-chance">0.5</float>
-						<int name="null-cd">250</int>
+						<float name="null-block">0.6</float>
+						<int name="null-cd">100</int>
 					</dict>
 				</dict>
 			</array>

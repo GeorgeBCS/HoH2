@@ -360,15 +360,15 @@
 
 							<array name="modifiers">
 								<dict>
-									<string name="class">Modifiers::StatConvert</string>
-									<string name="originatingStat">FireDamageMul</string>
-									<string name="modifiedStat">IceDamageMul</string>
+									<string name="class">Modifiers::ConvertStatWeighted</string>
+									<string name="from">FireDamageMul</string>
+									<string name="to">IceDamageMul</string>
 									<float name="mul">1</float>
 								</dict>
 								<dict>
-									<string name="class">Modifiers::StatConvert</string>
-									<string name="originatingStat">FireDamageMul</string>
-									<string name="modifiedStat">LightningDamageMul</string>
+									<string name="class">Modifiers::ConvertStatWeighted</string>
+									<string name="from">FireDamageMul</string>
+									<string name="to">LightningDamageMul</string>
 									<float name="mul">1</float>
 								</dict>
 							</array>
@@ -379,15 +379,15 @@
 
 							<array name="modifiers">
 								<dict>
-									<string name="class">Modifiers::StatConvert</string>
-									<string name="originatingStat">IceDamageMul</string>
-									<string name="modifiedStat">FireDamageMul</string>
+									<string name="class">Modifiers::ConvertStatWeighted</string>
+									<string name="from">IceDamageMul</string>
+									<string name="to">FireDamageMul</string>
 									<float name="mul">1</float>
 								</dict>
 								<dict>
-									<string name="class">Modifiers::StatConvert</string>
-									<string name="originatingStat">IceDamageMul</string>
-									<string name="modifiedStat">LightningDamageMul</string>
+									<string name="class">Modifiers::ConvertStatWeighted</string>
+									<string name="from">IceDamageMul</string>
+									<string name="to">LightningDamageMul</string>
 									<float name="mul">1</float>
 								</dict>
 							</array>
@@ -398,15 +398,15 @@
 
 							<array name="modifiers">
 								<dict>
-									<string name="class">Modifiers::StatConvert</string>
-									<string name="originatingStat">LightningDamageMul</string>
-									<string name="modifiedStat">IceDamageMul</string>
+									<string name="class">Modifiers::ConvertStatWeighted</string>
+									<string name="from">LightningDamageMul</string>
+									<string name="to">IceDamageMul</string>
 									<float name="mul">1</float>
 								</dict>
 								<dict>
-									<string name="class">Modifiers::StatConvert</string>
-									<string name="originatingStat">LightningDamageMul</string>
-									<string name="modifiedStat">FireDamageMul</string>
+									<string name="class">Modifiers::ConvertStatWeighted</string>
+									<string name="from">LightningDamageMul</string>
+									<string name="to">FireDamageMul</string>
 									<float name="mul">1</float>
 								</dict>
 							</array>

@@ -182,15 +182,15 @@
 
 						<array name="modifiers">
 								<dict>
-									<string name="class">Modifiers::StatConvert</string>
-									<string name="originatingStat">SpellCritChance</string>
-									<string name="modifiedStat">MainHand_CritChance</string>
+									<string name="class">Modifiers::ConvertStatWeighted</string>
+									<string name="from">SpellCritChance</string>
+									<string name="to">MainHand_CritChance</string>
 									<string name="mul-bind">spell-crit-conversion</string>
 								</dict>
 								<dict>
-									<string name="class">Modifiers::StatConvert</string>
-									<string name="originatingStat">SpellCritDamage</string>
-									<string name="modifiedStat">Mainhand_CritDamage</string>
+									<string name="class">Modifiers::ConvertStatWeighted</string>
+									<string name="from">SpellCritDamage</string>
+									<string name="to">Mainhand_CritDamage</string>
 									<string name="mul-bind">spell-crit-conversion</string>
 								</dict>
 							</array>

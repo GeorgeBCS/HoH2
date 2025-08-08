@@ -7,7 +7,7 @@
 	<array name="description-params">
 		<array><s>damage</s><s>.skills.desc.params.damage</s><s>40</s><s>50</s><s>70</s><s>90</s><s>110</s></array>
 		<array><s>mana-cost</s><s>.skills.desc.params.mana_cost</s><s>20</s><s>20</s><s>25</s><s>25</s><s>30</s></array>
-		<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown</s><s>1s</s></array>
+		<array><s>cooldown</s><b>t</b><s>.skills.desc.params.cooldown</s><s>2s</s></array>
 	</array>
 
 	<array name="icon">

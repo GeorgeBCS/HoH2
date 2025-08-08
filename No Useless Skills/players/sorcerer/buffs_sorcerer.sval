@@ -33,7 +33,7 @@
 <dict name="flamewalker_%%LVL%%">
 	<int name="duration">4000</int>
 	<bool name="debuff">false</bool>
-
+	<string name="name">.noUselessSkills.stacks.sorcerer.flamewalker.name</string>
 	<string name="fx">players/sorcerer/effects/flame_walker.effect</string>
 	<!-- <string name="icon">special/icons/stun.unit</string> -->
 
@@ -45,13 +45,20 @@
 			<int name="range">60</int>
 			<int name="freq">250</int>
 		</dict>
+		<dict>
+			<string name="class">Modifiers::ConvertStatWeighted</string>
+			<string name="from">SpellCritDamage</string>
+			<string name="to">SpellCritDamage</string>
+			<float name="mul">%%AMOUNT%%</float>
+			<bool name="add">true</bool>
+		</dict>
 	</array>
 </dict>
 %endblock
 
-%block Flamewalker 1
-%block Flamewalker 2
-%block Flamewalker 3
+%block Flamewalker 1 0.1
+%block Flamewalker 2 0.2
+%block Flamewalker 3 0.3
 
 
 
@@ -72,6 +79,7 @@
 				<string name="class">Damage</string>
 				<int name="fire">%%DMG%%</int>
 			</dict>
+			
 		</array>
 	</dict>
 </dict>

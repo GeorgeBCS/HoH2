@@ -173,13 +173,13 @@
 
 		<dict>
 			<string name="name">.skills.sorcerer.mastery_1.spell_1.up1.name</string>
-			<string name="description">.skills.sorcerer.mastery_1.spell_1.up1.desc</string>
+			<string name="description">.noUselessSkills.sorcerer.mastery_1.spell_1.up1.desc</string>
 
 			<array name="description-params">
 				<array><s>damage</s><s>.skills.desc.params.damage.fire</s><s>50</s><s>100</s><s>150</s></array>
 				<array><s>tick-rate</s><b>t</b><s>.skills.desc.params.tick_rate</s><s>0.5s</s></array>
+				<array><s>chance</s><s>.noUselessSkills.desc.params.crit.additional</s><s>+10%</s><s>+20%</s><s>+30%</s></array> 
 				<array><s>duration</s><b>t</b><s>.skills.desc.params.duration</s><s>4s</s></array>
-			<array><s>chance</s><s>.noUselessSkills.desc.params.crit.additional</s><s>+10%</s><s>+20%</s><s>+30%</s></array> 
 			</array>
 
 
@@ -212,7 +212,7 @@
 									<string name="class">Modifiers::ConvertStat</string>
 									<string name="from">SpellCritDamage</string>
 									<string name="to">SpellCritDamage</string>
-									<string name="mul-bind">wall-crit-damage</string>
+									<string name="mul-bind">wall-crit-dmg</string>
 									<bool name="add">true</bool>
 								</dict>
 							</array>
@@ -302,7 +302,7 @@
 			<dict name="skill">
 				<string name="class">Skills::PlayerSkillPosition</string>
 				<int name="radius">32</int>
-				<int name="range">120</int>
+				<int name="range">180</int>
 				<int name="range-min">0</int>
 				<bool name="raycast-to-target">true</bool>
 

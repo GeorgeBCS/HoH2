@@ -102,7 +102,7 @@
 
 			<array name="description-params">
 				<array><s>chance</s><s>.skills.desc.params.chance</s><s>40%</s><s>80%</s></array>
-				<array><s>effect-cd</s><s>.skills.desc.params.cooldown.effect</s><s>.5s</s></array>
+				<array><s>effect-cd</s><s>.skills.desc.params.cooldown.effect</s><s>0.5s</s></array>
 			</array>
 
 			<array name="icon">

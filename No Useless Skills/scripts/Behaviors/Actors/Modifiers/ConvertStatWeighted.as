@@ -1,55 +1,48 @@
 namespace Modifiers
 {				
-	class StatConvert : StatModifier, IHandedStatModifier
+	class ConvertStatWeighted : ConvertStat, IHandedStatModifier
 	{
-
-		ConvertableStat m_orig_stat;
-		ConvertableStat m_mod_stat;
-		float m_mul;
+		ConvertableStat m_from_single;
 		void SetRole(Role r) override { m_role = r; }
 		Role m_role;
-		vec2 m_chance;
-		vec2 m_attackCritDmg;
 
-		StatConvert(UnitPtr unit, SValue& params)
+		ConvertStatWeighted(UnitPtr unit, SValue& params)
 		{
 			super(unit, params);
-			
-			m_orig_stat = ParseStat(GetParamString(unit, params, "originatingStat", true));
-			m_mod_stat = ParseStat(GetParamString(unit, params, "modifiedStat", true));
-			m_mul = GetParamFloat(unit, params, "mul", true);
-			
+			m_from_single = ParseStat(GetParamString(unit, params, "from", true));
+			m_mul = GetParamVec2(unit, params, "mul", true);
 			Ordering = int(ModifierOrdering::Post) + 20;
+
 		}
 		
 		void Modify(PlayerRecord@ player, PlayerStats@ stats, float intensity) override
 		{
-			float statToAdd = 1.0f;
+			float statToAdd = 0.0f;
 			
 			{
-				switch (m_orig_stat)
+				switch (m_from)
 				{				
 				case ConvertableStat::SpellCritChance:
-					statToAdd = max(0, stats.SpellCritChance) * m_mul;
+					statToAdd = max(0, stats.SpellCritChance) * lerp(m_mul, intensity);
 					break;
 				case ConvertableStat::SpellCritDamage:
-					statToAdd = max(0, stats.SpellCritDamage - 1.5f) * m_mul;
+					statToAdd = max(0, stats.SpellCritDamage - 1.5f) * lerp(m_mul, intensity);
 					break;
 				case ConvertableStat::IceDamageMul:
-					statToAdd = max(0, stats.IceDamageMul - 1.0f) * m_mul;
+					statToAdd = max(0, stats.IceDamageMul - 1.0f) * lerp(m_mul, intensity);
 					break;
 				case ConvertableStat::LightningDamageMul:
-					statToAdd = max(0, stats.LightningDamageMul - 1.0f) * m_mul;
+					statToAdd = max(0, stats.LightningDamageMul - 1.0f) * lerp(m_mul, intensity);
 					break;
 				case ConvertableStat::PoisonDamageMul:
-					statToAdd = max(0, stats.PoisonDamageMul - 1.0f) * m_mul;
+					statToAdd = max(0, stats.PoisonDamageMul - 1.0f) * lerp(m_mul, intensity);
 					break;
 				case ConvertableStat::FireDamageMul:
-					statToAdd = max(0, stats.FireDamageMul - 1.0f) * m_mul;
+					statToAdd = max(0, stats.FireDamageMul - 1.0f) * lerp(m_mul, intensity);
 					break;
 				}
 			
-				switch (m_mod_stat)
+				switch (m_to)
 				{
 				case ConvertableStat::MainHandCritChance:
 					if (m_role != Role::MainHand)
